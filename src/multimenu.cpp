@@ -150,6 +150,7 @@ static bool		giftsUp[MAX_PLAYERS] = {true};		//gift buttons for player are up.
  * \param mode  the specified alliance
  * \param player the specified player
  */
+
 static PIELIGHT GetPlayerTextColor(int mode, UDWORD player)
 {
 	// override color if they are dead...

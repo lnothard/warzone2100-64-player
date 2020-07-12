@@ -313,7 +313,7 @@ dataset MULTI_CAM_3
 game    "multiplay/maps/2c-Vision.gam"
 
 level   Emergence
-players 10
+players 20
 type    14
 dataset MULTI_CAM_3
 game    "multiplay/maps/10c-Emergence.gam"

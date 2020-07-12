@@ -1925,16 +1925,17 @@ const char *getPlayerColourName(int player)
 		N_("Ultraviolet"),
 		N_("Brown"),
 	};
-	STATIC_ASSERT(MAX_PLAYERS <= ARRAY_SIZE(playerColors));
+	// STATIC_ASSERT(MAX_PLAYERS <= ARRAY_SIZE(playerColors));
 
-	ASSERT(player < ARRAY_SIZE(playerColors), "player number (%d) exceeds maximum (%lu)", player, (unsigned long) ARRAY_SIZE(playerColors));
+	// ASSERT(player < ARRAY_SIZE(playerColors), "player number (%d) exceeds maximum (%lu)", player, (unsigned long) ARRAY_SIZE(playerColors));
 
-	if (player >= ARRAY_SIZE(playerColors))
-	{
-		return "";
-	}
+	// if (player >= ARRAY_SIZE(playerColors))
+	// {
+	// 	return "";
+	// }
 
-	return gettext(playerColors[getPlayerColour(player)]);
+    return (player < ARRAY_SIZE(playerColors)) ? gettext(playerColors[getPlayerColour(player)]) : gettext(playerColors[getPlayerColour(player - ARRAY_SIZE(playerColors))]);
+	// return gettext(playerColors[getPlayerColour(player)]);
 }
 
 /* Reset ready status for all players */

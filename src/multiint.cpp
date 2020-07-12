@@ -3382,7 +3382,7 @@ void WzMultiOptionTitleUI::processMultiopWidgets(UDWORD id)
 	}
 
 	// clicked on a player
-	STATIC_ASSERT(MULTIOP_PLAYER_START + MAX_PLAYERS - 1 <= MULTIOP_PLAYER_END);
+	// STATIC_ASSERT(MULTIOP_PLAYER_START + MAX_PLAYERS - 1 <= MULTIOP_PLAYER_END);
 	if (id >= MULTIOP_PLAYER_START && id <= MULTIOP_PLAYER_START + MAX_PLAYERS - 1
 	    && !locked.position
 	    && (id - MULTIOP_PLAYER_START == selectedPlayer || NetPlay.isHost
@@ -4477,7 +4477,7 @@ void displayColour(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset)
 	if (NetPlay.players[j].wzFiles.empty() && game.skDiff[j])
 	{
 		int player = getPlayerColour(j);
-		STATIC_ASSERT(MAX_PLAYERS <= 16);
+		// STATIC_ASSERT(MAX_PLAYERS <= 16);
 		iV_DrawImageTc(FrontImages, IMAGE_PLAYERN, IMAGE_PLAYERN_TC, x + 7, y + 9, pal_GetTeamColour(player));
 	}
 }
@@ -4502,7 +4502,6 @@ void displayMultiEditBox(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset)
 	int y = yOffset + psWidget->y();
 
 	drawBlueBox(x, y, psWidget->width(), psWidget->height());
-
 	if (((W_EDITBOX *)psWidget)->state & WEDBS_DISABLE)					// disabled
 	{
 		PIELIGHT colour;

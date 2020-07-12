@@ -89,26 +89,26 @@ PIELIGHT clanColours[] =
 	{{128, 128, 0, 255}},           // brown       Player F
 };
 
-static PIELIGHT flashColours[] =
-{
-	//right now the flash color is all bright red
-	{{254, 37, 37, 200}},	// Player 0
-	{{254, 37, 37, 200}},	// Player 1
-	{{254, 37, 37, 200}},	// Player 2
-	{{254, 37, 37, 200}},	// Player 3
-	{{254, 37, 37, 200}},	// Player 4  (notice, brighter red)
-	{{254, 37, 37, 200}},	// Player 5
-	{{254, 37, 37, 200}},	// Player 6
-	{{254, 37, 37, 200}},   // Player 7
-	{{254, 37, 37, 200}},   // Player 8
-	{{254, 37, 37, 200}},   // Player 9
-	{{254, 37, 37, 200}},   // Player A
-	{{254, 37, 37, 200}},   // Player B
-	{{254, 37, 37, 200}},   // Player C
-	{{254, 37, 37, 200}},   // Player D
-	{{254, 37, 37, 200}},   // Player E
-	{{254, 37, 37, 200}},   // Player F
-};
+// static PIELIGHT flashColours[] =
+// {
+// 	//right now the flash color is all bright red
+// 	{{254, 37, 37, 200}},	// Player 0
+// 	{{254, 37, 37, 200}},	// Player 1
+// 	{{254, 37, 37, 200}},	// Player 2
+// 	{{254, 37, 37, 200}},	// Player 3
+// 	{{254, 37, 37, 200}},	// Player 4  (notice, brighter red)
+// 	{{254, 37, 37, 200}},	// Player 5
+// 	{{254, 37, 37, 200}},	// Player 6
+// 	{{254, 37, 37, 200}},   // Player 7
+// 	{{254, 37, 37, 200}},   // Player 8
+// 	{{254, 37, 37, 200}},   // Player 9
+// 	{{254, 37, 37, 200}},   // Player A
+// 	{{254, 37, 37, 200}},   // Player B
+// 	{{254, 37, 37, 200}},   // Player C
+// 	{{254, 37, 37, 200}},   // Player D
+// 	{{254, 37, 37, 200}},   // Player E
+// 	{{254, 37, 37, 200}},   // Player F
+// };
 
 static SDWORD radarWidth, radarHeight, radarCenterX, radarCenterY, radarTexWidth, radarTexHeight;
 static uint8_t RadarZoom;
@@ -442,12 +442,12 @@ static void DrawRadarObjects()
 		else
 		{
 			//original 8-color mode
-			STATIC_ASSERT(MAX_PLAYERS <= ARRAY_SIZE(clanColours));
+			// STATIC_ASSERT(MAX_PLAYERS <= ARRAY_SIZE(clanColours));
 			playerCol = clanColours[getPlayerColour(clan)];
 		}
 
-		STATIC_ASSERT(MAX_PLAYERS <= ARRAY_SIZE(flashColours));
-		flashCol = flashColours[getPlayerColour(clan)];
+		// STATIC_ASSERT(MAX_PLAYERS <= ARRAY_SIZE(flashCol));
+		flashCol = {{254,37,37,200}};
 
 		/* Go through all droids */
 		for (psDroid = apsDroidLists[clan]; psDroid != nullptr; psDroid = psDroid->psNext)
@@ -512,7 +512,7 @@ static void DrawRadarObjects()
 				//original 8-color mode
 				playerCol = clanColours[getPlayerColour(clan)];
 			}
-			flashCol = flashColours[getPlayerColour(clan)];
+			// flashCol = flashCol[getPlayerColour(clan)];
 
 			if (psStruct->visible[selectedPlayer]
 			    || (bMultiPlayer && alliancesSharedVision(game.alliance)

@@ -60,8 +60,8 @@
 
 extern uint32_t selectedPlayer;      ///< The player number corresponding to this client.
 extern uint32_t realSelectedPlayer;  ///< The player number corresponding to this client (same as selectedPlayer, unless changing players in the debug menu).
-#define MAX_PLAYERS         11                 ///< Maximum number of players in the game.
-#define MAX_PLAYERS_IN_GUI  (MAX_PLAYERS - 1)  ///< One player reserved for scavengers.
+#define MAX_PLAYERS         21                 ///< Maximum number of players in the game.
+#define MAX_PLAYERS_IN_GUI  15  ///< One player reserved for scavengers.
 #define PLAYER_FEATURE      (MAX_PLAYERS + 1)
 #define MAX_PLAYER_SLOTS    (MAX_PLAYERS + 2)  ///< Max players plus 1 baba and 1 reserved for features. Actually, if baba is a regular player, then it's plus 1 unused?
 
@@ -69,6 +69,8 @@ extern uint32_t realSelectedPlayer;  ///< The player number corresponding to thi
 typedef uint8_t PlayerMask;
 #elif MAX_PLAYERS <= 16
 typedef uint16_t PlayerMask;
+#elif MAX_PLAYERS <= 32
+typedef uint32_t PlayerMask;
 #else
 #error Warzone 2100 is not a MMO.
 #endif
