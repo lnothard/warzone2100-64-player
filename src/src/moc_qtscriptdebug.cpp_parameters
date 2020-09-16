@@ -1,0 +1,9 @@
+-I/home/lucas/warzone2100/src
+-I/home/lucas/warzone2100/.
+-I/home/lucas/warzone2100/3rdparty
+-I/home/lucas/warzone2100/3rdparty/glm
+-I/home/lucas/warzone2100/3rdparty/date/include
+-DHAVE_CONFIG_H
+-o
+/home/lucas/warzone2100/src/src/moc_qtscriptdebug.cpp
+/home/lucas/warzone2100/src/qtscriptdebug.h
