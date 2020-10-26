@@ -488,7 +488,8 @@ std::pair<bool, int> seenLabelCheck(QScriptEngine *engine, BASE_OBJECT *seen, BA
 	{
 		if (l.triggered != 0 || !(l.subscriber == ALL_PLAYERS || l.subscriber == viewer->player))
 		{
-			continue;
+		  //			continue;
+		  break;
 		}
 
 		// Don't let a seen game object ID which matches a group label ID to prematurely
