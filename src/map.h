@@ -339,9 +339,9 @@ static inline unsigned char terrainType(const MAPTILE *tile)
 
 /* The maximum map size */
 
-#define MAP_MAXWIDTH	256
-#define MAP_MAXHEIGHT	256
-#define MAP_MAXAREA		(256*256)
+#define MAP_MAXWIDTH	512
+#define MAP_MAXHEIGHT	512
+#define MAP_MAXAREA		(512*512)
 
 #define TILE_MAX_HEIGHT (255 * ELEVATION_SCALE)
 #define TILE_MIN_HEIGHT 0
