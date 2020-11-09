@@ -109,24 +109,24 @@ static std::string current_searchString;
 #define M_REQUEST		(MULTIMENU+50)
 
 #define M_REQUEST_AP	(MULTIMENU+70)
-// #define M_REQUEST_2P	(MULTIMENU+71)
-// #define M_REQUEST_3P	(MULTIMENU+72)
-// #define M_REQUEST_4P	(MULTIMENU+73)
-// #define M_REQUEST_5P	(MULTIMENU+74)
-// #define M_REQUEST_6P	(MULTIMENU+75)
-// #define M_REQUEST_7P	(MULTIMENU+76)
-// #define M_REQUEST_8P	(MULTIMENU+77)
-// #define M_REQUEST_9P    (MULTIMENU+78)
-// #define M_REQUEST_10P   (MULTIMENU+79)
-// #define M_REQUEST_11P   (MULTIMENU+80)
-// #define M_REQUEST_12P   (MULTIMENU+81)
-// #define M_REQUEST_13P   (MULTIMENU+82)
-// #define M_REQUEST_14P   (MULTIMENU+83)
-// #define M_REQUEST_15P   (MULTIMENU+84)
-// #define M_REQUEST_16P   (MULTIMENU+85)
-// static const unsigned M_REQUEST_NP[] = {M_REQUEST_2P,    M_REQUEST_3P,    M_REQUEST_4P,    M_REQUEST_5P,    M_REQUEST_6P,    M_REQUEST_7P,    M_REQUEST_8P,    M_REQUEST_9P,    M_REQUEST_10P,    M_REQUEST_11P,    M_REQUEST_12P,    M_REQUEST_13P,    M_REQUEST_14P,    M_REQUEST_15P,    M_REQUEST_16P};
+#define M_REQUEST_2P	(MULTIMENU+71)
+#define M_REQUEST_3P	(MULTIMENU+72)
+#define M_REQUEST_4P	(MULTIMENU+73)
+#define M_REQUEST_5P	(MULTIMENU+74)
+#define M_REQUEST_6P	(MULTIMENU+75)
+#define M_REQUEST_7P	(MULTIMENU+76)
+#define M_REQUEST_8P	(MULTIMENU+77)
+#define M_REQUEST_9P    (MULTIMENU+78)
+#define M_REQUEST_10P   (MULTIMENU+79)
+#define M_REQUEST_11P   (MULTIMENU+80)
+#define M_REQUEST_12P   (MULTIMENU+81)
+#define M_REQUEST_13P   (MULTIMENU+82)
+#define M_REQUEST_14P   (MULTIMENU+83)
+#define M_REQUEST_15P   (MULTIMENU+84)
+#define M_REQUEST_16P   (MULTIMENU+85)
+static const unsigned M_REQUEST_NP[] = {M_REQUEST_2P,    M_REQUEST_3P,    M_REQUEST_4P,    M_REQUEST_5P,    M_REQUEST_6P,    M_REQUEST_7P,    M_REQUEST_8P,    M_REQUEST_9P,    M_REQUEST_10P,    M_REQUEST_11P,    M_REQUEST_12P,    M_REQUEST_13P,    M_REQUEST_14P,    M_REQUEST_15P,    M_REQUEST_16P};
 
-static unsigned M_REQUEST_NP[50] = {0};
+// static unsigned M_REQUEST_NP[64] = {0};
 
 #define M_REQUEST_BUT	(MULTIMENU+100)		// allow loads of buttons.
 #define M_REQUEST_BUTM	(MULTIMENU+1100)
@@ -400,11 +400,11 @@ void multiMenuScreenSizeDidChange(unsigned int oldWidth, unsigned int oldHeight,
  */
 void addMultiRequest(const char *searchDir, const char *fileExtension, UDWORD mode, UBYTE numPlayers, std::string const &searchString)
 {
-        int count = 71;
-	for (int i = 0; i < sizeof(M_REQUEST_NP)/sizeof(*M_REQUEST_NP); i++) {
-	  M_REQUEST_NP[i] = MULTIMENU + count;
-	  count++;
-	}
+        // int count = 71;
+	// for (int i = 0; i < sizeof(M_REQUEST_NP)/sizeof(*M_REQUEST_NP); i++) {
+	//   M_REQUEST_NP[i] = MULTIMENU + count;
+	//   count++;
+	// }
 
 	const unsigned int extensionLength = strlen(fileExtension);
 	const unsigned int buttonsX = (mode == MULTIOP_MAP) ? 22 : 17;

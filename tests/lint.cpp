@@ -71,7 +71,7 @@ static QList<timerNode> timers;
 // Pseudorandom values
 static int obj_uid = 11;
 
-#define MAX_PLAYERS 51
+#define MAX_PLAYERS 64
 
 #define ASSERT(_cond, ...) do { if (!_cond) qFatal(__VA_ARGS__); } while(0)
 

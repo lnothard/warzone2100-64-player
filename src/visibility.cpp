@@ -119,16 +119,16 @@ void visUpdateLevel()
 
 static inline void updateTileVis(MAPTILE *psTile)
 {
-	for (int i = 0; i < MAX_PLAYERS; i++)
+	for (unsigned long i = 0; i < MAX_PLAYERS; i++)
 	{
 		/// The definition of whether a player can see something on a given tile or not
 		if (psTile->watchers[i] > 0 || (psTile->sensors[i] > 0 && !(psTile->jammerBits & ~alliancebits[i])))
 		{
-			psTile->sensorBits |= (1 << i);         // mark it as being seen
+			psTile->sensorBits |= (1UL << i);         // mark it as being seen
 		}
 		else
 		{
-			psTile->sensorBits &= ~(1 << i);        // mark as hidden
+			psTile->sensorBits &= ~(1UL << i);        // mark as hidden
 		}
 	}
 }

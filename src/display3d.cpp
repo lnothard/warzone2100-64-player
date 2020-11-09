@@ -596,19 +596,19 @@ static void NetworkDisplayImage(WIDGET *psWidget, UDWORD xOffset, UDWORD yOffset
 
 	if (NETcheckPlayerConnectionStatus(status, NET_ALL_PLAYERS))
 	{
-		unsigned c = 0;
+		unsigned long c = 0;
 		char players[MAX_PLAYERS + 1];
 		PlayerMask playerMaskMapped = 0;
-		for (unsigned n = 0; n < MAX_PLAYERS; ++n)
+		for (unsigned long n = 0; n < MAX_PLAYERS; ++n)
 		{
 			if (NETcheckPlayerConnectionStatus(status, n))
 			{
-				playerMaskMapped |= 1 << NetPlay.players[n].position;
+				playerMaskMapped |= 1UL << NetPlay.players[n].position;
 			}
 		}
-		for (unsigned n = 0; n < MAX_PLAYERS; ++n)
+		for (unsigned long n = 0; n < MAX_PLAYERS; ++n)
 		{
-			if ((playerMaskMapped & 1 << n) != 0)
+			if ((playerMaskMapped & 1UL << n) != 0)
 			{
 			  //	   			STATIC_ASSERT(MAX_PLAYERS <= 32);  // If increasing MAX_PLAYERS, check all the 1<<playerNumber shifts, since the 1 is usually a 32-bit type.
 				players[c++] = "0123456789ABCDEFGHIJKLMNOPQRSTUV"[n];

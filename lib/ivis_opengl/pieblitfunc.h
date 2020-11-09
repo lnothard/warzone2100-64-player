@@ -54,8 +54,8 @@
 
 /* These are Qamly's hacks used for map previews. They need to be power of
  * two sized until we clean up this mess properly. */
-#define BACKDROP_HACK_WIDTH 512
-#define BACKDROP_HACK_HEIGHT 512
+#define BACKDROP_HACK_WIDTH 1024
+#define BACKDROP_HACK_HEIGHT 1024
 
 /***************************************************************************/
 /*

@@ -198,11 +198,11 @@ WZ_DECL_ALWAYS_INLINE static inline void auxSetAll(int x, int y, int state)
 /// Set aux bits. Always set identically for all players. States not set are retained.
 WZ_DECL_ALWAYS_INLINE static inline void auxSetAllied(int x, int y, int player, int state)
 {
-	int i;
+	unsigned long i;
 
 	for (i = 0; i < MAX_PLAYERS; i++)
 	{
-		if (alliancebits[player] & (1 << i))
+		if (alliancebits[player] & (1UL << i))
 		{
 			psAuxMap[i][x + y * mapWidth] |= state;
 		}
@@ -212,11 +212,11 @@ WZ_DECL_ALWAYS_INLINE static inline void auxSetAllied(int x, int y, int player, 
 /// Set aux bits. Always set identically for all players. States not set are retained.
 WZ_DECL_ALWAYS_INLINE static inline void auxSetEnemy(int x, int y, int player, int state)
 {
-	int i;
+	unsigned long i;
 
 	for (i = 0; i < MAX_PLAYERS; i++)
 	{
-		if (!(alliancebits[player] & (1 << i)))
+		if (!(alliancebits[player] & (1UL << i)))
 		{
 			psAuxMap[i][x + y * mapWidth] |= state;
 		}
@@ -339,9 +339,9 @@ static inline unsigned char terrainType(const MAPTILE *tile)
 
 /* The maximum map size */
 
-#define MAP_MAXWIDTH	512
-#define MAP_MAXHEIGHT	512
-#define MAP_MAXAREA		(512*512)
+#define MAP_MAXWIDTH	1024
+#define MAP_MAXHEIGHT	1024
+#define MAP_MAXAREA		(1024*1024)
 
 #define TILE_MAX_HEIGHT (255 * ELEVATION_SCALE)
 #define TILE_MIN_HEIGHT 0
