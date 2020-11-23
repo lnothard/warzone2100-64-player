@@ -90,7 +90,9 @@
 #endif
 
 #include <numeric>
-
+#include <chrono>
+#include <iostream>
+#include <fstream>
 
 /*
  * Global variables
@@ -135,7 +137,13 @@ static GAMECODE renderLoop()
 		intAddInGamePopup();
 	}
 
+	std::ofstream f;
+	f.open("/home/lucas/.local/share/warzone2100-master/perf_info.txt", std::ios::app);
+	f << "\n[" << getTimestamp() << "]  START RENDER\n";
+
 	audio_Update();
+
+	f << '[' << getTimestamp() << "]  Audio Update\n";
 
 	wzShowMouse(true);
 
@@ -169,6 +177,8 @@ static GAMECODE renderLoop()
 			process3DBuilding();
 			processDeliveryRepos();
 
+			f << '[' << getTimestamp() << "]  Stucture Positioning Update\n";
+
 			//ajl. get the incoming netgame messages and process them.
 			// FIXME Previous comment is deprecated. multiPlayerLoop does some other weird stuff, but not that anymore.
 			if (bMultiPlayer)
@@ -184,6 +194,8 @@ static GAMECODE renderLoop()
 					calcDroidIllumination(psCurr);
 				}
 			}
+
+			f << '[' << getTimestamp() << "]  Droid Lighting Update\n";
 		}
 
 		if (!consolePaused())
@@ -307,8 +319,13 @@ static GAMECODE renderLoop()
 			{
 				processMouseClickInput();
 			}
+
+			f << '[' << getTimestamp() << "]  Process User Input\n";
+
 			bRender3DOnly = false;
 			displayWorld();
+
+			f << '[' << getTimestamp() << "]  Display World\n";
 		}
 		wzPerfBegin(PERF_GUI, "User interface");
 		/* Display the in game interface */
@@ -328,6 +345,9 @@ static GAMECODE renderLoop()
 		pie_SetDepthBufferStatus(DEPTH_CMP_LEQ_WRT_ON);
 		pie_SetFogStatus(true);
 		wzPerfEnd(PERF_GUI);
+
+		f << '[' << getTimestamp() << "]  Display in-game interface\n";
+		f.close();
 	}
 
 	pie_GetResetCounts(&loopPieCount, &loopPolyCount);
@@ -510,9 +530,11 @@ void countUpdate(bool synch)
 	}
 }
 
+
+
 static void gameStateUpdate()
 {
-	syncDebug("map = \"%s\", pseudorandom 32-bit integer = 0x%08X, allocated = %d %d %d %d %d %d %d %d %d %d, position = %d %d %d %d %d %d %d %d %d %d", game.map, gameRandU32(),
+ 	syncDebug("map = \"%s\", pseudorandom 32-bit integer = 0x%08X, allocated = %d %d %d %d %d %d %d %d %d %d, position = %d %d %d %d %d %d %d %d %d %d", game.map, gameRandU32(),
 	          NetPlay.players[0].allocated, NetPlay.players[1].allocated, NetPlay.players[2].allocated, NetPlay.players[3].allocated, NetPlay.players[4].allocated, NetPlay.players[5].allocated, NetPlay.players[6].allocated, NetPlay.players[7].allocated, NetPlay.players[8].allocated, NetPlay.players[9].allocated,
 	          NetPlay.players[0].position, NetPlay.players[1].position, NetPlay.players[2].position, NetPlay.players[3].position, NetPlay.players[4].position, NetPlay.players[5].position, NetPlay.players[6].position, NetPlay.players[7].position, NetPlay.players[8].position, NetPlay.players[9].position
 	         );
@@ -537,27 +559,32 @@ static void gameStateUpdate()
 		updateScripts();
 	}
 
-	// Update abandoned structures
-	handleAbandonedStructures();
-
 	// Update the visibility change stuff
 	visUpdateLevel();
+
+	std::ofstream f;
+	f.open("/home/lucas/.local/share/warzone2100-master/perf_info.txt", std::ios::app);
+	f << "\n[" << getTimestamp() << "]  START UPDATE\n";
 
 	// Put all droids/structures/features into the grid.
 	gridReset();
 
+	f << '[' << getTimestamp() << "]  Grid Reset\n";
+
 	// Check which objects are visible.
 	processVisibility();
 
-	// Update the map.
+	f << '[' << getTimestamp() << "]  Vision Processing\n";
+
+	// Update the map. (Iterates through each tile to check if on fire -- scales poorly with map size)
 	mapUpdate();
 
-	//update the findpath system
-	fpathUpdate();
+	f << '[' << getTimestamp() << "]  Map Update\n";
 
 	// update the command droids
 	cmdDroidUpdate();
 
+	int num_droids = 0;
 	for (unsigned i = 0; i < MAX_PLAYERS; i++)
 	{
 		//update the current power available for a player
@@ -569,6 +596,7 @@ static void gameStateUpdate()
 			// Copy the next pointer - not 100% sure if the droid could get destroyed but this covers us anyway
 			psNext = psCurr->psNext;
 			droidUpdate(psCurr);
+			num_droids++;
 		}
 
 		for (DROID *psCurr = mission.apsDroidLists[i]; psCurr != nullptr; psCurr = psNext)
@@ -595,9 +623,13 @@ static void gameStateUpdate()
 		}
 	}
 
+	f << '[' << getTimestamp() << "]  Droid and Struct Update\n";
+
 	missionTimerUpdate();
 
 	proj_UpdateAll();
+
+	f << '[' << getTimestamp() << "]  Projectile Update\n";
 
 	FEATURE *psNFeat;
 	for (FEATURE *psCFeat = apsFeatureLists[0]; psCFeat; psCFeat = psNFeat)
@@ -606,11 +638,19 @@ static void gameStateUpdate()
 		featureUpdate(psCFeat);
 	}
 
+	f << '[' << getTimestamp() << "]  Feature Update\n";
+
 	// Clean up dead droid pointers in UI.
 	hciUpdate();
 
 	// Free dead droid memory.
 	objmemUpdate();
+
+	f << '[' << getTimestamp() << "]  Object Cleanup\n";
+
+	f << "DROID COUNT: " << num_droids << '\n';
+
+	f.close();
 
 	// Must end update, since we may or may not have ticked, and some message queue processing code may vary depending on whether it's in an update.
 	gameTimeUpdateEnd();
@@ -624,6 +664,11 @@ static void gameStateUpdate()
 		jsDebugUpdate();
 	}
 }
+
+uint64_t getTimestamp() {
+  using namespace std::chrono;
+  return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+} 
 
 /* The main game loop */
 GAMECODE gameLoop()

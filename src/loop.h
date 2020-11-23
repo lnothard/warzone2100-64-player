@@ -94,5 +94,5 @@ void adjustDroidCount(struct DROID *droid, int delta);
 void droidCountsInTransporter(DROID *droid, int player);
 
 void countUpdate(bool synch = false);
-
+uint64_t getTimestamp();
 #endif // __INCLUDED_SRC_LOOP_H__

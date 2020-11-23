@@ -119,10 +119,10 @@ BASE_OBJECT::~BASE_OBJECT()
 	visRemoveVisibility(this);
 	free(watchedTiles);
 
-#ifdef DEBUG
-	psNext = this;                                                       // Hopefully this will trigger an infinite loop       if someone uses the freed object.
-	psNextFunc = this;                                                   // Hopefully this will trigger an infinite loop       if someone uses the freed object.
-#endif //DEBUG
+// #ifdef DEBUG
+// 	psNext = this;                                                       // Hopefully this will trigger an infinite loop       if someone uses the freed object.
+// 	psNextFunc = this;                                                   // Hopefully this will trigger an infinite loop       if someone uses the freed object.
+// #endif //DEBUG
 }
 
 void checkObject(const SIMPLE_OBJECT *psObject, const char *const location_description, const char *function, const int recurse)

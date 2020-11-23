@@ -27,6 +27,7 @@
 #include "lib/framework/math_ext.h"
 #include "lib/framework/geometry.h"
 #include "lib/framework/strres.h"
+#include "lib/framework/wzapp.h"
 
 #include "lib/gamelib/gtime.h"
 #include "lib/ivis_opengl/piematrix.h"
@@ -71,6 +72,9 @@
 #include "combat.h"
 #include "template.h"
 #include "qtscript.h"
+
+#include <iostream>
+#include <fstream>
 
 #define DEFAULT_RECOIL_TIME	(GAME_TICKS_PER_SEC/4)
 #define	DROID_DAMAGE_SPREAD	(16 - rand()%32)

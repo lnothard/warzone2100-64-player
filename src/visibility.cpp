@@ -399,7 +399,9 @@ void visRemoveVisibility(BASE_OBJECT *psObj)
 			{
 				continue;
 			}
-			ASSERT(visionType[psObj->player] > 0, "No %s on watched tile (%d, %d)", pos.type ? "radar" : "vision", (int)pos.x, (int)pos.y);
+			//ASSERT(visionType[psObj->player] > 0, "No %s on watched tile (%d, %d)", pos.type ? "radar" : "vision", (int)pos.x, (int)pos.y);
+			if (visionType[psObj->player] <= 0)
+			    break;
 			visionType[psObj->player]--;
 			if (psObj->flags.test(OBJECT_FLAG_JAMMED_TILES))  // we are a jammer object — we cannot check objJammerPower(psObj) > 0 directly here, we may be in the BASE_OBJECT destructor).
 			{

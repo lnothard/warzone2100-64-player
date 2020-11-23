@@ -674,12 +674,6 @@ bool structureStatsShutDown()
 	return true;
 }
 
-// TODO: The abandoned code needs to be factored out, see: saveMissionData
-void handleAbandonedStructures()
-{
-	// TODO: do something here
-}
-
 /* Deals damage to a Structure.
  * \param psStructure structure to deal damage to
  * \param damage amount of damage to deal
