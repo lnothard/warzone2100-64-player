@@ -3268,7 +3268,7 @@ void WzMultiOptionTitleUI::processMultiopWidgets(UDWORD id)
 		break;
 	case MULTIOP_MAP_PREVIEW:
 		loadMapPreview(true);
-		startMultiplayerGame();
+		if (bHosted) startMultiplayerGame();
 		break;
 	case MULTIOP_AI_CLOSED:
 		NetPlay.players[aiChooserUp].ai = AI_CLOSED;
