@@ -32,6 +32,7 @@
 #include "visibility.h"
 
 #include <queue>
+#include <vector>
 
 #define OFF_SCREEN 9999		// world->screen check - alex
 
@@ -115,7 +116,7 @@ bool idfDroid(DROID *psDroid);
 int32_t droidDamage(DROID *psDroid, unsigned damage, WEAPON_CLASS weaponClass, WEAPON_SUBCLASS weaponSubClass, unsigned impactTime, bool isDamagePerSecond, int minDamage);
 
 /* The main update routine for all droids */
-void droidUpdate(DROID *psDroid);
+void droidUpdate(DROID *psDroid, std::vector<uint64_t> &total_func_time);
 
 /* Set up a droid to build a structure - returns true if successful */
 enum DroidStartBuild {DroidStartBuildFailed, DroidStartBuildSuccess, DroidStartBuildPending};

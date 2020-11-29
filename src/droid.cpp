@@ -75,6 +75,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 #define DEFAULT_RECOIL_TIME	(GAME_TICKS_PER_SEC/4)
 #define	DROID_DAMAGE_SPREAD	(16 - rand()%32)
@@ -648,12 +649,13 @@ void _syncDebugDroid(const char *function, DROID const *psDroid, char ch)
 }
 
 /* The main update routine for all droids */
-void droidUpdate(DROID *psDroid)
+void droidUpdate(DROID *psDroid, std::vector<uint64_t> &total_func_time)
 {
 	Vector3i        dv;
 	UDWORD          percentDamage, emissionInterval;
 	BASE_OBJECT     *psBeingTargetted = nullptr;
 	unsigned        i;
+	uint64_t before, after;
 
 	CHECK_DROID(psDroid);
 
@@ -709,22 +711,34 @@ void droidUpdate(DROID *psDroid)
 	}
 	else if (psDroid->animationEvent == ANIM_EVENT_DYING)
 	{
-		return; // rest below is irrelevant if dead
+	  return; // rest below is irrelevant if dead
 	}
 
 	// ai update droid
+	before = getTimestamp();
 	aiUpdateDroid(psDroid);
+	after = getTimestamp();
+	total_func_time[0] += (after - before);
 
 	// Update the droids order.
+	before = getTimestamp();
 	orderUpdateDroid(psDroid);
+	after = getTimestamp();
+	total_func_time[1] += (after - before);
 
 	// update the action of the droid
+	before = getTimestamp();
 	actionUpdateDroid(psDroid);
+	after = getTimestamp();
+	total_func_time[2] += (after - before);
 
 	syncDebugDroid(psDroid, 'M');
 
 	// update the move system
+	before = getTimestamp();
 	moveUpdateDroid(psDroid);
+	after = getTimestamp();
+	total_func_time[3] += (after - before);
 
 	/* Only add smoke if they're visible */
 	if ((psDroid->visible[selectedPlayer]) && psDroid->droidType != DROID_PERSON)
@@ -805,10 +819,13 @@ void droidUpdate(DROID *psDroid)
 	// At this point, the droid may be dead due to periodical damage or hardcoded burn damage.
 	if (isDead(psDroid))
 	{
-		return;
+	  return;
 	}
 
+	before = getTimestamp();
 	calcDroidIllumination(psDroid);
+	after = getTimestamp();
+	total_func_time[4] += (after - before);
 
 	// Check the resistance level of the droid
 	if ((psDroid->id + gameTime) / 833 != (psDroid->id + gameTime - deltaGameTime) / 833)

@@ -93,6 +93,7 @@
 #include <chrono>
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 /*
  * Global variables
@@ -585,6 +586,7 @@ static void gameStateUpdate()
 	cmdDroidUpdate();
 
 	int num_droids = 0;
+	std::vector<uint64_t> total_func_time(5);
 	for (unsigned i = 0; i < MAX_PLAYERS; i++)
 	{
 		//update the current power available for a player
@@ -595,7 +597,7 @@ static void gameStateUpdate()
 		{
 			// Copy the next pointer - not 100% sure if the droid could get destroyed but this covers us anyway
 			psNext = psCurr->psNext;
-			droidUpdate(psCurr);
+			droidUpdate(psCurr, total_func_time);
 			num_droids++;
 		}
 
@@ -623,7 +625,11 @@ static void gameStateUpdate()
 		}
 	}
 
-	f << '[' << getTimestamp() << "]  Droid and Struct Update\n";
+	f << '[' << getTimestamp() << "]  Droid and Struct Update\n\tAI logic: " << total_func_time[0] << '\n'
+	  << "\tOrder update: " << total_func_time[1] << '\n'
+	  << "\tAction update: " << total_func_time[2] << '\n'
+	  << "\tPathfinding: " << total_func_time[3] << '\n'
+	  << "\tLighting update: " << total_func_time[4] << '\n';
 
 	missionTimerUpdate();
 
