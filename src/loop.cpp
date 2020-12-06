@@ -535,6 +535,9 @@ void countUpdate(bool synch)
 
 static void gameStateUpdate()
 {
+  uint64_t before;
+  uint64_t after;
+    
  	syncDebug("map = \"%s\", pseudorandom 32-bit integer = 0x%08X, allocated = %d %d %d %d %d %d %d %d %d %d, position = %d %d %d %d %d %d %d %d %d %d", game.map, gameRandU32(),
 	          NetPlay.players[0].allocated, NetPlay.players[1].allocated, NetPlay.players[2].allocated, NetPlay.players[3].allocated, NetPlay.players[4].allocated, NetPlay.players[5].allocated, NetPlay.players[6].allocated, NetPlay.players[7].allocated, NetPlay.players[8].allocated, NetPlay.players[9].allocated,
 	          NetPlay.players[0].position, NetPlay.players[1].position, NetPlay.players[2].position, NetPlay.players[3].position, NetPlay.players[4].position, NetPlay.players[5].position, NetPlay.players[6].position, NetPlay.players[7].position, NetPlay.players[8].position, NetPlay.players[9].position
@@ -564,6 +567,7 @@ static void gameStateUpdate()
 	visUpdateLevel();
 
 	std::ofstream f;
+	std::ofstream ff;
 	f.open("/home/lucas/.local/share/warzone2100-master/perf_info.txt", std::ios::app);
 	f << "\n[" << getTimestamp() << "]  START UPDATE\n";
 
@@ -578,7 +582,12 @@ static void gameStateUpdate()
 	f << '[' << getTimestamp() << "]  Vision Processing\n";
 
 	// Update the map. (Iterates through each tile to check if on fire -- scales poorly with map size)
+	ff.open("/home/lucas/.local/share/warzone2100-master/map_update.txt", std::ios::app);
+	before = getTimestamp();
 	mapUpdate();
+	after = getTimestamp();
+	ff << after - before << '\n';
+	ff.close();
 
 	f << '[' << getTimestamp() << "]  Map Update\n";
 
@@ -631,6 +640,22 @@ static void gameStateUpdate()
 	  << "\tPathfinding: " << total_func_time[3] << '\n'
 	  << "\tLighting update: " << total_func_time[4] << '\n';
 
+	ff.open("/home/lucas/.local/share/warzone2100-master/pathfinding.txt", std::ios::app);
+	ff << total_func_time[3] << '\n';
+	ff.close();
+
+	ff.open("/home/lucas/.local/share/warzone2100-master/order_update.txt", std::ios::app);
+	ff << total_func_time[1] << '\n';
+	ff.close();
+
+	ff.open("/home/lucas/.local/share/warzone2100-master/action_update.txt", std::ios::app);
+	ff << total_func_time[2] << '\n';
+	ff.close();
+
+	ff.open("/home/lucas/.local/share/warzone2100-master/fps.txt", std::ios::app);
+	ff << frameRate() << '\n';
+	ff.close();
+
 	missionTimerUpdate();
 
 	proj_UpdateAll();
@@ -657,6 +682,10 @@ static void gameStateUpdate()
 	f << "DROID COUNT: " << num_droids << '\n';
 
 	f.close();
+
+	ff.open("/home/lucas/.local/share/warzone2100-master/droid_count.txt", std::ios::app);
+	ff << num_droids << '\n';
+	ff.close();
 
 	// Must end update, since we may or may not have ticked, and some message queue processing code may vary depending on whether it's in an update.
 	gameTimeUpdateEnd();
@@ -724,9 +753,16 @@ GAMECODE gameLoop()
 		NETflush();  // Make sure that we aren't waiting too long to send data.
 	}
 
+	uint64_t _before = getTimestamp();
 	unsigned before = wzGetTicks();
 	GAMECODE renderReturn = renderLoop();
 	unsigned after = wzGetTicks();
+	uint64_t _after = getTimestamp();
+
+	std::ofstream of;
+	of.open("/home/lucas/.local/share/warzone2100-master/render.txt", std::ios::app);
+	of << _after - _before << '\n';
+	of.close();
 
 	renderBudget += (after - before) * updateFraction.n;
 	renderBudget = std::min(renderBudget, (renderFraction * 500).floor());
