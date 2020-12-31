@@ -52,7 +52,24 @@
 #include <algorithm>
 #include <memory>
 
+#include <grpc/grpc.h>
+#include <grpcpp/server.h>
+#include <grpcpp/server_builder.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/security/server_credentials.h>
+#include "protos/astar.grpc.pb.h"
+
 #include "lib/netplay/netplay.h"
+
+using grpc::Server;
+using grpc::ServerBuilder;
+using grpc::ServerContext;
+using grpc::ServerReader;
+using grpc::ServerWriter;
+using grpc::Status;
+using astar::AStar;
+using astar::Request;
+using astar::Reply;
 
 /// A coordinate.
 struct PathCoord
@@ -657,3 +674,27 @@ void fpathSetBlockingMap(PATHJOB *psJob)
 		psJob->blockingMap = *i;
 	}
 }
+
+class AStarImpl final : public AStar::Service {
+public:
+  Status doAStar(ServerContext* context, const astar::Request* request, astar::Reply* response) override {
+    PATHJOB j;
+    MOVE_CONTROL m;
+
+    google::protobuf::Any job = request->psjob();
+    google::protobuf::Any move = request->psmove();
+
+    if (job.Is<PATHJOB>()) {
+      job.UnpackTo(&j);
+    }
+
+    if (move.Is<MOVE_CONTROL>()) {
+      move.UnpackTo(&m);
+    }
+    
+
+    astar::Reply_ASR_RETVAL retVal = (astar::Reply_ASR_RETVAL)fpathAStarRoute(&m, &j);
+    response->set_retval(retVal);
+    return Status::OK;
+  }
+};

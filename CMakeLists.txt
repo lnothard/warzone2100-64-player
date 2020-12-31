@@ -5,7 +5,7 @@ OPTION(ENABLE_DOCS "Enable documentation generation" ON)
 OPTION(ENABLE_NLS "Native Language Support" ON)
 OPTION(WZ_PORTABLE "Portable (Windows-only)" ON)
 OPTION(WZ_ENABLE_WARNINGS "Enable (additional) warnings" OFF)
-OPTION(WZ_ENABLE_WARNINGS_AS_ERRORS "Enable compiler flags that treat (most) warnings as errors" ON)
+OPTION(WZ_ENABLE_WARNINGS_AS_ERRORS "Enable compiler flags that treat (most) warnings as errors" OFF)
 
 if(CMAKE_SYSTEM_NAME MATCHES "Windows" OR CMAKE_SYSTEM_NAME MATCHES "Darwin" OR CMAKE_SYSTEM_NAME MATCHES "Linux")
 	# Only supported on Windows, macOS, and Linux
@@ -35,14 +35,7 @@ else()
 endif()
 
 # CXX Standard
-if(MSVC)
-	# MSVC doesn't support enforcing c++11 - the minimum it will allow is c++14
-	# See https://docs.microsoft.com/en-us/cpp/build/reference/std-specify-language-standard-version
-	# However, avoid using any features not supported by c++11 or the build will fail on other platforms.
-	set(CMAKE_CXX_STANDARD 14)
-else()
-	set(CMAKE_CXX_STANDARD 11)
-endif()
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Support folders (for nicer IDE organization)
@@ -134,6 +127,9 @@ if("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
     link_directories(${QT5ALL_LIBRARY_DIRS})
   endif()
 endif()
+
+find_package(Protobuf REQUIRED)
+find_package(gRPC CONFIG REQUIRED)
 
 # Use "-fPIC" / "-fPIE" for all targets by default, including static libs
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -442,7 +438,7 @@ macro(CONFIGURE_WZ_COMPILER_WARNINGS)
 		check_compiler_flags_output("-Werror -Wcast-qual -Wno-error=cpp" COMPILER_TYPE CXX OUTPUT_FLAGS "-Wcast-qual" OUTPUT_VARIABLE _supported_cxx_compiler_flags APPEND)
 
 		# -Wctor-dtor-privacy		(GCC 3.4+, Clang 3.2+ (no-op through at least 6.0)) [C++-only]
-		check_compiler_flags_output("-Werror -Wctor-dtor-privacy -Wno-error=cpp" COMPILER_TYPE CXX OUTPUT_FLAGS "-Wctor-dtor-privacy" OUTPUT_VARIABLE _supported_cxx_compiler_flags APPEND)
+		# check_compiler_flags_output("-Werror -Wctor-dtor-privacy -Wno-error=cpp" COMPILER_TYPE CXX OUTPUT_FLAGS "-Wctor-dtor-privacy" OUTPUT_VARIABLE _supported_cxx_compiler_flags APPEND)
 
 		# -Winit-self				(GCC 3.4+, Clang 3.2+ (no-op through at least 6.0))
 		check_compiler_flags_output("-Werror -Winit-self -Wno-error=cpp" COMPILER_TYPE C   OUTPUT_FLAGS "-Winit-self" OUTPUT_VARIABLE _supported_c_compiler_flags APPEND)
@@ -576,6 +572,9 @@ macro(CONFIGURE_WZ_COMPILER_WARNINGS)
 		check_compiler_flags_output("-Werror -Wformat-truncation -Wno-error=cpp" COMPILER_TYPE C   OUTPUT_FLAGS "-Wno-format-truncation" OUTPUT_VARIABLE _supported_c_compiler_flags APPEND)
 		check_compiler_flags_output("-Werror -Wformat-truncation -Wno-error=cpp" COMPILER_TYPE CXX OUTPUT_FLAGS "-Wno-format-truncation" OUTPUT_VARIABLE _supported_cxx_compiler_flags APPEND)
 
+		# Disable -Wclass-memaccess
+		check_compiler_flags_output("-Werror -Wclass-memaccess -Wno-error=cpp" COMPILER_TYPE CXX OUTPUT_FLAGS "-Wno-class-memaccess" OUTPUT_VARIABLE _supported_cxx_compiler_flags APPEND)
+
 		message( STATUS "Supported C compiler_flags=${_supported_c_compiler_flags}" )
 		message( STATUS "Supported CXX compiler_flags=${_supported_cxx_compiler_flags}" )
 
@@ -595,6 +594,7 @@ include_directories(".")
 include_directories("3rdparty")
 include_directories(SYSTEM "3rdparty/glm")
 include_directories("3rdparty/date/include")
+include_directories("3rdparty/rpclib/include")
 
 SET(STDC_HEADERS ON)
 

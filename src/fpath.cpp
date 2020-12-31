@@ -460,6 +460,7 @@ PATHRESULT fpathExecute(PATHJOB job)
 	result.retval = FPR_FAILED;
 	result.originalDest = Vector2i(job.destX, job.destY);
 
+	// CALL THIS WITH RPC
 	ASR_RETVAL retval = fpathAStarRoute(&result.sMove, &job);
 
 	ASSERT(retval != ASR_OK || result.sMove.asPath.size() > 0, "Ok result but no path in result");
