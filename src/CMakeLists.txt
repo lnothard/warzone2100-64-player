@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.19.2)
 
 include(GNUInstallDirs)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 ############################
 # Versioning (autorevision)
@@ -79,7 +81,10 @@ if(CMAKE_SYSTEM_NAME MATCHES "Windows")
 	set(_additionalSourceFiles "${CMAKE_CURRENT_BINARY_DIR}/warzone2100.rc")
 endif()
 
-add_executable(warzone2100 ${HEADERS} ${SRC} ${MOCFILES} "${wz2100_autorevision_h_file}" ${_additionalSourceFiles})
+file(GLOB PROTO_SRCS "${PROJECT_SOURCE_DIR}/protos/*.pb.cc")
+file(GLOB PROTO_HDRS "${PROJECT_SOURCE_DIR}/protos/*.pb.h")
+
+add_executable(warzone2100 ${HEADERS} ${SRC} ${MOCFILES} "${wz2100_autorevision_h_file}" ${_additionalSourceFiles} ${PROTO_SRCS} ${PROTO_HDRS})
 if(WZ_TARGET_ADDITIONAL_PROPERTIES)
 	SET_TARGET_PROPERTIES(warzone2100 PROPERTIES ${WZ_TARGET_ADDITIONAL_PROPERTIES})
 endif()
@@ -114,6 +119,8 @@ endif()
 include(IncludeFindCurl)
 target_link_libraries(warzone2100 CURL::libcurl)
 target_link_libraries(warzone2100 re2::re2)
+target_link_libraries(warzone2100 gRPC::grpc++_reflection)
+target_link_libraries(warzone2100 protobuf::libprotobuf)
 
 set(_curl_gnutls_thread_safe_fix FALSE)
 if (DEFINED CURL_GNUTLS_REQUIRES_CALLBACKS)

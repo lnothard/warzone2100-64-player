@@ -52,11 +52,7 @@
 #include <algorithm>
 #include <memory>
 
-#include <grpc/grpc.h>
-#include <grpcpp/server.h>
-#include <grpcpp/server_builder.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/security/server_credentials.h>
+#include <grpcpp/grpcpp.h>
 #include "protos/astar.grpc.pb.h"
 
 #include "lib/netplay/netplay.h"
@@ -64,9 +60,8 @@
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
-using grpc::ServerReader;
-using grpc::ServerWriter;
 using grpc::Status;
+
 using astar::AStar;
 using astar::Request;
 using astar::Reply;
@@ -676,8 +671,11 @@ void fpathSetBlockingMap(PATHJOB *psJob)
 }
 
 class AStarImpl final : public AStar::Service {
-public:
-  Status doAStar(ServerContext* context, const astar::Request* request, astar::Reply* response) override {
+    Status doAStar(
+		   ServerContext* context,
+		   const Request* request,
+		   Reply* response
+    ) override {
     PATHJOB j;
     MOVE_CONTROL m;
 
@@ -769,6 +767,28 @@ public:
 
     astar::Reply_ASR_RETVAL retVal = (astar::Reply_ASR_RETVAL)fpathAStarRoute(&m, &j);
     response->set_retval(retVal);
+
     return Status::OK;
   }
 };
+
+void run() {
+	std::string address("0.0.0.0:8080");
+	AStarImpl service;
+	ServerBuilder builder;
+
+	builder.AddListeningPort(address,grpc::InsecureServerCredentials());
+	builder.RegisterService(&service);
+
+	std::unique_ptr<Server> server(builder.BuildAndStart());
+	std::cout << "Server listening on port: " << address << std::endl;
+
+	server->Wait();
+}
+
+/*int main(int argc, char *argv[])
+{
+	run();
+
+	return 0;
+}*/
