@@ -681,6 +681,91 @@ public:
     PATHJOB j;
     MOVE_CONTROL m;
 
+    // Convert request->psmove() to MOVE_CONTROL struct
+    astar::MOVE_CONTROL move = request->psmove();
+
+    m.Status = (MOVE_STATUS)move.status();
+    m.pathIndex = move.pathindex();
+    m.speed = move.speed();
+    m.moveDir = move.movedir();
+    m.bumpDir = move.bumpdir();
+    m.bumpTime = move.bumptime();
+    m.lastBump = move.lastbump();
+    m.pauseTime = move.pausetime();
+    m.shuffleStart = move.shufflestart();
+    m.iVertSpeed = move.ivertspeed();
+
+    std::vector<Vector2i> converted;
+    for (astar::Vector2i el : move.aspath()) {
+	    Vector2i vec;
+	    vec.x = el.x();
+	    vec.y = el.y();
+	    converted.push_back(vec);
+    }
+    m.asPath = converted;
+
+    Vector2i destination, src, target;
+    Vector3i bump_pos;
+    destination.x = move.destination().x();
+    destination.y = move.destination().y();
+    src.x = move.src().x();
+    src.y = move.src().y();
+    target.x = move.target().x();
+    target.y = move.target().y();
+    bump_pos.x = move.bumppos().x();
+    bump_pos.y = move.bumppos().y();
+    bump_pos.z = move.bumppos().z();
+    m.destination = destination;
+    m.src = src;
+    m.target = target;
+    m.bumpPos = bump_pos;
+
+    // Convert request->psjob() to PATHJOB struct
+    astar::PATHJOB job = request->psjob();
+
+    j.propulsion = (PROPULSION_TYPE)job.propulsion();
+    j.droidType = (DROID_TYPE)job.droidtype();
+    j.moveType = (FPATH_MOVETYPE)job.movetype();
+    j.destX = job.destx();
+    j.destY = job.desty();
+    j.origX = job.origx();
+    j.origY = job.origy();
+    j.droidID = job.droidid();
+    j.owner = job.owner();
+    j.acceptNearest = job.acceptnearest();
+    j.deleted = job.deleted();
+
+    StructureBounds dstStructure;
+    Vector2i map;
+    Vector2i size;
+    map.x = job.dststructure().map().x();
+    map.y = job.dststructure().map().y();
+    size.x = job.dststructure().size().x();
+    size.y = job.dststructure().size().y();
+    dstStructure.map = map;
+    dstStructure.size = size;
+    j.dstStructure = dstStructure;
+
+    PathBlockingMap blockingMap;
+    PathBlockingType type;
+    type.gameTime = job.blockingmap().type().gametime();
+    type.propulsion = (PROPULSION_TYPE)job.blockingmap().type().propulsion();
+    type.owner = job.blockingmap().type().owner();
+    type.moveType = (FPATH_MOVETYPE)job.blockingmap().type().owner();
+    blockingMap.type = type;
+
+    std::vector<bool> map_;
+    for (bool el : job.blockingmap().map()) {
+	    map_.push_back(el);
+    }
+    blockingMap.map = map_;
+
+    std::vector<bool> dangerMap;
+    for (bool el : job.blockingmap().dangermap()) {
+	    dangerMap.push_back(el);
+    }
+    blockingMap.dangerMap = dangerMap;
+    j.blockingMap = std::make_shared<PathBlockingMap>(blockingMap);
 
     astar::Reply_ASR_RETVAL retVal = (astar::Reply_ASR_RETVAL)fpathAStarRoute(&m, &j);
     response->set_retval(retVal);
