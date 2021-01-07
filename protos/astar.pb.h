@@ -33,7 +33,6 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
-#include <google/protobuf/any.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_astar_2eproto
@@ -49,7 +48,7 @@ struct TableStruct_astar_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[9]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -57,16 +56,44 @@ struct TableStruct_astar_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_astar_2eproto;
 namespace astar {
+class MOVE_CONTROL;
+class MOVE_CONTROLDefaultTypeInternal;
+extern MOVE_CONTROLDefaultTypeInternal _MOVE_CONTROL_default_instance_;
+class PATHJOB;
+class PATHJOBDefaultTypeInternal;
+extern PATHJOBDefaultTypeInternal _PATHJOB_default_instance_;
+class PathBlockingMap;
+class PathBlockingMapDefaultTypeInternal;
+extern PathBlockingMapDefaultTypeInternal _PathBlockingMap_default_instance_;
+class PathBlockingType;
+class PathBlockingTypeDefaultTypeInternal;
+extern PathBlockingTypeDefaultTypeInternal _PathBlockingType_default_instance_;
 class Reply;
 class ReplyDefaultTypeInternal;
 extern ReplyDefaultTypeInternal _Reply_default_instance_;
 class Request;
 class RequestDefaultTypeInternal;
 extern RequestDefaultTypeInternal _Request_default_instance_;
+class StructureBounds;
+class StructureBoundsDefaultTypeInternal;
+extern StructureBoundsDefaultTypeInternal _StructureBounds_default_instance_;
+class Vector2i;
+class Vector2iDefaultTypeInternal;
+extern Vector2iDefaultTypeInternal _Vector2i_default_instance_;
+class Vector3i;
+class Vector3iDefaultTypeInternal;
+extern Vector3iDefaultTypeInternal _Vector3i_default_instance_;
 }  // namespace astar
 PROTOBUF_NAMESPACE_OPEN
+template<> ::astar::MOVE_CONTROL* Arena::CreateMaybeMessage<::astar::MOVE_CONTROL>(Arena*);
+template<> ::astar::PATHJOB* Arena::CreateMaybeMessage<::astar::PATHJOB>(Arena*);
+template<> ::astar::PathBlockingMap* Arena::CreateMaybeMessage<::astar::PathBlockingMap>(Arena*);
+template<> ::astar::PathBlockingType* Arena::CreateMaybeMessage<::astar::PathBlockingType>(Arena*);
 template<> ::astar::Reply* Arena::CreateMaybeMessage<::astar::Reply>(Arena*);
 template<> ::astar::Request* Arena::CreateMaybeMessage<::astar::Request>(Arena*);
+template<> ::astar::StructureBounds* Arena::CreateMaybeMessage<::astar::StructureBounds>(Arena*);
+template<> ::astar::Vector2i* Arena::CreateMaybeMessage<::astar::Vector2i>(Arena*);
+template<> ::astar::Vector3i* Arena::CreateMaybeMessage<::astar::Vector3i>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace astar {
 
@@ -95,6 +122,133 @@ inline bool Reply_ASR_RETVAL_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Reply_ASR_RETVAL* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Reply_ASR_RETVAL>(
     Reply_ASR_RETVAL_descriptor(), name, value);
+}
+enum MOVE_STATUS : int {
+  MOVEINACTIVE = 0,
+  MOVENAVIGATE = 1,
+  MOVETURN = 2,
+  MOVEPAUSE = 3,
+  MOVEPOINTTOPOINT = 4,
+  MOVETURNTOTARGET = 5,
+  MOVEHOVER = 6,
+  MOVEWAITROUTE = 7,
+  MOVESHUFFLE = 8,
+  MOVE_STATUS_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  MOVE_STATUS_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool MOVE_STATUS_IsValid(int value);
+constexpr MOVE_STATUS MOVE_STATUS_MIN = MOVEINACTIVE;
+constexpr MOVE_STATUS MOVE_STATUS_MAX = MOVESHUFFLE;
+constexpr int MOVE_STATUS_ARRAYSIZE = MOVE_STATUS_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MOVE_STATUS_descriptor();
+template<typename T>
+inline const std::string& MOVE_STATUS_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MOVE_STATUS>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function MOVE_STATUS_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    MOVE_STATUS_descriptor(), enum_t_value);
+}
+inline bool MOVE_STATUS_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MOVE_STATUS* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MOVE_STATUS>(
+    MOVE_STATUS_descriptor(), name, value);
+}
+enum PROPULSION_TYPE : int {
+  PROPULSION_TYPE_WHEELED = 0,
+  PROPULSION_TYPE_TRACKED = 1,
+  PROPULSION_TYPE_LEGGED = 2,
+  PROPULSION_TYPE_HOVER = 3,
+  PROPULSION_TYPE_LIFT = 4,
+  PROPULSION_TYPE_PROPELLOR = 5,
+  PROPULSION_TYPE_HALF_TRACKED = 6,
+  PROPULSION_TYPE_NUM = 7,
+  PROPULSION_TYPE_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  PROPULSION_TYPE_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool PROPULSION_TYPE_IsValid(int value);
+constexpr PROPULSION_TYPE PROPULSION_TYPE_MIN = PROPULSION_TYPE_WHEELED;
+constexpr PROPULSION_TYPE PROPULSION_TYPE_MAX = PROPULSION_TYPE_NUM;
+constexpr int PROPULSION_TYPE_ARRAYSIZE = PROPULSION_TYPE_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PROPULSION_TYPE_descriptor();
+template<typename T>
+inline const std::string& PROPULSION_TYPE_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, PROPULSION_TYPE>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function PROPULSION_TYPE_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    PROPULSION_TYPE_descriptor(), enum_t_value);
+}
+inline bool PROPULSION_TYPE_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, PROPULSION_TYPE* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PROPULSION_TYPE>(
+    PROPULSION_TYPE_descriptor(), name, value);
+}
+enum DROID_TYPE : int {
+  DROID_WEAPON = 0,
+  DROID_SENSOR = 1,
+  DROID_ECM = 2,
+  DROID_CONSTRUCT = 3,
+  DROID_PERSON = 4,
+  DROID_CYBORG = 5,
+  DROID_TRANSPORTER = 6,
+  DROID_COMMAND = 7,
+  DROID_REPAIR = 8,
+  DROID_DEFAULT = 9,
+  DROID_CYBORG_CONSTRUCT = 10,
+  DROID_CYBORG_REPAIR = 11,
+  DROID_CYBORG_SUPER = 12,
+  DROID_SUPERTRANSPORTER = 13,
+  DROID_ANY = 14,
+  DROID_TYPE_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  DROID_TYPE_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool DROID_TYPE_IsValid(int value);
+constexpr DROID_TYPE DROID_TYPE_MIN = DROID_WEAPON;
+constexpr DROID_TYPE DROID_TYPE_MAX = DROID_ANY;
+constexpr int DROID_TYPE_ARRAYSIZE = DROID_TYPE_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* DROID_TYPE_descriptor();
+template<typename T>
+inline const std::string& DROID_TYPE_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, DROID_TYPE>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function DROID_TYPE_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    DROID_TYPE_descriptor(), enum_t_value);
+}
+inline bool DROID_TYPE_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, DROID_TYPE* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<DROID_TYPE>(
+    DROID_TYPE_descriptor(), name, value);
+}
+enum FPATH_MOVETYPE : int {
+  FMT_MOVE = 0,
+  FMT_ATTACK = 1,
+  FMT_BLOCK = 2,
+  FPATH_MOVETYPE_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  FPATH_MOVETYPE_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool FPATH_MOVETYPE_IsValid(int value);
+constexpr FPATH_MOVETYPE FPATH_MOVETYPE_MIN = FMT_MOVE;
+constexpr FPATH_MOVETYPE FPATH_MOVETYPE_MAX = FMT_BLOCK;
+constexpr int FPATH_MOVETYPE_ARRAYSIZE = FPATH_MOVETYPE_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* FPATH_MOVETYPE_descriptor();
+template<typename T>
+inline const std::string& FPATH_MOVETYPE_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, FPATH_MOVETYPE>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function FPATH_MOVETYPE_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    FPATH_MOVETYPE_descriptor(), enum_t_value);
+}
+inline bool FPATH_MOVETYPE_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, FPATH_MOVETYPE* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<FPATH_MOVETYPE>(
+    FPATH_MOVETYPE_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -211,44 +365,44 @@ class Request PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPsJobFieldNumber = 1,
-    kPsMoveFieldNumber = 2,
+    kPsmoveFieldNumber = 1,
+    kPsjobFieldNumber = 2,
   };
-  // .google.protobuf.Any psJob = 1;
-  bool has_psjob() const;
-  private:
-  bool _internal_has_psjob() const;
-  public:
-  void clear_psjob();
-  const PROTOBUF_NAMESPACE_ID::Any& psjob() const;
-  PROTOBUF_NAMESPACE_ID::Any* release_psjob();
-  PROTOBUF_NAMESPACE_ID::Any* mutable_psjob();
-  void set_allocated_psjob(PROTOBUF_NAMESPACE_ID::Any* psjob);
-  private:
-  const PROTOBUF_NAMESPACE_ID::Any& _internal_psjob() const;
-  PROTOBUF_NAMESPACE_ID::Any* _internal_mutable_psjob();
-  public:
-  void unsafe_arena_set_allocated_psjob(
-      PROTOBUF_NAMESPACE_ID::Any* psjob);
-  PROTOBUF_NAMESPACE_ID::Any* unsafe_arena_release_psjob();
-
-  // .google.protobuf.Any psMove = 2;
+  // .astar.MOVE_CONTROL psmove = 1;
   bool has_psmove() const;
   private:
   bool _internal_has_psmove() const;
   public:
   void clear_psmove();
-  const PROTOBUF_NAMESPACE_ID::Any& psmove() const;
-  PROTOBUF_NAMESPACE_ID::Any* release_psmove();
-  PROTOBUF_NAMESPACE_ID::Any* mutable_psmove();
-  void set_allocated_psmove(PROTOBUF_NAMESPACE_ID::Any* psmove);
+  const ::astar::MOVE_CONTROL& psmove() const;
+  ::astar::MOVE_CONTROL* release_psmove();
+  ::astar::MOVE_CONTROL* mutable_psmove();
+  void set_allocated_psmove(::astar::MOVE_CONTROL* psmove);
   private:
-  const PROTOBUF_NAMESPACE_ID::Any& _internal_psmove() const;
-  PROTOBUF_NAMESPACE_ID::Any* _internal_mutable_psmove();
+  const ::astar::MOVE_CONTROL& _internal_psmove() const;
+  ::astar::MOVE_CONTROL* _internal_mutable_psmove();
   public:
   void unsafe_arena_set_allocated_psmove(
-      PROTOBUF_NAMESPACE_ID::Any* psmove);
-  PROTOBUF_NAMESPACE_ID::Any* unsafe_arena_release_psmove();
+      ::astar::MOVE_CONTROL* psmove);
+  ::astar::MOVE_CONTROL* unsafe_arena_release_psmove();
+
+  // .astar.PATHJOB psjob = 2;
+  bool has_psjob() const;
+  private:
+  bool _internal_has_psjob() const;
+  public:
+  void clear_psjob();
+  const ::astar::PATHJOB& psjob() const;
+  ::astar::PATHJOB* release_psjob();
+  ::astar::PATHJOB* mutable_psjob();
+  void set_allocated_psjob(::astar::PATHJOB* psjob);
+  private:
+  const ::astar::PATHJOB& _internal_psjob() const;
+  ::astar::PATHJOB* _internal_mutable_psjob();
+  public:
+  void unsafe_arena_set_allocated_psjob(
+      ::astar::PATHJOB* psjob);
+  ::astar::PATHJOB* unsafe_arena_release_psjob();
 
   // @@protoc_insertion_point(class_scope:astar.Request)
  private:
@@ -257,8 +411,8 @@ class Request PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  PROTOBUF_NAMESPACE_ID::Any* psjob_;
-  PROTOBUF_NAMESPACE_ID::Any* psmove_;
+  ::astar::MOVE_CONTROL* psmove_;
+  ::astar::PATHJOB* psjob_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_astar_2eproto;
 };
@@ -431,6 +585,1541 @@ class Reply PROTOBUF_FINAL :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_astar_2eproto;
 };
+// -------------------------------------------------------------------
+
+class MOVE_CONTROL PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:astar.MOVE_CONTROL) */ {
+ public:
+  inline MOVE_CONTROL() : MOVE_CONTROL(nullptr) {}
+  virtual ~MOVE_CONTROL();
+
+  MOVE_CONTROL(const MOVE_CONTROL& from);
+  MOVE_CONTROL(MOVE_CONTROL&& from) noexcept
+    : MOVE_CONTROL() {
+    *this = ::std::move(from);
+  }
+
+  inline MOVE_CONTROL& operator=(const MOVE_CONTROL& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MOVE_CONTROL& operator=(MOVE_CONTROL&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const MOVE_CONTROL& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const MOVE_CONTROL* internal_default_instance() {
+    return reinterpret_cast<const MOVE_CONTROL*>(
+               &_MOVE_CONTROL_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(MOVE_CONTROL& a, MOVE_CONTROL& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MOVE_CONTROL* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MOVE_CONTROL* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline MOVE_CONTROL* New() const final {
+    return CreateMaybeMessage<MOVE_CONTROL>(nullptr);
+  }
+
+  MOVE_CONTROL* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<MOVE_CONTROL>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const MOVE_CONTROL& from);
+  void MergeFrom(const MOVE_CONTROL& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MOVE_CONTROL* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "astar.MOVE_CONTROL";
+  }
+  protected:
+  explicit MOVE_CONTROL(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_astar_2eproto);
+    return ::descriptor_table_astar_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAspathFieldNumber = 3,
+    kDestinationFieldNumber = 4,
+    kSrcFieldNumber = 5,
+    kTargetFieldNumber = 6,
+    kBumpposFieldNumber = 13,
+    kStatusFieldNumber = 1,
+    kPathindexFieldNumber = 2,
+    kSpeedFieldNumber = 7,
+    kMovedirFieldNumber = 8,
+    kBumpdirFieldNumber = 9,
+    kBumptimeFieldNumber = 10,
+    kLastbumpFieldNumber = 11,
+    kPausetimeFieldNumber = 12,
+    kShufflestartFieldNumber = 14,
+    kIvertspeedFieldNumber = 15,
+  };
+  // repeated .astar.Vector2i aspath = 3;
+  int aspath_size() const;
+  private:
+  int _internal_aspath_size() const;
+  public:
+  void clear_aspath();
+  ::astar::Vector2i* mutable_aspath(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::astar::Vector2i >*
+      mutable_aspath();
+  private:
+  const ::astar::Vector2i& _internal_aspath(int index) const;
+  ::astar::Vector2i* _internal_add_aspath();
+  public:
+  const ::astar::Vector2i& aspath(int index) const;
+  ::astar::Vector2i* add_aspath();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::astar::Vector2i >&
+      aspath() const;
+
+  // .astar.Vector2i destination = 4;
+  bool has_destination() const;
+  private:
+  bool _internal_has_destination() const;
+  public:
+  void clear_destination();
+  const ::astar::Vector2i& destination() const;
+  ::astar::Vector2i* release_destination();
+  ::astar::Vector2i* mutable_destination();
+  void set_allocated_destination(::astar::Vector2i* destination);
+  private:
+  const ::astar::Vector2i& _internal_destination() const;
+  ::astar::Vector2i* _internal_mutable_destination();
+  public:
+  void unsafe_arena_set_allocated_destination(
+      ::astar::Vector2i* destination);
+  ::astar::Vector2i* unsafe_arena_release_destination();
+
+  // .astar.Vector2i src = 5;
+  bool has_src() const;
+  private:
+  bool _internal_has_src() const;
+  public:
+  void clear_src();
+  const ::astar::Vector2i& src() const;
+  ::astar::Vector2i* release_src();
+  ::astar::Vector2i* mutable_src();
+  void set_allocated_src(::astar::Vector2i* src);
+  private:
+  const ::astar::Vector2i& _internal_src() const;
+  ::astar::Vector2i* _internal_mutable_src();
+  public:
+  void unsafe_arena_set_allocated_src(
+      ::astar::Vector2i* src);
+  ::astar::Vector2i* unsafe_arena_release_src();
+
+  // .astar.Vector2i target = 6;
+  bool has_target() const;
+  private:
+  bool _internal_has_target() const;
+  public:
+  void clear_target();
+  const ::astar::Vector2i& target() const;
+  ::astar::Vector2i* release_target();
+  ::astar::Vector2i* mutable_target();
+  void set_allocated_target(::astar::Vector2i* target);
+  private:
+  const ::astar::Vector2i& _internal_target() const;
+  ::astar::Vector2i* _internal_mutable_target();
+  public:
+  void unsafe_arena_set_allocated_target(
+      ::astar::Vector2i* target);
+  ::astar::Vector2i* unsafe_arena_release_target();
+
+  // .astar.Vector3i bumppos = 13;
+  bool has_bumppos() const;
+  private:
+  bool _internal_has_bumppos() const;
+  public:
+  void clear_bumppos();
+  const ::astar::Vector3i& bumppos() const;
+  ::astar::Vector3i* release_bumppos();
+  ::astar::Vector3i* mutable_bumppos();
+  void set_allocated_bumppos(::astar::Vector3i* bumppos);
+  private:
+  const ::astar::Vector3i& _internal_bumppos() const;
+  ::astar::Vector3i* _internal_mutable_bumppos();
+  public:
+  void unsafe_arena_set_allocated_bumppos(
+      ::astar::Vector3i* bumppos);
+  ::astar::Vector3i* unsafe_arena_release_bumppos();
+
+  // .astar.MOVE_STATUS status = 1;
+  void clear_status();
+  ::astar::MOVE_STATUS status() const;
+  void set_status(::astar::MOVE_STATUS value);
+  private:
+  ::astar::MOVE_STATUS _internal_status() const;
+  void _internal_set_status(::astar::MOVE_STATUS value);
+  public:
+
+  // int32 pathindex = 2;
+  void clear_pathindex();
+  ::PROTOBUF_NAMESPACE_ID::int32 pathindex() const;
+  void set_pathindex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_pathindex() const;
+  void _internal_set_pathindex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 speed = 7;
+  void clear_speed();
+  ::PROTOBUF_NAMESPACE_ID::int32 speed() const;
+  void set_speed(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_speed() const;
+  void _internal_set_speed(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 movedir = 8;
+  void clear_movedir();
+  ::PROTOBUF_NAMESPACE_ID::int32 movedir() const;
+  void set_movedir(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_movedir() const;
+  void _internal_set_movedir(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 bumpdir = 9;
+  void clear_bumpdir();
+  ::PROTOBUF_NAMESPACE_ID::int32 bumpdir() const;
+  void set_bumpdir(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_bumpdir() const;
+  void _internal_set_bumpdir(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 bumptime = 10;
+  void clear_bumptime();
+  ::PROTOBUF_NAMESPACE_ID::int32 bumptime() const;
+  void set_bumptime(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_bumptime() const;
+  void _internal_set_bumptime(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 lastbump = 11;
+  void clear_lastbump();
+  ::PROTOBUF_NAMESPACE_ID::int32 lastbump() const;
+  void set_lastbump(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_lastbump() const;
+  void _internal_set_lastbump(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 pausetime = 12;
+  void clear_pausetime();
+  ::PROTOBUF_NAMESPACE_ID::int32 pausetime() const;
+  void set_pausetime(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_pausetime() const;
+  void _internal_set_pausetime(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 shufflestart = 14;
+  void clear_shufflestart();
+  ::PROTOBUF_NAMESPACE_ID::int32 shufflestart() const;
+  void set_shufflestart(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_shufflestart() const;
+  void _internal_set_shufflestart(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 ivertspeed = 15;
+  void clear_ivertspeed();
+  ::PROTOBUF_NAMESPACE_ID::int32 ivertspeed() const;
+  void set_ivertspeed(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_ivertspeed() const;
+  void _internal_set_ivertspeed(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:astar.MOVE_CONTROL)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::astar::Vector2i > aspath_;
+  ::astar::Vector2i* destination_;
+  ::astar::Vector2i* src_;
+  ::astar::Vector2i* target_;
+  ::astar::Vector3i* bumppos_;
+  int status_;
+  ::PROTOBUF_NAMESPACE_ID::int32 pathindex_;
+  ::PROTOBUF_NAMESPACE_ID::int32 speed_;
+  ::PROTOBUF_NAMESPACE_ID::int32 movedir_;
+  ::PROTOBUF_NAMESPACE_ID::int32 bumpdir_;
+  ::PROTOBUF_NAMESPACE_ID::int32 bumptime_;
+  ::PROTOBUF_NAMESPACE_ID::int32 lastbump_;
+  ::PROTOBUF_NAMESPACE_ID::int32 pausetime_;
+  ::PROTOBUF_NAMESPACE_ID::int32 shufflestart_;
+  ::PROTOBUF_NAMESPACE_ID::int32 ivertspeed_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_astar_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PATHJOB PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:astar.PATHJOB) */ {
+ public:
+  inline PATHJOB() : PATHJOB(nullptr) {}
+  virtual ~PATHJOB();
+
+  PATHJOB(const PATHJOB& from);
+  PATHJOB(PATHJOB&& from) noexcept
+    : PATHJOB() {
+    *this = ::std::move(from);
+  }
+
+  inline PATHJOB& operator=(const PATHJOB& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PATHJOB& operator=(PATHJOB&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PATHJOB& default_instance();
+
+  enum NCase {
+    kPropulsion = 1,
+    kDroidtype = 2,
+    kDestx = 3,
+    kDesty = 4,
+    kOrigx = 5,
+    kOrigy = 6,
+    kDststructure = 7,
+    kDroidid = 8,
+    kMovetype = 9,
+    kOwner = 10,
+    kBlockingmap = 11,
+    kAcceptnearest = 12,
+    kDeleted = 13,
+    N_NOT_SET = 0,
+  };
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PATHJOB* internal_default_instance() {
+    return reinterpret_cast<const PATHJOB*>(
+               &_PATHJOB_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(PATHJOB& a, PATHJOB& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PATHJOB* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PATHJOB* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PATHJOB* New() const final {
+    return CreateMaybeMessage<PATHJOB>(nullptr);
+  }
+
+  PATHJOB* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PATHJOB>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PATHJOB& from);
+  void MergeFrom(const PATHJOB& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PATHJOB* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "astar.PATHJOB";
+  }
+  protected:
+  explicit PATHJOB(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_astar_2eproto);
+    return ::descriptor_table_astar_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPropulsionFieldNumber = 1,
+    kDroidtypeFieldNumber = 2,
+    kDestxFieldNumber = 3,
+    kDestyFieldNumber = 4,
+    kOrigxFieldNumber = 5,
+    kOrigyFieldNumber = 6,
+    kDststructureFieldNumber = 7,
+    kDroididFieldNumber = 8,
+    kMovetypeFieldNumber = 9,
+    kOwnerFieldNumber = 10,
+    kBlockingmapFieldNumber = 11,
+    kAcceptnearestFieldNumber = 12,
+    kDeletedFieldNumber = 13,
+  };
+  // .astar.PROPULSION_TYPE propulsion = 1;
+  private:
+  bool _internal_has_propulsion() const;
+  public:
+  void clear_propulsion();
+  ::astar::PROPULSION_TYPE propulsion() const;
+  void set_propulsion(::astar::PROPULSION_TYPE value);
+  private:
+  ::astar::PROPULSION_TYPE _internal_propulsion() const;
+  void _internal_set_propulsion(::astar::PROPULSION_TYPE value);
+  public:
+
+  // .astar.DROID_TYPE droidtype = 2;
+  private:
+  bool _internal_has_droidtype() const;
+  public:
+  void clear_droidtype();
+  ::astar::DROID_TYPE droidtype() const;
+  void set_droidtype(::astar::DROID_TYPE value);
+  private:
+  ::astar::DROID_TYPE _internal_droidtype() const;
+  void _internal_set_droidtype(::astar::DROID_TYPE value);
+  public:
+
+  // int32 destx = 3;
+  private:
+  bool _internal_has_destx() const;
+  public:
+  void clear_destx();
+  ::PROTOBUF_NAMESPACE_ID::int32 destx() const;
+  void set_destx(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_destx() const;
+  void _internal_set_destx(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 desty = 4;
+  private:
+  bool _internal_has_desty() const;
+  public:
+  void clear_desty();
+  ::PROTOBUF_NAMESPACE_ID::int32 desty() const;
+  void set_desty(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_desty() const;
+  void _internal_set_desty(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 origx = 5;
+  private:
+  bool _internal_has_origx() const;
+  public:
+  void clear_origx();
+  ::PROTOBUF_NAMESPACE_ID::int32 origx() const;
+  void set_origx(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_origx() const;
+  void _internal_set_origx(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 origy = 6;
+  private:
+  bool _internal_has_origy() const;
+  public:
+  void clear_origy();
+  ::PROTOBUF_NAMESPACE_ID::int32 origy() const;
+  void set_origy(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_origy() const;
+  void _internal_set_origy(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // .astar.StructureBounds dststructure = 7;
+  bool has_dststructure() const;
+  private:
+  bool _internal_has_dststructure() const;
+  public:
+  void clear_dststructure();
+  const ::astar::StructureBounds& dststructure() const;
+  ::astar::StructureBounds* release_dststructure();
+  ::astar::StructureBounds* mutable_dststructure();
+  void set_allocated_dststructure(::astar::StructureBounds* dststructure);
+  private:
+  const ::astar::StructureBounds& _internal_dststructure() const;
+  ::astar::StructureBounds* _internal_mutable_dststructure();
+  public:
+  void unsafe_arena_set_allocated_dststructure(
+      ::astar::StructureBounds* dststructure);
+  ::astar::StructureBounds* unsafe_arena_release_dststructure();
+
+  // int32 droidid = 8;
+  private:
+  bool _internal_has_droidid() const;
+  public:
+  void clear_droidid();
+  ::PROTOBUF_NAMESPACE_ID::int32 droidid() const;
+  void set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_droidid() const;
+  void _internal_set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // .astar.FPATH_MOVETYPE movetype = 9;
+  private:
+  bool _internal_has_movetype() const;
+  public:
+  void clear_movetype();
+  ::astar::FPATH_MOVETYPE movetype() const;
+  void set_movetype(::astar::FPATH_MOVETYPE value);
+  private:
+  ::astar::FPATH_MOVETYPE _internal_movetype() const;
+  void _internal_set_movetype(::astar::FPATH_MOVETYPE value);
+  public:
+
+  // int32 owner = 10;
+  private:
+  bool _internal_has_owner() const;
+  public:
+  void clear_owner();
+  ::PROTOBUF_NAMESPACE_ID::int32 owner() const;
+  void set_owner(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_owner() const;
+  void _internal_set_owner(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // .astar.PathBlockingMap blockingmap = 11;
+  bool has_blockingmap() const;
+  private:
+  bool _internal_has_blockingmap() const;
+  public:
+  void clear_blockingmap();
+  const ::astar::PathBlockingMap& blockingmap() const;
+  ::astar::PathBlockingMap* release_blockingmap();
+  ::astar::PathBlockingMap* mutable_blockingmap();
+  void set_allocated_blockingmap(::astar::PathBlockingMap* blockingmap);
+  private:
+  const ::astar::PathBlockingMap& _internal_blockingmap() const;
+  ::astar::PathBlockingMap* _internal_mutable_blockingmap();
+  public:
+  void unsafe_arena_set_allocated_blockingmap(
+      ::astar::PathBlockingMap* blockingmap);
+  ::astar::PathBlockingMap* unsafe_arena_release_blockingmap();
+
+  // bool acceptnearest = 12;
+  private:
+  bool _internal_has_acceptnearest() const;
+  public:
+  void clear_acceptnearest();
+  bool acceptnearest() const;
+  void set_acceptnearest(bool value);
+  private:
+  bool _internal_acceptnearest() const;
+  void _internal_set_acceptnearest(bool value);
+  public:
+
+  // bool deleted = 13;
+  private:
+  bool _internal_has_deleted() const;
+  public:
+  void clear_deleted();
+  bool deleted() const;
+  void set_deleted(bool value);
+  private:
+  bool _internal_deleted() const;
+  void _internal_set_deleted(bool value);
+  public:
+
+  void clear_n();
+  NCase n_case() const;
+  // @@protoc_insertion_point(class_scope:astar.PATHJOB)
+ private:
+  class _Internal;
+  void set_has_propulsion();
+  void set_has_droidtype();
+  void set_has_destx();
+  void set_has_desty();
+  void set_has_origx();
+  void set_has_origy();
+  void set_has_dststructure();
+  void set_has_droidid();
+  void set_has_movetype();
+  void set_has_owner();
+  void set_has_blockingmap();
+  void set_has_acceptnearest();
+  void set_has_deleted();
+
+  inline bool has_n() const;
+  inline void clear_has_n();
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  union NUnion {
+    NUnion() {}
+    int propulsion_;
+    int droidtype_;
+    ::PROTOBUF_NAMESPACE_ID::int32 destx_;
+    ::PROTOBUF_NAMESPACE_ID::int32 desty_;
+    ::PROTOBUF_NAMESPACE_ID::int32 origx_;
+    ::PROTOBUF_NAMESPACE_ID::int32 origy_;
+    ::astar::StructureBounds* dststructure_;
+    ::PROTOBUF_NAMESPACE_ID::int32 droidid_;
+    int movetype_;
+    ::PROTOBUF_NAMESPACE_ID::int32 owner_;
+    ::astar::PathBlockingMap* blockingmap_;
+    bool acceptnearest_;
+    bool deleted_;
+  } n_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
+
+  friend struct ::TableStruct_astar_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Vector2i PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:astar.Vector2i) */ {
+ public:
+  inline Vector2i() : Vector2i(nullptr) {}
+  virtual ~Vector2i();
+
+  Vector2i(const Vector2i& from);
+  Vector2i(Vector2i&& from) noexcept
+    : Vector2i() {
+    *this = ::std::move(from);
+  }
+
+  inline Vector2i& operator=(const Vector2i& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Vector2i& operator=(Vector2i&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const Vector2i& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Vector2i* internal_default_instance() {
+    return reinterpret_cast<const Vector2i*>(
+               &_Vector2i_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(Vector2i& a, Vector2i& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Vector2i* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Vector2i* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Vector2i* New() const final {
+    return CreateMaybeMessage<Vector2i>(nullptr);
+  }
+
+  Vector2i* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Vector2i>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Vector2i& from);
+  void MergeFrom(const Vector2i& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Vector2i* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "astar.Vector2i";
+  }
+  protected:
+  explicit Vector2i(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_astar_2eproto);
+    return ::descriptor_table_astar_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kXFieldNumber = 1,
+    kYFieldNumber = 2,
+  };
+  // int32 x = 1;
+  void clear_x();
+  ::PROTOBUF_NAMESPACE_ID::int32 x() const;
+  void set_x(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_x() const;
+  void _internal_set_x(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 y = 2;
+  void clear_y();
+  ::PROTOBUF_NAMESPACE_ID::int32 y() const;
+  void set_y(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_y() const;
+  void _internal_set_y(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:astar.Vector2i)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int32 x_;
+  ::PROTOBUF_NAMESPACE_ID::int32 y_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_astar_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Vector3i PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:astar.Vector3i) */ {
+ public:
+  inline Vector3i() : Vector3i(nullptr) {}
+  virtual ~Vector3i();
+
+  Vector3i(const Vector3i& from);
+  Vector3i(Vector3i&& from) noexcept
+    : Vector3i() {
+    *this = ::std::move(from);
+  }
+
+  inline Vector3i& operator=(const Vector3i& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Vector3i& operator=(Vector3i&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const Vector3i& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Vector3i* internal_default_instance() {
+    return reinterpret_cast<const Vector3i*>(
+               &_Vector3i_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(Vector3i& a, Vector3i& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Vector3i* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Vector3i* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Vector3i* New() const final {
+    return CreateMaybeMessage<Vector3i>(nullptr);
+  }
+
+  Vector3i* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Vector3i>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Vector3i& from);
+  void MergeFrom(const Vector3i& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Vector3i* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "astar.Vector3i";
+  }
+  protected:
+  explicit Vector3i(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_astar_2eproto);
+    return ::descriptor_table_astar_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kXFieldNumber = 1,
+    kYFieldNumber = 2,
+    kZFieldNumber = 3,
+  };
+  // int32 x = 1;
+  void clear_x();
+  ::PROTOBUF_NAMESPACE_ID::int32 x() const;
+  void set_x(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_x() const;
+  void _internal_set_x(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 y = 2;
+  void clear_y();
+  ::PROTOBUF_NAMESPACE_ID::int32 y() const;
+  void set_y(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_y() const;
+  void _internal_set_y(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 z = 3;
+  void clear_z();
+  ::PROTOBUF_NAMESPACE_ID::int32 z() const;
+  void set_z(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_z() const;
+  void _internal_set_z(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:astar.Vector3i)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int32 x_;
+  ::PROTOBUF_NAMESPACE_ID::int32 y_;
+  ::PROTOBUF_NAMESPACE_ID::int32 z_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_astar_2eproto;
+};
+// -------------------------------------------------------------------
+
+class StructureBounds PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:astar.StructureBounds) */ {
+ public:
+  inline StructureBounds() : StructureBounds(nullptr) {}
+  virtual ~StructureBounds();
+
+  StructureBounds(const StructureBounds& from);
+  StructureBounds(StructureBounds&& from) noexcept
+    : StructureBounds() {
+    *this = ::std::move(from);
+  }
+
+  inline StructureBounds& operator=(const StructureBounds& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StructureBounds& operator=(StructureBounds&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const StructureBounds& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const StructureBounds* internal_default_instance() {
+    return reinterpret_cast<const StructureBounds*>(
+               &_StructureBounds_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(StructureBounds& a, StructureBounds& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StructureBounds* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StructureBounds* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline StructureBounds* New() const final {
+    return CreateMaybeMessage<StructureBounds>(nullptr);
+  }
+
+  StructureBounds* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<StructureBounds>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const StructureBounds& from);
+  void MergeFrom(const StructureBounds& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StructureBounds* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "astar.StructureBounds";
+  }
+  protected:
+  explicit StructureBounds(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_astar_2eproto);
+    return ::descriptor_table_astar_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMapFieldNumber = 1,
+    kSizeFieldNumber = 2,
+  };
+  // .astar.Vector2i map = 1;
+  bool has_map() const;
+  private:
+  bool _internal_has_map() const;
+  public:
+  void clear_map();
+  const ::astar::Vector2i& map() const;
+  ::astar::Vector2i* release_map();
+  ::astar::Vector2i* mutable_map();
+  void set_allocated_map(::astar::Vector2i* map);
+  private:
+  const ::astar::Vector2i& _internal_map() const;
+  ::astar::Vector2i* _internal_mutable_map();
+  public:
+  void unsafe_arena_set_allocated_map(
+      ::astar::Vector2i* map);
+  ::astar::Vector2i* unsafe_arena_release_map();
+
+  // .astar.Vector2i size = 2;
+  bool has_size() const;
+  private:
+  bool _internal_has_size() const;
+  public:
+  void clear_size();
+  const ::astar::Vector2i& size() const;
+  ::astar::Vector2i* release_size();
+  ::astar::Vector2i* mutable_size();
+  void set_allocated_size(::astar::Vector2i* size);
+  private:
+  const ::astar::Vector2i& _internal_size() const;
+  ::astar::Vector2i* _internal_mutable_size();
+  public:
+  void unsafe_arena_set_allocated_size(
+      ::astar::Vector2i* size);
+  ::astar::Vector2i* unsafe_arena_release_size();
+
+  // @@protoc_insertion_point(class_scope:astar.StructureBounds)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::astar::Vector2i* map_;
+  ::astar::Vector2i* size_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_astar_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PathBlockingType PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:astar.PathBlockingType) */ {
+ public:
+  inline PathBlockingType() : PathBlockingType(nullptr) {}
+  virtual ~PathBlockingType();
+
+  PathBlockingType(const PathBlockingType& from);
+  PathBlockingType(PathBlockingType&& from) noexcept
+    : PathBlockingType() {
+    *this = ::std::move(from);
+  }
+
+  inline PathBlockingType& operator=(const PathBlockingType& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PathBlockingType& operator=(PathBlockingType&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PathBlockingType& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PathBlockingType* internal_default_instance() {
+    return reinterpret_cast<const PathBlockingType*>(
+               &_PathBlockingType_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(PathBlockingType& a, PathBlockingType& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PathBlockingType* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PathBlockingType* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PathBlockingType* New() const final {
+    return CreateMaybeMessage<PathBlockingType>(nullptr);
+  }
+
+  PathBlockingType* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PathBlockingType>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PathBlockingType& from);
+  void MergeFrom(const PathBlockingType& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PathBlockingType* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "astar.PathBlockingType";
+  }
+  protected:
+  explicit PathBlockingType(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_astar_2eproto);
+    return ::descriptor_table_astar_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGametimeFieldNumber = 1,
+    kPropulsionFieldNumber = 2,
+    kOwnerFieldNumber = 3,
+    kMovetypeFieldNumber = 4,
+  };
+  // int32 gametime = 1;
+  void clear_gametime();
+  ::PROTOBUF_NAMESPACE_ID::int32 gametime() const;
+  void set_gametime(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_gametime() const;
+  void _internal_set_gametime(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // .astar.PROPULSION_TYPE propulsion = 2;
+  void clear_propulsion();
+  ::astar::PROPULSION_TYPE propulsion() const;
+  void set_propulsion(::astar::PROPULSION_TYPE value);
+  private:
+  ::astar::PROPULSION_TYPE _internal_propulsion() const;
+  void _internal_set_propulsion(::astar::PROPULSION_TYPE value);
+  public:
+
+  // int32 owner = 3;
+  void clear_owner();
+  ::PROTOBUF_NAMESPACE_ID::int32 owner() const;
+  void set_owner(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_owner() const;
+  void _internal_set_owner(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // .astar.FPATH_MOVETYPE movetype = 4;
+  void clear_movetype();
+  ::astar::FPATH_MOVETYPE movetype() const;
+  void set_movetype(::astar::FPATH_MOVETYPE value);
+  private:
+  ::astar::FPATH_MOVETYPE _internal_movetype() const;
+  void _internal_set_movetype(::astar::FPATH_MOVETYPE value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:astar.PathBlockingType)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int32 gametime_;
+  int propulsion_;
+  ::PROTOBUF_NAMESPACE_ID::int32 owner_;
+  int movetype_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_astar_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PathBlockingMap PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:astar.PathBlockingMap) */ {
+ public:
+  inline PathBlockingMap() : PathBlockingMap(nullptr) {}
+  virtual ~PathBlockingMap();
+
+  PathBlockingMap(const PathBlockingMap& from);
+  PathBlockingMap(PathBlockingMap&& from) noexcept
+    : PathBlockingMap() {
+    *this = ::std::move(from);
+  }
+
+  inline PathBlockingMap& operator=(const PathBlockingMap& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PathBlockingMap& operator=(PathBlockingMap&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const PathBlockingMap& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PathBlockingMap* internal_default_instance() {
+    return reinterpret_cast<const PathBlockingMap*>(
+               &_PathBlockingMap_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(PathBlockingMap& a, PathBlockingMap& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(PathBlockingMap* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PathBlockingMap* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PathBlockingMap* New() const final {
+    return CreateMaybeMessage<PathBlockingMap>(nullptr);
+  }
+
+  PathBlockingMap* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<PathBlockingMap>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const PathBlockingMap& from);
+  void MergeFrom(const PathBlockingMap& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PathBlockingMap* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "astar.PathBlockingMap";
+  }
+  protected:
+  explicit PathBlockingMap(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_astar_2eproto);
+    return ::descriptor_table_astar_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMapFieldNumber = 2,
+    kDangermapFieldNumber = 3,
+    kTypeFieldNumber = 1,
+  };
+  // repeated bool map = 2;
+  int map_size() const;
+  private:
+  int _internal_map_size() const;
+  public:
+  void clear_map();
+  private:
+  bool _internal_map(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+      _internal_map() const;
+  void _internal_add_map(bool value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+      _internal_mutable_map();
+  public:
+  bool map(int index) const;
+  void set_map(int index, bool value);
+  void add_map(bool value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+      map() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+      mutable_map();
+
+  // repeated bool dangermap = 3;
+  int dangermap_size() const;
+  private:
+  int _internal_dangermap_size() const;
+  public:
+  void clear_dangermap();
+  private:
+  bool _internal_dangermap(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+      _internal_dangermap() const;
+  void _internal_add_dangermap(bool value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+      _internal_mutable_dangermap();
+  public:
+  bool dangermap(int index) const;
+  void set_dangermap(int index, bool value);
+  void add_dangermap(bool value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+      dangermap() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+      mutable_dangermap();
+
+  // .astar.PathBlockingType type = 1;
+  bool has_type() const;
+  private:
+  bool _internal_has_type() const;
+  public:
+  void clear_type();
+  const ::astar::PathBlockingType& type() const;
+  ::astar::PathBlockingType* release_type();
+  ::astar::PathBlockingType* mutable_type();
+  void set_allocated_type(::astar::PathBlockingType* type);
+  private:
+  const ::astar::PathBlockingType& _internal_type() const;
+  ::astar::PathBlockingType* _internal_mutable_type();
+  public:
+  void unsafe_arena_set_allocated_type(
+      ::astar::PathBlockingType* type);
+  ::astar::PathBlockingType* unsafe_arena_release_type();
+
+  // @@protoc_insertion_point(class_scope:astar.PathBlockingMap)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool > map_;
+  mutable std::atomic<int> _map_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool > dangermap_;
+  mutable std::atomic<int> _dangermap_cached_byte_size_;
+  ::astar::PathBlockingType* type_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_astar_2eproto;
+};
 // ===================================================================
 
 
@@ -442,101 +2131,30 @@ class Reply PROTOBUF_FINAL :
 #endif  // __GNUC__
 // Request
 
-// .google.protobuf.Any psJob = 1;
-inline bool Request::_internal_has_psjob() const {
-  return this != internal_default_instance() && psjob_ != nullptr;
-}
-inline bool Request::has_psjob() const {
-  return _internal_has_psjob();
-}
-inline const PROTOBUF_NAMESPACE_ID::Any& Request::_internal_psjob() const {
-  const PROTOBUF_NAMESPACE_ID::Any* p = psjob_;
-  return p != nullptr ? *p : *reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Any*>(
-      &PROTOBUF_NAMESPACE_ID::_Any_default_instance_);
-}
-inline const PROTOBUF_NAMESPACE_ID::Any& Request::psjob() const {
-  // @@protoc_insertion_point(field_get:astar.Request.psJob)
-  return _internal_psjob();
-}
-inline void Request::unsafe_arena_set_allocated_psjob(
-    PROTOBUF_NAMESPACE_ID::Any* psjob) {
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(psjob_);
-  }
-  psjob_ = psjob;
-  if (psjob) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.Request.psJob)
-}
-inline PROTOBUF_NAMESPACE_ID::Any* Request::release_psjob() {
-  
-  PROTOBUF_NAMESPACE_ID::Any* temp = psjob_;
-  psjob_ = nullptr;
-  if (GetArena() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-  return temp;
-}
-inline PROTOBUF_NAMESPACE_ID::Any* Request::unsafe_arena_release_psjob() {
-  // @@protoc_insertion_point(field_release:astar.Request.psJob)
-  
-  PROTOBUF_NAMESPACE_ID::Any* temp = psjob_;
-  psjob_ = nullptr;
-  return temp;
-}
-inline PROTOBUF_NAMESPACE_ID::Any* Request::_internal_mutable_psjob() {
-  
-  if (psjob_ == nullptr) {
-    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Any>(GetArena());
-    psjob_ = p;
-  }
-  return psjob_;
-}
-inline PROTOBUF_NAMESPACE_ID::Any* Request::mutable_psjob() {
-  // @@protoc_insertion_point(field_mutable:astar.Request.psJob)
-  return _internal_mutable_psjob();
-}
-inline void Request::set_allocated_psjob(PROTOBUF_NAMESPACE_ID::Any* psjob) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(psjob_);
-  }
-  if (psjob) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(psjob)->GetArena();
-    if (message_arena != submessage_arena) {
-      psjob = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, psjob, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  psjob_ = psjob;
-  // @@protoc_insertion_point(field_set_allocated:astar.Request.psJob)
-}
-
-// .google.protobuf.Any psMove = 2;
+// .astar.MOVE_CONTROL psmove = 1;
 inline bool Request::_internal_has_psmove() const {
   return this != internal_default_instance() && psmove_ != nullptr;
 }
 inline bool Request::has_psmove() const {
   return _internal_has_psmove();
 }
-inline const PROTOBUF_NAMESPACE_ID::Any& Request::_internal_psmove() const {
-  const PROTOBUF_NAMESPACE_ID::Any* p = psmove_;
-  return p != nullptr ? *p : *reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Any*>(
-      &PROTOBUF_NAMESPACE_ID::_Any_default_instance_);
+inline void Request::clear_psmove() {
+  if (GetArena() == nullptr && psmove_ != nullptr) {
+    delete psmove_;
+  }
+  psmove_ = nullptr;
 }
-inline const PROTOBUF_NAMESPACE_ID::Any& Request::psmove() const {
-  // @@protoc_insertion_point(field_get:astar.Request.psMove)
+inline const ::astar::MOVE_CONTROL& Request::_internal_psmove() const {
+  const ::astar::MOVE_CONTROL* p = psmove_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::MOVE_CONTROL*>(
+      &::astar::_MOVE_CONTROL_default_instance_);
+}
+inline const ::astar::MOVE_CONTROL& Request::psmove() const {
+  // @@protoc_insertion_point(field_get:astar.Request.psmove)
   return _internal_psmove();
 }
 inline void Request::unsafe_arena_set_allocated_psmove(
-    PROTOBUF_NAMESPACE_ID::Any* psmove) {
+    ::astar::MOVE_CONTROL* psmove) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(psmove_);
   }
@@ -546,44 +2164,44 @@ inline void Request::unsafe_arena_set_allocated_psmove(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.Request.psMove)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.Request.psmove)
 }
-inline PROTOBUF_NAMESPACE_ID::Any* Request::release_psmove() {
+inline ::astar::MOVE_CONTROL* Request::release_psmove() {
   
-  PROTOBUF_NAMESPACE_ID::Any* temp = psmove_;
+  ::astar::MOVE_CONTROL* temp = psmove_;
   psmove_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline PROTOBUF_NAMESPACE_ID::Any* Request::unsafe_arena_release_psmove() {
-  // @@protoc_insertion_point(field_release:astar.Request.psMove)
+inline ::astar::MOVE_CONTROL* Request::unsafe_arena_release_psmove() {
+  // @@protoc_insertion_point(field_release:astar.Request.psmove)
   
-  PROTOBUF_NAMESPACE_ID::Any* temp = psmove_;
+  ::astar::MOVE_CONTROL* temp = psmove_;
   psmove_ = nullptr;
   return temp;
 }
-inline PROTOBUF_NAMESPACE_ID::Any* Request::_internal_mutable_psmove() {
+inline ::astar::MOVE_CONTROL* Request::_internal_mutable_psmove() {
   
   if (psmove_ == nullptr) {
-    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Any>(GetArena());
+    auto* p = CreateMaybeMessage<::astar::MOVE_CONTROL>(GetArena());
     psmove_ = p;
   }
   return psmove_;
 }
-inline PROTOBUF_NAMESPACE_ID::Any* Request::mutable_psmove() {
-  // @@protoc_insertion_point(field_mutable:astar.Request.psMove)
+inline ::astar::MOVE_CONTROL* Request::mutable_psmove() {
+  // @@protoc_insertion_point(field_mutable:astar.Request.psmove)
   return _internal_mutable_psmove();
 }
-inline void Request::set_allocated_psmove(PROTOBUF_NAMESPACE_ID::Any* psmove) {
+inline void Request::set_allocated_psmove(::astar::MOVE_CONTROL* psmove) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(psmove_);
+    delete psmove_;
   }
   if (psmove) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(psmove)->GetArena();
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(psmove);
     if (message_arena != submessage_arena) {
       psmove = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, psmove, submessage_arena);
@@ -593,7 +2211,90 @@ inline void Request::set_allocated_psmove(PROTOBUF_NAMESPACE_ID::Any* psmove) {
     
   }
   psmove_ = psmove;
-  // @@protoc_insertion_point(field_set_allocated:astar.Request.psMove)
+  // @@protoc_insertion_point(field_set_allocated:astar.Request.psmove)
+}
+
+// .astar.PATHJOB psjob = 2;
+inline bool Request::_internal_has_psjob() const {
+  return this != internal_default_instance() && psjob_ != nullptr;
+}
+inline bool Request::has_psjob() const {
+  return _internal_has_psjob();
+}
+inline void Request::clear_psjob() {
+  if (GetArena() == nullptr && psjob_ != nullptr) {
+    delete psjob_;
+  }
+  psjob_ = nullptr;
+}
+inline const ::astar::PATHJOB& Request::_internal_psjob() const {
+  const ::astar::PATHJOB* p = psjob_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::PATHJOB*>(
+      &::astar::_PATHJOB_default_instance_);
+}
+inline const ::astar::PATHJOB& Request::psjob() const {
+  // @@protoc_insertion_point(field_get:astar.Request.psjob)
+  return _internal_psjob();
+}
+inline void Request::unsafe_arena_set_allocated_psjob(
+    ::astar::PATHJOB* psjob) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(psjob_);
+  }
+  psjob_ = psjob;
+  if (psjob) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.Request.psjob)
+}
+inline ::astar::PATHJOB* Request::release_psjob() {
+  
+  ::astar::PATHJOB* temp = psjob_;
+  psjob_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::astar::PATHJOB* Request::unsafe_arena_release_psjob() {
+  // @@protoc_insertion_point(field_release:astar.Request.psjob)
+  
+  ::astar::PATHJOB* temp = psjob_;
+  psjob_ = nullptr;
+  return temp;
+}
+inline ::astar::PATHJOB* Request::_internal_mutable_psjob() {
+  
+  if (psjob_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::PATHJOB>(GetArena());
+    psjob_ = p;
+  }
+  return psjob_;
+}
+inline ::astar::PATHJOB* Request::mutable_psjob() {
+  // @@protoc_insertion_point(field_mutable:astar.Request.psjob)
+  return _internal_mutable_psjob();
+}
+inline void Request::set_allocated_psjob(::astar::PATHJOB* psjob) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete psjob_;
+  }
+  if (psjob) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(psjob);
+    if (message_arena != submessage_arena) {
+      psjob = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, psjob, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  psjob_ = psjob;
+  // @@protoc_insertion_point(field_set_allocated:astar.Request.psjob)
 }
 
 // -------------------------------------------------------------------
@@ -620,9 +2321,1685 @@ inline void Reply::set_retval(::astar::Reply_ASR_RETVAL value) {
   // @@protoc_insertion_point(field_set:astar.Reply.retVal)
 }
 
+// -------------------------------------------------------------------
+
+// MOVE_CONTROL
+
+// .astar.MOVE_STATUS status = 1;
+inline void MOVE_CONTROL::clear_status() {
+  status_ = 0;
+}
+inline ::astar::MOVE_STATUS MOVE_CONTROL::_internal_status() const {
+  return static_cast< ::astar::MOVE_STATUS >(status_);
+}
+inline ::astar::MOVE_STATUS MOVE_CONTROL::status() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.status)
+  return _internal_status();
+}
+inline void MOVE_CONTROL::_internal_set_status(::astar::MOVE_STATUS value) {
+  
+  status_ = value;
+}
+inline void MOVE_CONTROL::set_status(::astar::MOVE_STATUS value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.status)
+}
+
+// int32 pathindex = 2;
+inline void MOVE_CONTROL::clear_pathindex() {
+  pathindex_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::_internal_pathindex() const {
+  return pathindex_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::pathindex() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.pathindex)
+  return _internal_pathindex();
+}
+inline void MOVE_CONTROL::_internal_set_pathindex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  pathindex_ = value;
+}
+inline void MOVE_CONTROL::set_pathindex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_pathindex(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.pathindex)
+}
+
+// repeated .astar.Vector2i aspath = 3;
+inline int MOVE_CONTROL::_internal_aspath_size() const {
+  return aspath_.size();
+}
+inline int MOVE_CONTROL::aspath_size() const {
+  return _internal_aspath_size();
+}
+inline void MOVE_CONTROL::clear_aspath() {
+  aspath_.Clear();
+}
+inline ::astar::Vector2i* MOVE_CONTROL::mutable_aspath(int index) {
+  // @@protoc_insertion_point(field_mutable:astar.MOVE_CONTROL.aspath)
+  return aspath_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::astar::Vector2i >*
+MOVE_CONTROL::mutable_aspath() {
+  // @@protoc_insertion_point(field_mutable_list:astar.MOVE_CONTROL.aspath)
+  return &aspath_;
+}
+inline const ::astar::Vector2i& MOVE_CONTROL::_internal_aspath(int index) const {
+  return aspath_.Get(index);
+}
+inline const ::astar::Vector2i& MOVE_CONTROL::aspath(int index) const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.aspath)
+  return _internal_aspath(index);
+}
+inline ::astar::Vector2i* MOVE_CONTROL::_internal_add_aspath() {
+  return aspath_.Add();
+}
+inline ::astar::Vector2i* MOVE_CONTROL::add_aspath() {
+  // @@protoc_insertion_point(field_add:astar.MOVE_CONTROL.aspath)
+  return _internal_add_aspath();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::astar::Vector2i >&
+MOVE_CONTROL::aspath() const {
+  // @@protoc_insertion_point(field_list:astar.MOVE_CONTROL.aspath)
+  return aspath_;
+}
+
+// .astar.Vector2i destination = 4;
+inline bool MOVE_CONTROL::_internal_has_destination() const {
+  return this != internal_default_instance() && destination_ != nullptr;
+}
+inline bool MOVE_CONTROL::has_destination() const {
+  return _internal_has_destination();
+}
+inline void MOVE_CONTROL::clear_destination() {
+  if (GetArena() == nullptr && destination_ != nullptr) {
+    delete destination_;
+  }
+  destination_ = nullptr;
+}
+inline const ::astar::Vector2i& MOVE_CONTROL::_internal_destination() const {
+  const ::astar::Vector2i* p = destination_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::Vector2i*>(
+      &::astar::_Vector2i_default_instance_);
+}
+inline const ::astar::Vector2i& MOVE_CONTROL::destination() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.destination)
+  return _internal_destination();
+}
+inline void MOVE_CONTROL::unsafe_arena_set_allocated_destination(
+    ::astar::Vector2i* destination) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(destination_);
+  }
+  destination_ = destination;
+  if (destination) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.MOVE_CONTROL.destination)
+}
+inline ::astar::Vector2i* MOVE_CONTROL::release_destination() {
+  
+  ::astar::Vector2i* temp = destination_;
+  destination_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::astar::Vector2i* MOVE_CONTROL::unsafe_arena_release_destination() {
+  // @@protoc_insertion_point(field_release:astar.MOVE_CONTROL.destination)
+  
+  ::astar::Vector2i* temp = destination_;
+  destination_ = nullptr;
+  return temp;
+}
+inline ::astar::Vector2i* MOVE_CONTROL::_internal_mutable_destination() {
+  
+  if (destination_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::Vector2i>(GetArena());
+    destination_ = p;
+  }
+  return destination_;
+}
+inline ::astar::Vector2i* MOVE_CONTROL::mutable_destination() {
+  // @@protoc_insertion_point(field_mutable:astar.MOVE_CONTROL.destination)
+  return _internal_mutable_destination();
+}
+inline void MOVE_CONTROL::set_allocated_destination(::astar::Vector2i* destination) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete destination_;
+  }
+  if (destination) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(destination);
+    if (message_arena != submessage_arena) {
+      destination = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, destination, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  destination_ = destination;
+  // @@protoc_insertion_point(field_set_allocated:astar.MOVE_CONTROL.destination)
+}
+
+// .astar.Vector2i src = 5;
+inline bool MOVE_CONTROL::_internal_has_src() const {
+  return this != internal_default_instance() && src_ != nullptr;
+}
+inline bool MOVE_CONTROL::has_src() const {
+  return _internal_has_src();
+}
+inline void MOVE_CONTROL::clear_src() {
+  if (GetArena() == nullptr && src_ != nullptr) {
+    delete src_;
+  }
+  src_ = nullptr;
+}
+inline const ::astar::Vector2i& MOVE_CONTROL::_internal_src() const {
+  const ::astar::Vector2i* p = src_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::Vector2i*>(
+      &::astar::_Vector2i_default_instance_);
+}
+inline const ::astar::Vector2i& MOVE_CONTROL::src() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.src)
+  return _internal_src();
+}
+inline void MOVE_CONTROL::unsafe_arena_set_allocated_src(
+    ::astar::Vector2i* src) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(src_);
+  }
+  src_ = src;
+  if (src) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.MOVE_CONTROL.src)
+}
+inline ::astar::Vector2i* MOVE_CONTROL::release_src() {
+  
+  ::astar::Vector2i* temp = src_;
+  src_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::astar::Vector2i* MOVE_CONTROL::unsafe_arena_release_src() {
+  // @@protoc_insertion_point(field_release:astar.MOVE_CONTROL.src)
+  
+  ::astar::Vector2i* temp = src_;
+  src_ = nullptr;
+  return temp;
+}
+inline ::astar::Vector2i* MOVE_CONTROL::_internal_mutable_src() {
+  
+  if (src_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::Vector2i>(GetArena());
+    src_ = p;
+  }
+  return src_;
+}
+inline ::astar::Vector2i* MOVE_CONTROL::mutable_src() {
+  // @@protoc_insertion_point(field_mutable:astar.MOVE_CONTROL.src)
+  return _internal_mutable_src();
+}
+inline void MOVE_CONTROL::set_allocated_src(::astar::Vector2i* src) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete src_;
+  }
+  if (src) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(src);
+    if (message_arena != submessage_arena) {
+      src = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, src, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  src_ = src;
+  // @@protoc_insertion_point(field_set_allocated:astar.MOVE_CONTROL.src)
+}
+
+// .astar.Vector2i target = 6;
+inline bool MOVE_CONTROL::_internal_has_target() const {
+  return this != internal_default_instance() && target_ != nullptr;
+}
+inline bool MOVE_CONTROL::has_target() const {
+  return _internal_has_target();
+}
+inline void MOVE_CONTROL::clear_target() {
+  if (GetArena() == nullptr && target_ != nullptr) {
+    delete target_;
+  }
+  target_ = nullptr;
+}
+inline const ::astar::Vector2i& MOVE_CONTROL::_internal_target() const {
+  const ::astar::Vector2i* p = target_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::Vector2i*>(
+      &::astar::_Vector2i_default_instance_);
+}
+inline const ::astar::Vector2i& MOVE_CONTROL::target() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.target)
+  return _internal_target();
+}
+inline void MOVE_CONTROL::unsafe_arena_set_allocated_target(
+    ::astar::Vector2i* target) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(target_);
+  }
+  target_ = target;
+  if (target) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.MOVE_CONTROL.target)
+}
+inline ::astar::Vector2i* MOVE_CONTROL::release_target() {
+  
+  ::astar::Vector2i* temp = target_;
+  target_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::astar::Vector2i* MOVE_CONTROL::unsafe_arena_release_target() {
+  // @@protoc_insertion_point(field_release:astar.MOVE_CONTROL.target)
+  
+  ::astar::Vector2i* temp = target_;
+  target_ = nullptr;
+  return temp;
+}
+inline ::astar::Vector2i* MOVE_CONTROL::_internal_mutable_target() {
+  
+  if (target_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::Vector2i>(GetArena());
+    target_ = p;
+  }
+  return target_;
+}
+inline ::astar::Vector2i* MOVE_CONTROL::mutable_target() {
+  // @@protoc_insertion_point(field_mutable:astar.MOVE_CONTROL.target)
+  return _internal_mutable_target();
+}
+inline void MOVE_CONTROL::set_allocated_target(::astar::Vector2i* target) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete target_;
+  }
+  if (target) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(target);
+    if (message_arena != submessage_arena) {
+      target = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, target, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  target_ = target;
+  // @@protoc_insertion_point(field_set_allocated:astar.MOVE_CONTROL.target)
+}
+
+// int32 speed = 7;
+inline void MOVE_CONTROL::clear_speed() {
+  speed_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::_internal_speed() const {
+  return speed_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::speed() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.speed)
+  return _internal_speed();
+}
+inline void MOVE_CONTROL::_internal_set_speed(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  speed_ = value;
+}
+inline void MOVE_CONTROL::set_speed(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_speed(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.speed)
+}
+
+// int32 movedir = 8;
+inline void MOVE_CONTROL::clear_movedir() {
+  movedir_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::_internal_movedir() const {
+  return movedir_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::movedir() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.movedir)
+  return _internal_movedir();
+}
+inline void MOVE_CONTROL::_internal_set_movedir(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  movedir_ = value;
+}
+inline void MOVE_CONTROL::set_movedir(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_movedir(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.movedir)
+}
+
+// int32 bumpdir = 9;
+inline void MOVE_CONTROL::clear_bumpdir() {
+  bumpdir_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::_internal_bumpdir() const {
+  return bumpdir_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::bumpdir() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.bumpdir)
+  return _internal_bumpdir();
+}
+inline void MOVE_CONTROL::_internal_set_bumpdir(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  bumpdir_ = value;
+}
+inline void MOVE_CONTROL::set_bumpdir(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_bumpdir(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.bumpdir)
+}
+
+// int32 bumptime = 10;
+inline void MOVE_CONTROL::clear_bumptime() {
+  bumptime_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::_internal_bumptime() const {
+  return bumptime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::bumptime() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.bumptime)
+  return _internal_bumptime();
+}
+inline void MOVE_CONTROL::_internal_set_bumptime(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  bumptime_ = value;
+}
+inline void MOVE_CONTROL::set_bumptime(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_bumptime(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.bumptime)
+}
+
+// int32 lastbump = 11;
+inline void MOVE_CONTROL::clear_lastbump() {
+  lastbump_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::_internal_lastbump() const {
+  return lastbump_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::lastbump() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.lastbump)
+  return _internal_lastbump();
+}
+inline void MOVE_CONTROL::_internal_set_lastbump(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  lastbump_ = value;
+}
+inline void MOVE_CONTROL::set_lastbump(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_lastbump(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.lastbump)
+}
+
+// int32 pausetime = 12;
+inline void MOVE_CONTROL::clear_pausetime() {
+  pausetime_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::_internal_pausetime() const {
+  return pausetime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::pausetime() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.pausetime)
+  return _internal_pausetime();
+}
+inline void MOVE_CONTROL::_internal_set_pausetime(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  pausetime_ = value;
+}
+inline void MOVE_CONTROL::set_pausetime(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_pausetime(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.pausetime)
+}
+
+// .astar.Vector3i bumppos = 13;
+inline bool MOVE_CONTROL::_internal_has_bumppos() const {
+  return this != internal_default_instance() && bumppos_ != nullptr;
+}
+inline bool MOVE_CONTROL::has_bumppos() const {
+  return _internal_has_bumppos();
+}
+inline void MOVE_CONTROL::clear_bumppos() {
+  if (GetArena() == nullptr && bumppos_ != nullptr) {
+    delete bumppos_;
+  }
+  bumppos_ = nullptr;
+}
+inline const ::astar::Vector3i& MOVE_CONTROL::_internal_bumppos() const {
+  const ::astar::Vector3i* p = bumppos_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::Vector3i*>(
+      &::astar::_Vector3i_default_instance_);
+}
+inline const ::astar::Vector3i& MOVE_CONTROL::bumppos() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.bumppos)
+  return _internal_bumppos();
+}
+inline void MOVE_CONTROL::unsafe_arena_set_allocated_bumppos(
+    ::astar::Vector3i* bumppos) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(bumppos_);
+  }
+  bumppos_ = bumppos;
+  if (bumppos) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.MOVE_CONTROL.bumppos)
+}
+inline ::astar::Vector3i* MOVE_CONTROL::release_bumppos() {
+  
+  ::astar::Vector3i* temp = bumppos_;
+  bumppos_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::astar::Vector3i* MOVE_CONTROL::unsafe_arena_release_bumppos() {
+  // @@protoc_insertion_point(field_release:astar.MOVE_CONTROL.bumppos)
+  
+  ::astar::Vector3i* temp = bumppos_;
+  bumppos_ = nullptr;
+  return temp;
+}
+inline ::astar::Vector3i* MOVE_CONTROL::_internal_mutable_bumppos() {
+  
+  if (bumppos_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::Vector3i>(GetArena());
+    bumppos_ = p;
+  }
+  return bumppos_;
+}
+inline ::astar::Vector3i* MOVE_CONTROL::mutable_bumppos() {
+  // @@protoc_insertion_point(field_mutable:astar.MOVE_CONTROL.bumppos)
+  return _internal_mutable_bumppos();
+}
+inline void MOVE_CONTROL::set_allocated_bumppos(::astar::Vector3i* bumppos) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete bumppos_;
+  }
+  if (bumppos) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(bumppos);
+    if (message_arena != submessage_arena) {
+      bumppos = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, bumppos, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  bumppos_ = bumppos;
+  // @@protoc_insertion_point(field_set_allocated:astar.MOVE_CONTROL.bumppos)
+}
+
+// int32 shufflestart = 14;
+inline void MOVE_CONTROL::clear_shufflestart() {
+  shufflestart_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::_internal_shufflestart() const {
+  return shufflestart_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::shufflestart() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.shufflestart)
+  return _internal_shufflestart();
+}
+inline void MOVE_CONTROL::_internal_set_shufflestart(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  shufflestart_ = value;
+}
+inline void MOVE_CONTROL::set_shufflestart(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_shufflestart(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.shufflestart)
+}
+
+// int32 ivertspeed = 15;
+inline void MOVE_CONTROL::clear_ivertspeed() {
+  ivertspeed_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::_internal_ivertspeed() const {
+  return ivertspeed_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 MOVE_CONTROL::ivertspeed() const {
+  // @@protoc_insertion_point(field_get:astar.MOVE_CONTROL.ivertspeed)
+  return _internal_ivertspeed();
+}
+inline void MOVE_CONTROL::_internal_set_ivertspeed(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  ivertspeed_ = value;
+}
+inline void MOVE_CONTROL::set_ivertspeed(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_ivertspeed(value);
+  // @@protoc_insertion_point(field_set:astar.MOVE_CONTROL.ivertspeed)
+}
+
+// -------------------------------------------------------------------
+
+// PATHJOB
+
+// .astar.PROPULSION_TYPE propulsion = 1;
+inline bool PATHJOB::_internal_has_propulsion() const {
+  return n_case() == kPropulsion;
+}
+inline void PATHJOB::set_has_propulsion() {
+  _oneof_case_[0] = kPropulsion;
+}
+inline void PATHJOB::clear_propulsion() {
+  if (_internal_has_propulsion()) {
+    n_.propulsion_ = 0;
+    clear_has_n();
+  }
+}
+inline ::astar::PROPULSION_TYPE PATHJOB::_internal_propulsion() const {
+  if (_internal_has_propulsion()) {
+    return static_cast< ::astar::PROPULSION_TYPE >(n_.propulsion_);
+  }
+  return static_cast< ::astar::PROPULSION_TYPE >(0);
+}
+inline ::astar::PROPULSION_TYPE PATHJOB::propulsion() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.propulsion)
+  return _internal_propulsion();
+}
+inline void PATHJOB::_internal_set_propulsion(::astar::PROPULSION_TYPE value) {
+  if (!_internal_has_propulsion()) {
+    clear_n();
+    set_has_propulsion();
+  }
+  n_.propulsion_ = value;
+}
+inline void PATHJOB::set_propulsion(::astar::PROPULSION_TYPE value) {
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.propulsion)
+  _internal_set_propulsion(value);
+}
+
+// .astar.DROID_TYPE droidtype = 2;
+inline bool PATHJOB::_internal_has_droidtype() const {
+  return n_case() == kDroidtype;
+}
+inline void PATHJOB::set_has_droidtype() {
+  _oneof_case_[0] = kDroidtype;
+}
+inline void PATHJOB::clear_droidtype() {
+  if (_internal_has_droidtype()) {
+    n_.droidtype_ = 0;
+    clear_has_n();
+  }
+}
+inline ::astar::DROID_TYPE PATHJOB::_internal_droidtype() const {
+  if (_internal_has_droidtype()) {
+    return static_cast< ::astar::DROID_TYPE >(n_.droidtype_);
+  }
+  return static_cast< ::astar::DROID_TYPE >(0);
+}
+inline ::astar::DROID_TYPE PATHJOB::droidtype() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.droidtype)
+  return _internal_droidtype();
+}
+inline void PATHJOB::_internal_set_droidtype(::astar::DROID_TYPE value) {
+  if (!_internal_has_droidtype()) {
+    clear_n();
+    set_has_droidtype();
+  }
+  n_.droidtype_ = value;
+}
+inline void PATHJOB::set_droidtype(::astar::DROID_TYPE value) {
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.droidtype)
+  _internal_set_droidtype(value);
+}
+
+// int32 destx = 3;
+inline bool PATHJOB::_internal_has_destx() const {
+  return n_case() == kDestx;
+}
+inline void PATHJOB::set_has_destx() {
+  _oneof_case_[0] = kDestx;
+}
+inline void PATHJOB::clear_destx() {
+  if (_internal_has_destx()) {
+    n_.destx_ = 0;
+    clear_has_n();
+  }
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_destx() const {
+  if (_internal_has_destx()) {
+    return n_.destx_;
+  }
+  return 0;
+}
+inline void PATHJOB::_internal_set_destx(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  if (!_internal_has_destx()) {
+    clear_n();
+    set_has_destx();
+  }
+  n_.destx_ = value;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::destx() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.destx)
+  return _internal_destx();
+}
+inline void PATHJOB::set_destx(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_destx(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.destx)
+}
+
+// int32 desty = 4;
+inline bool PATHJOB::_internal_has_desty() const {
+  return n_case() == kDesty;
+}
+inline void PATHJOB::set_has_desty() {
+  _oneof_case_[0] = kDesty;
+}
+inline void PATHJOB::clear_desty() {
+  if (_internal_has_desty()) {
+    n_.desty_ = 0;
+    clear_has_n();
+  }
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_desty() const {
+  if (_internal_has_desty()) {
+    return n_.desty_;
+  }
+  return 0;
+}
+inline void PATHJOB::_internal_set_desty(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  if (!_internal_has_desty()) {
+    clear_n();
+    set_has_desty();
+  }
+  n_.desty_ = value;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::desty() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.desty)
+  return _internal_desty();
+}
+inline void PATHJOB::set_desty(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_desty(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.desty)
+}
+
+// int32 origx = 5;
+inline bool PATHJOB::_internal_has_origx() const {
+  return n_case() == kOrigx;
+}
+inline void PATHJOB::set_has_origx() {
+  _oneof_case_[0] = kOrigx;
+}
+inline void PATHJOB::clear_origx() {
+  if (_internal_has_origx()) {
+    n_.origx_ = 0;
+    clear_has_n();
+  }
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_origx() const {
+  if (_internal_has_origx()) {
+    return n_.origx_;
+  }
+  return 0;
+}
+inline void PATHJOB::_internal_set_origx(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  if (!_internal_has_origx()) {
+    clear_n();
+    set_has_origx();
+  }
+  n_.origx_ = value;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::origx() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.origx)
+  return _internal_origx();
+}
+inline void PATHJOB::set_origx(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_origx(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.origx)
+}
+
+// int32 origy = 6;
+inline bool PATHJOB::_internal_has_origy() const {
+  return n_case() == kOrigy;
+}
+inline void PATHJOB::set_has_origy() {
+  _oneof_case_[0] = kOrigy;
+}
+inline void PATHJOB::clear_origy() {
+  if (_internal_has_origy()) {
+    n_.origy_ = 0;
+    clear_has_n();
+  }
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_origy() const {
+  if (_internal_has_origy()) {
+    return n_.origy_;
+  }
+  return 0;
+}
+inline void PATHJOB::_internal_set_origy(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  if (!_internal_has_origy()) {
+    clear_n();
+    set_has_origy();
+  }
+  n_.origy_ = value;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::origy() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.origy)
+  return _internal_origy();
+}
+inline void PATHJOB::set_origy(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_origy(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.origy)
+}
+
+// .astar.StructureBounds dststructure = 7;
+inline bool PATHJOB::_internal_has_dststructure() const {
+  return n_case() == kDststructure;
+}
+inline bool PATHJOB::has_dststructure() const {
+  return _internal_has_dststructure();
+}
+inline void PATHJOB::set_has_dststructure() {
+  _oneof_case_[0] = kDststructure;
+}
+inline void PATHJOB::clear_dststructure() {
+  if (_internal_has_dststructure()) {
+    if (GetArena() == nullptr) {
+      delete n_.dststructure_;
+    }
+    clear_has_n();
+  }
+}
+inline ::astar::StructureBounds* PATHJOB::release_dststructure() {
+  // @@protoc_insertion_point(field_release:astar.PATHJOB.dststructure)
+  if (_internal_has_dststructure()) {
+    clear_has_n();
+      ::astar::StructureBounds* temp = n_.dststructure_;
+    if (GetArena() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    n_.dststructure_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::astar::StructureBounds& PATHJOB::_internal_dststructure() const {
+  return _internal_has_dststructure()
+      ? *n_.dststructure_
+      : *reinterpret_cast< ::astar::StructureBounds*>(&::astar::_StructureBounds_default_instance_);
+}
+inline const ::astar::StructureBounds& PATHJOB::dststructure() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.dststructure)
+  return _internal_dststructure();
+}
+inline ::astar::StructureBounds* PATHJOB::unsafe_arena_release_dststructure() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:astar.PATHJOB.dststructure)
+  if (_internal_has_dststructure()) {
+    clear_has_n();
+    ::astar::StructureBounds* temp = n_.dststructure_;
+    n_.dststructure_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void PATHJOB::unsafe_arena_set_allocated_dststructure(::astar::StructureBounds* dststructure) {
+  clear_n();
+  if (dststructure) {
+    set_has_dststructure();
+    n_.dststructure_ = dststructure;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.PATHJOB.dststructure)
+}
+inline ::astar::StructureBounds* PATHJOB::_internal_mutable_dststructure() {
+  if (!_internal_has_dststructure()) {
+    clear_n();
+    set_has_dststructure();
+    n_.dststructure_ = CreateMaybeMessage< ::astar::StructureBounds >(GetArena());
+  }
+  return n_.dststructure_;
+}
+inline ::astar::StructureBounds* PATHJOB::mutable_dststructure() {
+  // @@protoc_insertion_point(field_mutable:astar.PATHJOB.dststructure)
+  return _internal_mutable_dststructure();
+}
+
+// int32 droidid = 8;
+inline bool PATHJOB::_internal_has_droidid() const {
+  return n_case() == kDroidid;
+}
+inline void PATHJOB::set_has_droidid() {
+  _oneof_case_[0] = kDroidid;
+}
+inline void PATHJOB::clear_droidid() {
+  if (_internal_has_droidid()) {
+    n_.droidid_ = 0;
+    clear_has_n();
+  }
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_droidid() const {
+  if (_internal_has_droidid()) {
+    return n_.droidid_;
+  }
+  return 0;
+}
+inline void PATHJOB::_internal_set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  if (!_internal_has_droidid()) {
+    clear_n();
+    set_has_droidid();
+  }
+  n_.droidid_ = value;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::droidid() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.droidid)
+  return _internal_droidid();
+}
+inline void PATHJOB::set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_droidid(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.droidid)
+}
+
+// .astar.FPATH_MOVETYPE movetype = 9;
+inline bool PATHJOB::_internal_has_movetype() const {
+  return n_case() == kMovetype;
+}
+inline void PATHJOB::set_has_movetype() {
+  _oneof_case_[0] = kMovetype;
+}
+inline void PATHJOB::clear_movetype() {
+  if (_internal_has_movetype()) {
+    n_.movetype_ = 0;
+    clear_has_n();
+  }
+}
+inline ::astar::FPATH_MOVETYPE PATHJOB::_internal_movetype() const {
+  if (_internal_has_movetype()) {
+    return static_cast< ::astar::FPATH_MOVETYPE >(n_.movetype_);
+  }
+  return static_cast< ::astar::FPATH_MOVETYPE >(0);
+}
+inline ::astar::FPATH_MOVETYPE PATHJOB::movetype() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.movetype)
+  return _internal_movetype();
+}
+inline void PATHJOB::_internal_set_movetype(::astar::FPATH_MOVETYPE value) {
+  if (!_internal_has_movetype()) {
+    clear_n();
+    set_has_movetype();
+  }
+  n_.movetype_ = value;
+}
+inline void PATHJOB::set_movetype(::astar::FPATH_MOVETYPE value) {
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.movetype)
+  _internal_set_movetype(value);
+}
+
+// int32 owner = 10;
+inline bool PATHJOB::_internal_has_owner() const {
+  return n_case() == kOwner;
+}
+inline void PATHJOB::set_has_owner() {
+  _oneof_case_[0] = kOwner;
+}
+inline void PATHJOB::clear_owner() {
+  if (_internal_has_owner()) {
+    n_.owner_ = 0;
+    clear_has_n();
+  }
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_owner() const {
+  if (_internal_has_owner()) {
+    return n_.owner_;
+  }
+  return 0;
+}
+inline void PATHJOB::_internal_set_owner(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  if (!_internal_has_owner()) {
+    clear_n();
+    set_has_owner();
+  }
+  n_.owner_ = value;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::owner() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.owner)
+  return _internal_owner();
+}
+inline void PATHJOB::set_owner(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_owner(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.owner)
+}
+
+// .astar.PathBlockingMap blockingmap = 11;
+inline bool PATHJOB::_internal_has_blockingmap() const {
+  return n_case() == kBlockingmap;
+}
+inline bool PATHJOB::has_blockingmap() const {
+  return _internal_has_blockingmap();
+}
+inline void PATHJOB::set_has_blockingmap() {
+  _oneof_case_[0] = kBlockingmap;
+}
+inline void PATHJOB::clear_blockingmap() {
+  if (_internal_has_blockingmap()) {
+    if (GetArena() == nullptr) {
+      delete n_.blockingmap_;
+    }
+    clear_has_n();
+  }
+}
+inline ::astar::PathBlockingMap* PATHJOB::release_blockingmap() {
+  // @@protoc_insertion_point(field_release:astar.PATHJOB.blockingmap)
+  if (_internal_has_blockingmap()) {
+    clear_has_n();
+      ::astar::PathBlockingMap* temp = n_.blockingmap_;
+    if (GetArena() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    n_.blockingmap_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::astar::PathBlockingMap& PATHJOB::_internal_blockingmap() const {
+  return _internal_has_blockingmap()
+      ? *n_.blockingmap_
+      : *reinterpret_cast< ::astar::PathBlockingMap*>(&::astar::_PathBlockingMap_default_instance_);
+}
+inline const ::astar::PathBlockingMap& PATHJOB::blockingmap() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.blockingmap)
+  return _internal_blockingmap();
+}
+inline ::astar::PathBlockingMap* PATHJOB::unsafe_arena_release_blockingmap() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:astar.PATHJOB.blockingmap)
+  if (_internal_has_blockingmap()) {
+    clear_has_n();
+    ::astar::PathBlockingMap* temp = n_.blockingmap_;
+    n_.blockingmap_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void PATHJOB::unsafe_arena_set_allocated_blockingmap(::astar::PathBlockingMap* blockingmap) {
+  clear_n();
+  if (blockingmap) {
+    set_has_blockingmap();
+    n_.blockingmap_ = blockingmap;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.PATHJOB.blockingmap)
+}
+inline ::astar::PathBlockingMap* PATHJOB::_internal_mutable_blockingmap() {
+  if (!_internal_has_blockingmap()) {
+    clear_n();
+    set_has_blockingmap();
+    n_.blockingmap_ = CreateMaybeMessage< ::astar::PathBlockingMap >(GetArena());
+  }
+  return n_.blockingmap_;
+}
+inline ::astar::PathBlockingMap* PATHJOB::mutable_blockingmap() {
+  // @@protoc_insertion_point(field_mutable:astar.PATHJOB.blockingmap)
+  return _internal_mutable_blockingmap();
+}
+
+// bool acceptnearest = 12;
+inline bool PATHJOB::_internal_has_acceptnearest() const {
+  return n_case() == kAcceptnearest;
+}
+inline void PATHJOB::set_has_acceptnearest() {
+  _oneof_case_[0] = kAcceptnearest;
+}
+inline void PATHJOB::clear_acceptnearest() {
+  if (_internal_has_acceptnearest()) {
+    n_.acceptnearest_ = false;
+    clear_has_n();
+  }
+}
+inline bool PATHJOB::_internal_acceptnearest() const {
+  if (_internal_has_acceptnearest()) {
+    return n_.acceptnearest_;
+  }
+  return false;
+}
+inline void PATHJOB::_internal_set_acceptnearest(bool value) {
+  if (!_internal_has_acceptnearest()) {
+    clear_n();
+    set_has_acceptnearest();
+  }
+  n_.acceptnearest_ = value;
+}
+inline bool PATHJOB::acceptnearest() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.acceptnearest)
+  return _internal_acceptnearest();
+}
+inline void PATHJOB::set_acceptnearest(bool value) {
+  _internal_set_acceptnearest(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.acceptnearest)
+}
+
+// bool deleted = 13;
+inline bool PATHJOB::_internal_has_deleted() const {
+  return n_case() == kDeleted;
+}
+inline void PATHJOB::set_has_deleted() {
+  _oneof_case_[0] = kDeleted;
+}
+inline void PATHJOB::clear_deleted() {
+  if (_internal_has_deleted()) {
+    n_.deleted_ = false;
+    clear_has_n();
+  }
+}
+inline bool PATHJOB::_internal_deleted() const {
+  if (_internal_has_deleted()) {
+    return n_.deleted_;
+  }
+  return false;
+}
+inline void PATHJOB::_internal_set_deleted(bool value) {
+  if (!_internal_has_deleted()) {
+    clear_n();
+    set_has_deleted();
+  }
+  n_.deleted_ = value;
+}
+inline bool PATHJOB::deleted() const {
+  // @@protoc_insertion_point(field_get:astar.PATHJOB.deleted)
+  return _internal_deleted();
+}
+inline void PATHJOB::set_deleted(bool value) {
+  _internal_set_deleted(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.deleted)
+}
+
+inline bool PATHJOB::has_n() const {
+  return n_case() != N_NOT_SET;
+}
+inline void PATHJOB::clear_has_n() {
+  _oneof_case_[0] = N_NOT_SET;
+}
+inline PATHJOB::NCase PATHJOB::n_case() const {
+  return PATHJOB::NCase(_oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// Vector2i
+
+// int32 x = 1;
+inline void Vector2i::clear_x() {
+  x_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector2i::_internal_x() const {
+  return x_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector2i::x() const {
+  // @@protoc_insertion_point(field_get:astar.Vector2i.x)
+  return _internal_x();
+}
+inline void Vector2i::_internal_set_x(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  x_ = value;
+}
+inline void Vector2i::set_x(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:astar.Vector2i.x)
+}
+
+// int32 y = 2;
+inline void Vector2i::clear_y() {
+  y_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector2i::_internal_y() const {
+  return y_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector2i::y() const {
+  // @@protoc_insertion_point(field_get:astar.Vector2i.y)
+  return _internal_y();
+}
+inline void Vector2i::_internal_set_y(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  y_ = value;
+}
+inline void Vector2i::set_y(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:astar.Vector2i.y)
+}
+
+// -------------------------------------------------------------------
+
+// Vector3i
+
+// int32 x = 1;
+inline void Vector3i::clear_x() {
+  x_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector3i::_internal_x() const {
+  return x_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector3i::x() const {
+  // @@protoc_insertion_point(field_get:astar.Vector3i.x)
+  return _internal_x();
+}
+inline void Vector3i::_internal_set_x(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  x_ = value;
+}
+inline void Vector3i::set_x(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_x(value);
+  // @@protoc_insertion_point(field_set:astar.Vector3i.x)
+}
+
+// int32 y = 2;
+inline void Vector3i::clear_y() {
+  y_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector3i::_internal_y() const {
+  return y_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector3i::y() const {
+  // @@protoc_insertion_point(field_get:astar.Vector3i.y)
+  return _internal_y();
+}
+inline void Vector3i::_internal_set_y(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  y_ = value;
+}
+inline void Vector3i::set_y(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_y(value);
+  // @@protoc_insertion_point(field_set:astar.Vector3i.y)
+}
+
+// int32 z = 3;
+inline void Vector3i::clear_z() {
+  z_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector3i::_internal_z() const {
+  return z_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Vector3i::z() const {
+  // @@protoc_insertion_point(field_get:astar.Vector3i.z)
+  return _internal_z();
+}
+inline void Vector3i::_internal_set_z(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  z_ = value;
+}
+inline void Vector3i::set_z(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_z(value);
+  // @@protoc_insertion_point(field_set:astar.Vector3i.z)
+}
+
+// -------------------------------------------------------------------
+
+// StructureBounds
+
+// .astar.Vector2i map = 1;
+inline bool StructureBounds::_internal_has_map() const {
+  return this != internal_default_instance() && map_ != nullptr;
+}
+inline bool StructureBounds::has_map() const {
+  return _internal_has_map();
+}
+inline void StructureBounds::clear_map() {
+  if (GetArena() == nullptr && map_ != nullptr) {
+    delete map_;
+  }
+  map_ = nullptr;
+}
+inline const ::astar::Vector2i& StructureBounds::_internal_map() const {
+  const ::astar::Vector2i* p = map_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::Vector2i*>(
+      &::astar::_Vector2i_default_instance_);
+}
+inline const ::astar::Vector2i& StructureBounds::map() const {
+  // @@protoc_insertion_point(field_get:astar.StructureBounds.map)
+  return _internal_map();
+}
+inline void StructureBounds::unsafe_arena_set_allocated_map(
+    ::astar::Vector2i* map) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(map_);
+  }
+  map_ = map;
+  if (map) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.StructureBounds.map)
+}
+inline ::astar::Vector2i* StructureBounds::release_map() {
+  
+  ::astar::Vector2i* temp = map_;
+  map_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::astar::Vector2i* StructureBounds::unsafe_arena_release_map() {
+  // @@protoc_insertion_point(field_release:astar.StructureBounds.map)
+  
+  ::astar::Vector2i* temp = map_;
+  map_ = nullptr;
+  return temp;
+}
+inline ::astar::Vector2i* StructureBounds::_internal_mutable_map() {
+  
+  if (map_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::Vector2i>(GetArena());
+    map_ = p;
+  }
+  return map_;
+}
+inline ::astar::Vector2i* StructureBounds::mutable_map() {
+  // @@protoc_insertion_point(field_mutable:astar.StructureBounds.map)
+  return _internal_mutable_map();
+}
+inline void StructureBounds::set_allocated_map(::astar::Vector2i* map) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete map_;
+  }
+  if (map) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(map);
+    if (message_arena != submessage_arena) {
+      map = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, map, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  map_ = map;
+  // @@protoc_insertion_point(field_set_allocated:astar.StructureBounds.map)
+}
+
+// .astar.Vector2i size = 2;
+inline bool StructureBounds::_internal_has_size() const {
+  return this != internal_default_instance() && size_ != nullptr;
+}
+inline bool StructureBounds::has_size() const {
+  return _internal_has_size();
+}
+inline void StructureBounds::clear_size() {
+  if (GetArena() == nullptr && size_ != nullptr) {
+    delete size_;
+  }
+  size_ = nullptr;
+}
+inline const ::astar::Vector2i& StructureBounds::_internal_size() const {
+  const ::astar::Vector2i* p = size_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::Vector2i*>(
+      &::astar::_Vector2i_default_instance_);
+}
+inline const ::astar::Vector2i& StructureBounds::size() const {
+  // @@protoc_insertion_point(field_get:astar.StructureBounds.size)
+  return _internal_size();
+}
+inline void StructureBounds::unsafe_arena_set_allocated_size(
+    ::astar::Vector2i* size) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(size_);
+  }
+  size_ = size;
+  if (size) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.StructureBounds.size)
+}
+inline ::astar::Vector2i* StructureBounds::release_size() {
+  
+  ::astar::Vector2i* temp = size_;
+  size_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::astar::Vector2i* StructureBounds::unsafe_arena_release_size() {
+  // @@protoc_insertion_point(field_release:astar.StructureBounds.size)
+  
+  ::astar::Vector2i* temp = size_;
+  size_ = nullptr;
+  return temp;
+}
+inline ::astar::Vector2i* StructureBounds::_internal_mutable_size() {
+  
+  if (size_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::Vector2i>(GetArena());
+    size_ = p;
+  }
+  return size_;
+}
+inline ::astar::Vector2i* StructureBounds::mutable_size() {
+  // @@protoc_insertion_point(field_mutable:astar.StructureBounds.size)
+  return _internal_mutable_size();
+}
+inline void StructureBounds::set_allocated_size(::astar::Vector2i* size) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete size_;
+  }
+  if (size) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(size);
+    if (message_arena != submessage_arena) {
+      size = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, size, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  size_ = size;
+  // @@protoc_insertion_point(field_set_allocated:astar.StructureBounds.size)
+}
+
+// -------------------------------------------------------------------
+
+// PathBlockingType
+
+// int32 gametime = 1;
+inline void PathBlockingType::clear_gametime() {
+  gametime_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PathBlockingType::_internal_gametime() const {
+  return gametime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PathBlockingType::gametime() const {
+  // @@protoc_insertion_point(field_get:astar.PathBlockingType.gametime)
+  return _internal_gametime();
+}
+inline void PathBlockingType::_internal_set_gametime(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  gametime_ = value;
+}
+inline void PathBlockingType::set_gametime(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_gametime(value);
+  // @@protoc_insertion_point(field_set:astar.PathBlockingType.gametime)
+}
+
+// .astar.PROPULSION_TYPE propulsion = 2;
+inline void PathBlockingType::clear_propulsion() {
+  propulsion_ = 0;
+}
+inline ::astar::PROPULSION_TYPE PathBlockingType::_internal_propulsion() const {
+  return static_cast< ::astar::PROPULSION_TYPE >(propulsion_);
+}
+inline ::astar::PROPULSION_TYPE PathBlockingType::propulsion() const {
+  // @@protoc_insertion_point(field_get:astar.PathBlockingType.propulsion)
+  return _internal_propulsion();
+}
+inline void PathBlockingType::_internal_set_propulsion(::astar::PROPULSION_TYPE value) {
+  
+  propulsion_ = value;
+}
+inline void PathBlockingType::set_propulsion(::astar::PROPULSION_TYPE value) {
+  _internal_set_propulsion(value);
+  // @@protoc_insertion_point(field_set:astar.PathBlockingType.propulsion)
+}
+
+// int32 owner = 3;
+inline void PathBlockingType::clear_owner() {
+  owner_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PathBlockingType::_internal_owner() const {
+  return owner_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PathBlockingType::owner() const {
+  // @@protoc_insertion_point(field_get:astar.PathBlockingType.owner)
+  return _internal_owner();
+}
+inline void PathBlockingType::_internal_set_owner(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  owner_ = value;
+}
+inline void PathBlockingType::set_owner(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_owner(value);
+  // @@protoc_insertion_point(field_set:astar.PathBlockingType.owner)
+}
+
+// .astar.FPATH_MOVETYPE movetype = 4;
+inline void PathBlockingType::clear_movetype() {
+  movetype_ = 0;
+}
+inline ::astar::FPATH_MOVETYPE PathBlockingType::_internal_movetype() const {
+  return static_cast< ::astar::FPATH_MOVETYPE >(movetype_);
+}
+inline ::astar::FPATH_MOVETYPE PathBlockingType::movetype() const {
+  // @@protoc_insertion_point(field_get:astar.PathBlockingType.movetype)
+  return _internal_movetype();
+}
+inline void PathBlockingType::_internal_set_movetype(::astar::FPATH_MOVETYPE value) {
+  
+  movetype_ = value;
+}
+inline void PathBlockingType::set_movetype(::astar::FPATH_MOVETYPE value) {
+  _internal_set_movetype(value);
+  // @@protoc_insertion_point(field_set:astar.PathBlockingType.movetype)
+}
+
+// -------------------------------------------------------------------
+
+// PathBlockingMap
+
+// .astar.PathBlockingType type = 1;
+inline bool PathBlockingMap::_internal_has_type() const {
+  return this != internal_default_instance() && type_ != nullptr;
+}
+inline bool PathBlockingMap::has_type() const {
+  return _internal_has_type();
+}
+inline void PathBlockingMap::clear_type() {
+  if (GetArena() == nullptr && type_ != nullptr) {
+    delete type_;
+  }
+  type_ = nullptr;
+}
+inline const ::astar::PathBlockingType& PathBlockingMap::_internal_type() const {
+  const ::astar::PathBlockingType* p = type_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::PathBlockingType*>(
+      &::astar::_PathBlockingType_default_instance_);
+}
+inline const ::astar::PathBlockingType& PathBlockingMap::type() const {
+  // @@protoc_insertion_point(field_get:astar.PathBlockingMap.type)
+  return _internal_type();
+}
+inline void PathBlockingMap::unsafe_arena_set_allocated_type(
+    ::astar::PathBlockingType* type) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(type_);
+  }
+  type_ = type;
+  if (type) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.PathBlockingMap.type)
+}
+inline ::astar::PathBlockingType* PathBlockingMap::release_type() {
+  
+  ::astar::PathBlockingType* temp = type_;
+  type_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::astar::PathBlockingType* PathBlockingMap::unsafe_arena_release_type() {
+  // @@protoc_insertion_point(field_release:astar.PathBlockingMap.type)
+  
+  ::astar::PathBlockingType* temp = type_;
+  type_ = nullptr;
+  return temp;
+}
+inline ::astar::PathBlockingType* PathBlockingMap::_internal_mutable_type() {
+  
+  if (type_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::PathBlockingType>(GetArena());
+    type_ = p;
+  }
+  return type_;
+}
+inline ::astar::PathBlockingType* PathBlockingMap::mutable_type() {
+  // @@protoc_insertion_point(field_mutable:astar.PathBlockingMap.type)
+  return _internal_mutable_type();
+}
+inline void PathBlockingMap::set_allocated_type(::astar::PathBlockingType* type) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete type_;
+  }
+  if (type) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(type);
+    if (message_arena != submessage_arena) {
+      type = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, type, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  type_ = type;
+  // @@protoc_insertion_point(field_set_allocated:astar.PathBlockingMap.type)
+}
+
+// repeated bool map = 2;
+inline int PathBlockingMap::_internal_map_size() const {
+  return map_.size();
+}
+inline int PathBlockingMap::map_size() const {
+  return _internal_map_size();
+}
+inline void PathBlockingMap::clear_map() {
+  map_.Clear();
+}
+inline bool PathBlockingMap::_internal_map(int index) const {
+  return map_.Get(index);
+}
+inline bool PathBlockingMap::map(int index) const {
+  // @@protoc_insertion_point(field_get:astar.PathBlockingMap.map)
+  return _internal_map(index);
+}
+inline void PathBlockingMap::set_map(int index, bool value) {
+  map_.Set(index, value);
+  // @@protoc_insertion_point(field_set:astar.PathBlockingMap.map)
+}
+inline void PathBlockingMap::_internal_add_map(bool value) {
+  map_.Add(value);
+}
+inline void PathBlockingMap::add_map(bool value) {
+  _internal_add_map(value);
+  // @@protoc_insertion_point(field_add:astar.PathBlockingMap.map)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+PathBlockingMap::_internal_map() const {
+  return map_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+PathBlockingMap::map() const {
+  // @@protoc_insertion_point(field_list:astar.PathBlockingMap.map)
+  return _internal_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+PathBlockingMap::_internal_mutable_map() {
+  return &map_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+PathBlockingMap::mutable_map() {
+  // @@protoc_insertion_point(field_mutable_list:astar.PathBlockingMap.map)
+  return _internal_mutable_map();
+}
+
+// repeated bool dangermap = 3;
+inline int PathBlockingMap::_internal_dangermap_size() const {
+  return dangermap_.size();
+}
+inline int PathBlockingMap::dangermap_size() const {
+  return _internal_dangermap_size();
+}
+inline void PathBlockingMap::clear_dangermap() {
+  dangermap_.Clear();
+}
+inline bool PathBlockingMap::_internal_dangermap(int index) const {
+  return dangermap_.Get(index);
+}
+inline bool PathBlockingMap::dangermap(int index) const {
+  // @@protoc_insertion_point(field_get:astar.PathBlockingMap.dangermap)
+  return _internal_dangermap(index);
+}
+inline void PathBlockingMap::set_dangermap(int index, bool value) {
+  dangermap_.Set(index, value);
+  // @@protoc_insertion_point(field_set:astar.PathBlockingMap.dangermap)
+}
+inline void PathBlockingMap::_internal_add_dangermap(bool value) {
+  dangermap_.Add(value);
+}
+inline void PathBlockingMap::add_dangermap(bool value) {
+  _internal_add_dangermap(value);
+  // @@protoc_insertion_point(field_add:astar.PathBlockingMap.dangermap)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+PathBlockingMap::_internal_dangermap() const {
+  return dangermap_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >&
+PathBlockingMap::dangermap() const {
+  // @@protoc_insertion_point(field_list:astar.PathBlockingMap.dangermap)
+  return _internal_dangermap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+PathBlockingMap::_internal_mutable_dangermap() {
+  return &dangermap_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< bool >*
+PathBlockingMap::mutable_dangermap() {
+  // @@protoc_insertion_point(field_mutable_list:astar.PathBlockingMap.dangermap)
+  return _internal_mutable_dangermap();
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 
@@ -636,6 +4013,26 @@ template <> struct is_proto_enum< ::astar::Reply_ASR_RETVAL> : ::std::true_type 
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::astar::Reply_ASR_RETVAL>() {
   return ::astar::Reply_ASR_RETVAL_descriptor();
+}
+template <> struct is_proto_enum< ::astar::MOVE_STATUS> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::astar::MOVE_STATUS>() {
+  return ::astar::MOVE_STATUS_descriptor();
+}
+template <> struct is_proto_enum< ::astar::PROPULSION_TYPE> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::astar::PROPULSION_TYPE>() {
+  return ::astar::PROPULSION_TYPE_descriptor();
+}
+template <> struct is_proto_enum< ::astar::DROID_TYPE> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::astar::DROID_TYPE>() {
+  return ::astar::DROID_TYPE_descriptor();
+}
+template <> struct is_proto_enum< ::astar::FPATH_MOVETYPE> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::astar::FPATH_MOVETYPE>() {
+  return ::astar::FPATH_MOVETYPE_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

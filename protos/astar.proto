@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-import "google/protobuf/any.proto";
-
 package astar;
 
 service AStar {
@@ -9,8 +7,8 @@ service AStar {
 }
 
 message Request {
-    google.protobuf.Any psJob = 1;
-    google.protobuf.Any psMove = 2;
+    MOVE_CONTROL psmove = 1;
+    PATHJOB psjob = 2;
 }
 
 message Reply {
@@ -20,4 +18,116 @@ message Reply {
         ASR_NEAREST = 2;
     }
     ASR_RETVAL retVal = 1;
+}
+ 
+message MOVE_CONTROL {
+    MOVE_STATUS status = 1;
+    int32 pathindex = 2;
+    repeated Vector2i aspath = 3;
+    Vector2i destination = 4;
+    Vector2i src = 5;
+    Vector2i target = 6;
+    int32 speed = 7;
+    int32 movedir = 8;
+    int32 bumpdir = 9;
+    int32 bumptime = 10;
+    int32 lastbump = 11;
+    int32 pausetime = 12;
+    Vector3i bumppos = 13;
+    int32 shufflestart = 14;
+    int32 ivertspeed = 15;
+}
+
+message PATHJOB {
+    oneof n {
+       PROPULSION_TYPE propulsion = 1;
+       DROID_TYPE droidtype = 2;
+       int32 destx = 3;
+       int32 desty = 4;
+       int32 origx = 5;
+       int32 origy = 6;
+       StructureBounds dststructure = 7;
+       int32 droidid = 8;
+       FPATH_MOVETYPE movetype = 9;
+       int32 owner = 10;
+       PathBlockingMap blockingmap = 11;
+       bool acceptnearest = 12;
+       bool deleted = 13;
+    }
+}
+
+message Vector2i {
+    int32 x = 1;
+    int32 y = 2;
+}
+
+message Vector3i {
+    int32 x = 1;
+    int32 y = 2;
+    int32 z = 3;
+}
+
+message StructureBounds {
+    Vector2i map = 1;
+    Vector2i size = 2;
+}
+
+message PathBlockingType {
+    int32 gametime = 1;
+    PROPULSION_TYPE propulsion = 2;
+    int32 owner = 3;
+    FPATH_MOVETYPE movetype = 4;
+}
+
+message PathBlockingMap {
+    PathBlockingType type = 1;
+    repeated bool map = 2;
+    repeated bool dangermap = 3;
+}
+
+enum MOVE_STATUS {
+    MOVEINACTIVE = 0;
+	MOVENAVIGATE = 1;
+	MOVETURN = 2;
+	MOVEPAUSE = 3;
+	MOVEPOINTTOPOINT = 4;
+	MOVETURNTOTARGET = 5;
+	MOVEHOVER = 6;
+	MOVEWAITROUTE = 7;
+	MOVESHUFFLE = 8;
+}
+
+enum PROPULSION_TYPE {
+    PROPULSION_TYPE_WHEELED = 0;
+	PROPULSION_TYPE_TRACKED = 1;
+	PROPULSION_TYPE_LEGGED = 2;
+    PROPULSION_TYPE_HOVER = 3;
+	PROPULSION_TYPE_LIFT = 4;
+	PROPULSION_TYPE_PROPELLOR = 5;
+	PROPULSION_TYPE_HALF_TRACKED = 6;
+	PROPULSION_TYPE_NUM = 7;
+}
+
+enum DROID_TYPE {
+    DROID_WEAPON = 0;
+	DROID_SENSOR = 1;
+	DROID_ECM = 2;
+	DROID_CONSTRUCT = 3;
+	DROID_PERSON = 4;
+	DROID_CYBORG = 5;
+	DROID_TRANSPORTER = 6;
+	DROID_COMMAND = 7;
+	DROID_REPAIR = 8;
+	DROID_DEFAULT = 9;
+	DROID_CYBORG_CONSTRUCT = 10;
+	DROID_CYBORG_REPAIR = 11;
+	DROID_CYBORG_SUPER = 12;
+	DROID_SUPERTRANSPORTER = 13;
+	DROID_ANY = 14;
+}
+
+enum FPATH_MOVETYPE {
+    FMT_MOVE = 0;
+    FMT_ATTACK = 1;
+    FMT_BLOCK = 2;
 }

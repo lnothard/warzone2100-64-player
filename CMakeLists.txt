@@ -488,8 +488,8 @@ macro(CONFIGURE_WZ_COMPILER_WARNINGS)
 #		check_compiler_flags_output("-Werror -Wundef -Wno-error=cpp" COMPILER_TYPE C   OUTPUT_FLAGS "-Wundef" OUTPUT_VARIABLE _supported_c_compiler_flags APPEND)
 #		check_compiler_flags_output("-Werror -Wundef -Wno-error=cpp" COMPILER_TYPE CXX OUTPUT_FLAGS "-Wundef" OUTPUT_VARIABLE _supported_cxx_compiler_flags APPEND)
 
-		# -Wnon-virtual-dtor		(GCC 3.4+, Clang 3.2+) [C++ only]
-		check_compiler_flags_output("-Werror -Wnon-virtual-dtor -Wno-error=cpp" COMPILER_TYPE CXX OUTPUT_FLAGS "-Wnon-virtual-dtor" OUTPUT_VARIABLE _supported_cxx_compiler_flags APPEND)
+#		# -Wnon-virtual-dtor		(GCC 3.4+, Clang 3.2+) [C++ only]
+#		check_compiler_flags_output("-Werror -Wnon-virtual-dtor -Wno-error=cpp" COMPILER_TYPE CXX OUTPUT_FLAGS "-Wnon-virtual-dtor" OUTPUT_VARIABLE _supported_cxx_compiler_flags APPEND)
 
 #		# FUTURE-TODO: Enable -Wshadow (lots of warnings to fix, some due to 3rdparty dependencies?)
 #		# -Wshadow					(GCC 3.4+, Clang 3.2+)
@@ -595,6 +595,7 @@ include_directories("3rdparty")
 include_directories(SYSTEM "3rdparty/glm")
 include_directories("3rdparty/date/include")
 include_directories("3rdparty/rpclib/include")
+include_directories("3rdparty/grpc/include")
 
 SET(STDC_HEADERS ON)
 

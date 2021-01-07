@@ -681,17 +681,6 @@ public:
     PATHJOB j;
     MOVE_CONTROL m;
 
-    google::protobuf::Any job = request->psjob();
-    google::protobuf::Any move = request->psmove();
-
-    if (job.Is<PATHJOB>()) {
-      job.UnpackTo(&j);
-    }
-
-    if (move.Is<MOVE_CONTROL>()) {
-      move.UnpackTo(&m);
-    }
-    
 
     astar::Reply_ASR_RETVAL retVal = (astar::Reply_ASR_RETVAL)fpathAStarRoute(&m, &j);
     response->set_retval(retVal);

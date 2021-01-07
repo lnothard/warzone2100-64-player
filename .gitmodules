@@ -15,7 +15,7 @@
 	url = https://github.com/past-due/launchinfo.git
 [submodule "3rdparty/re2"]
 	path = 3rdparty/re2
-	url = https://github.com/google/re2.git
+	url = https://github.com/google/re2
 [submodule "3rdparty/EmbeddedJSONSignature"]
 	path = 3rdparty/EmbeddedJSONSignature
 	url = https://github.com/past-due/EmbeddedJSONSignature.git
@@ -34,3 +34,7 @@
 	path = 3rdparty/discord-rpc
 	url = https://github.com/past-due/discord-rpc.git
 	shallow = true
+
+[submodule "3rdparty/grpc"]
+	path = 3rdparty/grpc
+	url = https://github.com/grpc/grpc
