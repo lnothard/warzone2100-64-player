@@ -29,7 +29,6 @@
 
 #include "lib/framework/frame.h"
 #include "lib/framework/crc.h"
-#include "lib/netplay/netplay.h"
 
 #include "lib/framework/wzapp.h"
 
@@ -39,6 +38,19 @@
 #include "astar.h"
 
 #include "fpath.h"
+#include <exception>
+#include <grpcpp/grpcpp.h>
+#include "protos/astar.grpc.pb.h"
+
+#include "lib/netplay/netplay.h"
+
+using grpc::Channel;
+using grpc::ClientContext;
+using grpc::Status;
+
+using astar::AStar;
+using astar::Request;
+using astar::Reply;
 
 // If the path finding system is shutdown or not
 static volatile bool fpathQuit = false;
@@ -69,6 +81,100 @@ static WZ_SEMAPHORE     *waitingForResultSemaphore = nullptr;
 
 static PATHRESULT fpathExecute(PATHJOB psJob);
 
+class AStarClient {
+public:
+	AStarClient(std::shared_ptr<Channel> channel) : stub_(AStar::NewStub(channel)) {}
+
+	ASR_RETVAL doAStar(MOVE_CONTROL* m, PATHJOB* j) {
+		Request request;
+
+		astar::MOVE_CONTROL psMove;
+		
+		psMove.set_status((astar::MOVE_STATUS)m->Status);
+		psMove.set_pathindex(m->pathIndex);
+		psMove.set_speed(m->speed);
+		psMove.set_movedir(m->moveDir);
+		psMove.set_bumpdir(m->bumpDir);
+		psMove.set_bumptime(m->bumpTime);
+		psMove.set_lastbump(m->lastBump);
+		psMove.set_pausetime(m->pauseTime);
+		psMove.set_shufflestart(m->shuffleStart);
+		psMove.set_ivertspeed(m->iVertSpeed);
+
+		astar::Vector2i destination, src, target;
+		destination.set_x(m->destination.x);
+		destination.set_y(m->destination.y);
+		src.set_x(m->src.x);
+		src.set_y(m->src.y);
+		target.set_x(m->target.x);
+		target.set_y(m->target.y);
+		psMove.set_allocated_destination(&destination);
+		psMove.set_allocated_src(&src);
+		psMove.set_allocated_target(&target);
+
+		for(Vector2i vec : m->asPath) {
+			astar::Vector2i* el = psMove.add_aspath();
+			el->set_x(vec.x);
+			el->set_y(vec.y);
+		}
+
+		astar::Vector3i bumpPos;
+		bumpPos.set_x(m->bumpPos.x);
+		bumpPos.set_y(m->bumpPos.y);
+		bumpPos.set_z(m->bumpPos.z);
+		psMove.set_allocated_bumppos(&bumpPos);
+
+		request.set_allocated_psmove(&psMove);
+
+		astar::PATHJOB psJob;
+
+		psJob.set_propulsion((astar::PROPULSION_TYPE)j->propulsion);
+		psJob.set_droidtype((astar::DROID_TYPE)j->droidType);
+		psJob.set_movetype((astar::FPATH_MOVETYPE)j->moveType);
+		psJob.set_destx(j->destX);
+		psJob.set_desty(j->destY);
+		psJob.set_origx(j->origX);
+		psJob.set_origy(j->origY);
+		psJob.set_droidid(j->droidID);
+		psJob.set_owner(j->owner);
+		psJob.set_acceptnearest(j->acceptNearest);
+		psJob.set_deleted(j->deleted);
+
+		astar::StructureBounds dstStructure;
+		astar::Vector2i map, size;
+		map.set_x(j->dstStructure.map.x);
+		map.set_y(j->dstStructure.map.y);
+		size.set_x(j->dstStructure.size.x);
+		size.set_y(j->dstStructure.size.y);
+		dstStructure.set_allocated_map(&map);
+		dstStructure.set_allocated_size(&size);
+
+		astar::PathBlockingMap blockingMap;
+		astar::PathBlockingType type;
+
+		type.set_gametime((*j->blockingMap).type.gameTime);
+		type.set_owner((*j->blockingMap).type.owner);
+		type.set_propulsion((astar::PROPULSION_TYPE)(*j->blockingMap).type.propulsion);
+		type.set_movetype((astar::FPATH_MOVETYPE)(*j->blockingMap).type.moveType);
+		blockingMap.set_allocated_type(&type);
+
+		request.set_allocated_psjob(&psJob);
+		
+		Reply reply;
+		ClientContext context;
+
+		Status status = stub_->doAStar(&context, request, &reply);
+
+		if (status.ok()) {
+			return (ASR_RETVAL)reply.retval();
+		} else {
+			std::cout << status.error_code() << ": " << status.error_message() << std::endl;
+			throw new std::system_error();
+		}
+	}
+private:
+	std::unique_ptr<AStar::Stub> stub_;
+};
 
 /** This runs in a separate thread */
 static int fpathThreadFunc(void *)
@@ -460,8 +566,10 @@ PATHRESULT fpathExecute(PATHJOB job)
 	result.retval = FPR_FAILED;
 	result.originalDest = Vector2i(job.destX, job.destY);
 
-	// CALL THIS WITH RPC
-	ASR_RETVAL retval = fpathAStarRoute(&result.sMove, &job);
+	std::string address("0.0.0.0:8080");
+	AStarClient client(grpc::CreateChannel(address, grpc::InsecureChannelCredentials()));
+
+	ASR_RETVAL retval = client.doAStar(&result.sMove, &job);
 
 	ASSERT(retval != ASR_OK || result.sMove.asPath.size() > 0, "Ok result but no path in result");
 	switch (retval)

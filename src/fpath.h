@@ -28,7 +28,6 @@
 
 #include <memory>
 
-
 /** Return values for routing
  *
  *  @ingroup pathfinding
@@ -42,7 +41,30 @@ enum FPATH_MOVETYPE
 	FMT_BLOCK,              ///< Don't go through obstacles, not even gates.
 };
 
-struct PathBlockingMap;
+ struct PathBlockingType
+{
+	uint32_t gameTime;
+	PROPULSION_TYPE propulsion;
+	int owner;
+	FPATH_MOVETYPE moveType;
+};
+
+bool fpathIsEquivalentBlocking(PROPULSION_TYPE propulsion1, int player1, FPATH_MOVETYPE moveType1,
+                               PROPULSION_TYPE propulsion2, int player2, FPATH_MOVETYPE moveType2);
+
+struct PathBlockingMap
+{
+	bool operator ==(PathBlockingType const &z) const
+	{
+		return type.gameTime == z.gameTime &&
+		       fpathIsEquivalentBlocking(type.propulsion, type.owner, type.moveType,
+		                                 z.propulsion,    z.owner,    z.moveType);
+	}
+
+	PathBlockingType type;
+	std::vector<bool> map;
+	std::vector<bool> dangerMap;
+};
 
 struct PATHJOB
 {

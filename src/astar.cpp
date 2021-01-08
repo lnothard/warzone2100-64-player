@@ -8,7 +8,7 @@
 	the Free Software Foundation; either version 2 of the License, or
 	(at your option) any later version.
 
-	Warzone 2100 is distributed in the hope that it will be useful,
+n	Warzone 2100 is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 	GNU General Public License for more details.
@@ -118,29 +118,6 @@ struct PathExploredTile
 	int8_t   dx, dy;                // Offset from previous point in the route.
 	unsigned dist;                  // Shortest known distance to tile.
 	bool     visited;
-};
-
-struct PathBlockingType
-{
-	uint32_t gameTime;
-
-	PROPULSION_TYPE propulsion;
-	int owner;
-	FPATH_MOVETYPE moveType;
-};
-/// Pathfinding blocking map
-struct PathBlockingMap
-{
-	bool operator ==(PathBlockingType const &z) const
-	{
-		return type.gameTime == z.gameTime &&
-		       fpathIsEquivalentBlocking(type.propulsion, type.owner, type.moveType,
-		                                 z.propulsion,    z.owner,    z.moveType);
-	}
-
-	PathBlockingType type;
-	std::vector<bool> map;
-	std::vector<bool> dangerMap;	// using threatBits
 };
 
 struct PathNonblockingArea
@@ -671,11 +648,7 @@ void fpathSetBlockingMap(PATHJOB *psJob)
 }
 
 class AStarImpl final : public AStar::Service {
-    Status doAStar(
-		   ServerContext* context,
-		   const Request* request,
-		   Reply* response
-    ) override {
+    Status doAStar(ServerContext* context, const Request* request, Reply* response) override {
     PATHJOB j;
     MOVE_CONTROL m;
 
@@ -777,7 +750,7 @@ void run() {
 	AStarImpl service;
 	ServerBuilder builder;
 
-	builder.AddListeningPort(address,grpc::InsecureServerCredentials());
+	builder.AddListeningPort(address, grpc::InsecureServerCredentials());
 	builder.RegisterService(&service);
 
 	std::unique_ptr<Server> server(builder.BuildAndStart());
@@ -786,9 +759,9 @@ void run() {
 	server->Wait();
 }
 
-/*int main(int argc, char *argv[])
+int server_main(int argc, char *argv[])
 {
 	run();
 
 	return 0;
-}*/
+}
