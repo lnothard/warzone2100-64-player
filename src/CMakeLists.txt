@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.19.2)
 
 include(GNUInstallDirs)
+include(${CMAKE_CURRENT_SOURCE_DIR}/server/CMakeLists.txt)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
@@ -85,6 +86,7 @@ file(GLOB PROTO_SRCS "${PROJECT_SOURCE_DIR}/protos/*.pb.cc")
 file(GLOB PROTO_HDRS "${PROJECT_SOURCE_DIR}/protos/*.pb.h")
 
 add_executable(warzone2100 ${HEADERS} ${SRC} ${MOCFILES} "${wz2100_autorevision_h_file}" ${_additionalSourceFiles} ${PROTO_SRCS} ${PROTO_HDRS})
+
 if(WZ_TARGET_ADDITIONAL_PROPERTIES)
 	SET_TARGET_PROPERTIES(warzone2100 PROPERTIES ${WZ_TARGET_ADDITIONAL_PROPERTIES})
 endif()

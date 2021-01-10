@@ -34,6 +34,8 @@ enum ASR_RETVAL
 	ASR_NEAREST,    ///< found a partial route to a nearby position
 };
 
+void run();
+
 /** Use the A* algorithm to find a path
  *
  *  @ingroup pathfinding

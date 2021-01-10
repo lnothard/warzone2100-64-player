@@ -758,10 +758,3 @@ void run() {
 
 	server->Wait();
 }
-
-int server_main(int argc, char *argv[])
-{
-	run();
-
-	return 0;
-}

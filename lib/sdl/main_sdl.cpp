@@ -80,11 +80,13 @@ std::map<SDL_Keycode, KEY_CODE > SDLKey_to_KEY_CODE;
 
 int realmain(int argc, char *argv[]);
 
+#ifndef SERVER
 // the main stub which calls realmain() aka, WZ's main startup routines
 int main(int argc, char *argv[])
 {
 	return realmain(argc, argv);
 }
+#endif
 
 // At this time, we only have 1 window and 1 GL context.
 static SDL_Window *WZwindow = nullptr;
