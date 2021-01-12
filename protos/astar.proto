@@ -39,21 +39,19 @@ message MOVE_CONTROL {
 }
 
 message PATHJOB {
-    oneof n {
-       PROPULSION_TYPE propulsion = 1;
-       DROID_TYPE droidtype = 2;
-       int32 destx = 3;
-       int32 desty = 4;
-       int32 origx = 5;
-       int32 origy = 6;
-       StructureBounds dststructure = 7;
-       int32 droidid = 8;
-       FPATH_MOVETYPE movetype = 9;
-       int32 owner = 10;
-       PathBlockingMap blockingmap = 11;
-       bool acceptnearest = 12;
-       bool deleted = 13;
-    }
+    PROPULSION_TYPE propulsion = 1;
+    DROID_TYPE droidtype = 2;
+    int32 destx = 3;
+    int32 desty = 4;
+    int32 origx = 5;
+    int32 origy = 6;
+    StructureBounds dststructure = 7;
+    int32 droidid = 8;
+    FPATH_MOVETYPE movetype = 9;
+    int32 owner = 10;
+    PathBlockingMap blockingmap = 11;
+    bool acceptnearest = 12;
+    bool deleted = 13;
 }
 
 message Vector2i {

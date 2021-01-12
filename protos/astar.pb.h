@@ -959,23 +959,6 @@ class PATHJOB PROTOBUF_FINAL :
   }
   static const PATHJOB& default_instance();
 
-  enum NCase {
-    kPropulsion = 1,
-    kDroidtype = 2,
-    kDestx = 3,
-    kDesty = 4,
-    kOrigx = 5,
-    kOrigy = 6,
-    kDststructure = 7,
-    kDroidid = 8,
-    kMovetype = 9,
-    kOwner = 10,
-    kBlockingmap = 11,
-    kAcceptnearest = 12,
-    kDeleted = 13,
-    N_NOT_SET = 0,
-  };
-
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const PATHJOB* internal_default_instance() {
     return reinterpret_cast<const PATHJOB*>(
@@ -1053,92 +1036,20 @@ class PATHJOB PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kDststructureFieldNumber = 7,
+    kBlockingmapFieldNumber = 11,
     kPropulsionFieldNumber = 1,
     kDroidtypeFieldNumber = 2,
     kDestxFieldNumber = 3,
     kDestyFieldNumber = 4,
     kOrigxFieldNumber = 5,
     kOrigyFieldNumber = 6,
-    kDststructureFieldNumber = 7,
     kDroididFieldNumber = 8,
     kMovetypeFieldNumber = 9,
     kOwnerFieldNumber = 10,
-    kBlockingmapFieldNumber = 11,
     kAcceptnearestFieldNumber = 12,
     kDeletedFieldNumber = 13,
   };
-  // .astar.PROPULSION_TYPE propulsion = 1;
-  private:
-  bool _internal_has_propulsion() const;
-  public:
-  void clear_propulsion();
-  ::astar::PROPULSION_TYPE propulsion() const;
-  void set_propulsion(::astar::PROPULSION_TYPE value);
-  private:
-  ::astar::PROPULSION_TYPE _internal_propulsion() const;
-  void _internal_set_propulsion(::astar::PROPULSION_TYPE value);
-  public:
-
-  // .astar.DROID_TYPE droidtype = 2;
-  private:
-  bool _internal_has_droidtype() const;
-  public:
-  void clear_droidtype();
-  ::astar::DROID_TYPE droidtype() const;
-  void set_droidtype(::astar::DROID_TYPE value);
-  private:
-  ::astar::DROID_TYPE _internal_droidtype() const;
-  void _internal_set_droidtype(::astar::DROID_TYPE value);
-  public:
-
-  // int32 destx = 3;
-  private:
-  bool _internal_has_destx() const;
-  public:
-  void clear_destx();
-  ::PROTOBUF_NAMESPACE_ID::int32 destx() const;
-  void set_destx(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_destx() const;
-  void _internal_set_destx(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // int32 desty = 4;
-  private:
-  bool _internal_has_desty() const;
-  public:
-  void clear_desty();
-  ::PROTOBUF_NAMESPACE_ID::int32 desty() const;
-  void set_desty(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_desty() const;
-  void _internal_set_desty(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // int32 origx = 5;
-  private:
-  bool _internal_has_origx() const;
-  public:
-  void clear_origx();
-  ::PROTOBUF_NAMESPACE_ID::int32 origx() const;
-  void set_origx(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_origx() const;
-  void _internal_set_origx(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // int32 origy = 6;
-  private:
-  bool _internal_has_origy() const;
-  public:
-  void clear_origy();
-  ::PROTOBUF_NAMESPACE_ID::int32 origy() const;
-  void set_origy(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_origy() const;
-  void _internal_set_origy(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
   // .astar.StructureBounds dststructure = 7;
   bool has_dststructure() const;
   private:
@@ -1156,42 +1067,6 @@ class PATHJOB PROTOBUF_FINAL :
   void unsafe_arena_set_allocated_dststructure(
       ::astar::StructureBounds* dststructure);
   ::astar::StructureBounds* unsafe_arena_release_dststructure();
-
-  // int32 droidid = 8;
-  private:
-  bool _internal_has_droidid() const;
-  public:
-  void clear_droidid();
-  ::PROTOBUF_NAMESPACE_ID::int32 droidid() const;
-  void set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_droidid() const;
-  void _internal_set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // .astar.FPATH_MOVETYPE movetype = 9;
-  private:
-  bool _internal_has_movetype() const;
-  public:
-  void clear_movetype();
-  ::astar::FPATH_MOVETYPE movetype() const;
-  void set_movetype(::astar::FPATH_MOVETYPE value);
-  private:
-  ::astar::FPATH_MOVETYPE _internal_movetype() const;
-  void _internal_set_movetype(::astar::FPATH_MOVETYPE value);
-  public:
-
-  // int32 owner = 10;
-  private:
-  bool _internal_has_owner() const;
-  public:
-  void clear_owner();
-  ::PROTOBUF_NAMESPACE_ID::int32 owner() const;
-  void set_owner(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_owner() const;
-  void _internal_set_owner(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
 
   // .astar.PathBlockingMap blockingmap = 11;
   bool has_blockingmap() const;
@@ -1211,10 +1086,88 @@ class PATHJOB PROTOBUF_FINAL :
       ::astar::PathBlockingMap* blockingmap);
   ::astar::PathBlockingMap* unsafe_arena_release_blockingmap();
 
-  // bool acceptnearest = 12;
+  // .astar.PROPULSION_TYPE propulsion = 1;
+  void clear_propulsion();
+  ::astar::PROPULSION_TYPE propulsion() const;
+  void set_propulsion(::astar::PROPULSION_TYPE value);
   private:
-  bool _internal_has_acceptnearest() const;
+  ::astar::PROPULSION_TYPE _internal_propulsion() const;
+  void _internal_set_propulsion(::astar::PROPULSION_TYPE value);
   public:
+
+  // .astar.DROID_TYPE droidtype = 2;
+  void clear_droidtype();
+  ::astar::DROID_TYPE droidtype() const;
+  void set_droidtype(::astar::DROID_TYPE value);
+  private:
+  ::astar::DROID_TYPE _internal_droidtype() const;
+  void _internal_set_droidtype(::astar::DROID_TYPE value);
+  public:
+
+  // int32 destx = 3;
+  void clear_destx();
+  ::PROTOBUF_NAMESPACE_ID::int32 destx() const;
+  void set_destx(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_destx() const;
+  void _internal_set_destx(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 desty = 4;
+  void clear_desty();
+  ::PROTOBUF_NAMESPACE_ID::int32 desty() const;
+  void set_desty(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_desty() const;
+  void _internal_set_desty(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 origx = 5;
+  void clear_origx();
+  ::PROTOBUF_NAMESPACE_ID::int32 origx() const;
+  void set_origx(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_origx() const;
+  void _internal_set_origx(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 origy = 6;
+  void clear_origy();
+  ::PROTOBUF_NAMESPACE_ID::int32 origy() const;
+  void set_origy(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_origy() const;
+  void _internal_set_origy(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 droidid = 8;
+  void clear_droidid();
+  ::PROTOBUF_NAMESPACE_ID::int32 droidid() const;
+  void set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_droidid() const;
+  void _internal_set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // .astar.FPATH_MOVETYPE movetype = 9;
+  void clear_movetype();
+  ::astar::FPATH_MOVETYPE movetype() const;
+  void set_movetype(::astar::FPATH_MOVETYPE value);
+  private:
+  ::astar::FPATH_MOVETYPE _internal_movetype() const;
+  void _internal_set_movetype(::astar::FPATH_MOVETYPE value);
+  public:
+
+  // int32 owner = 10;
+  void clear_owner();
+  ::PROTOBUF_NAMESPACE_ID::int32 owner() const;
+  void set_owner(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_owner() const;
+  void _internal_set_owner(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // bool acceptnearest = 12;
   void clear_acceptnearest();
   bool acceptnearest() const;
   void set_acceptnearest(bool value);
@@ -1224,9 +1177,6 @@ class PATHJOB PROTOBUF_FINAL :
   public:
 
   // bool deleted = 13;
-  private:
-  bool _internal_has_deleted() const;
-  public:
   void clear_deleted();
   bool deleted() const;
   void set_deleted(bool value);
@@ -1235,50 +1185,27 @@ class PATHJOB PROTOBUF_FINAL :
   void _internal_set_deleted(bool value);
   public:
 
-  void clear_n();
-  NCase n_case() const;
   // @@protoc_insertion_point(class_scope:astar.PATHJOB)
  private:
   class _Internal;
-  void set_has_propulsion();
-  void set_has_droidtype();
-  void set_has_destx();
-  void set_has_desty();
-  void set_has_origx();
-  void set_has_origy();
-  void set_has_dststructure();
-  void set_has_droidid();
-  void set_has_movetype();
-  void set_has_owner();
-  void set_has_blockingmap();
-  void set_has_acceptnearest();
-  void set_has_deleted();
-
-  inline bool has_n() const;
-  inline void clear_has_n();
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  union NUnion {
-    NUnion() {}
-    int propulsion_;
-    int droidtype_;
-    ::PROTOBUF_NAMESPACE_ID::int32 destx_;
-    ::PROTOBUF_NAMESPACE_ID::int32 desty_;
-    ::PROTOBUF_NAMESPACE_ID::int32 origx_;
-    ::PROTOBUF_NAMESPACE_ID::int32 origy_;
-    ::astar::StructureBounds* dststructure_;
-    ::PROTOBUF_NAMESPACE_ID::int32 droidid_;
-    int movetype_;
-    ::PROTOBUF_NAMESPACE_ID::int32 owner_;
-    ::astar::PathBlockingMap* blockingmap_;
-    bool acceptnearest_;
-    bool deleted_;
-  } n_;
+  ::astar::StructureBounds* dststructure_;
+  ::astar::PathBlockingMap* blockingmap_;
+  int propulsion_;
+  int droidtype_;
+  ::PROTOBUF_NAMESPACE_ID::int32 destx_;
+  ::PROTOBUF_NAMESPACE_ID::int32 desty_;
+  ::PROTOBUF_NAMESPACE_ID::int32 origx_;
+  ::PROTOBUF_NAMESPACE_ID::int32 origy_;
+  ::PROTOBUF_NAMESPACE_ID::int32 droidid_;
+  int movetype_;
+  ::PROTOBUF_NAMESPACE_ID::int32 owner_;
+  bool acceptnearest_;
+  bool deleted_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
-
   friend struct ::TableStruct_astar_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2901,104 +2828,59 @@ inline void MOVE_CONTROL::set_ivertspeed(::PROTOBUF_NAMESPACE_ID::int32 value) {
 // PATHJOB
 
 // .astar.PROPULSION_TYPE propulsion = 1;
-inline bool PATHJOB::_internal_has_propulsion() const {
-  return n_case() == kPropulsion;
-}
-inline void PATHJOB::set_has_propulsion() {
-  _oneof_case_[0] = kPropulsion;
-}
 inline void PATHJOB::clear_propulsion() {
-  if (_internal_has_propulsion()) {
-    n_.propulsion_ = 0;
-    clear_has_n();
-  }
+  propulsion_ = 0;
 }
 inline ::astar::PROPULSION_TYPE PATHJOB::_internal_propulsion() const {
-  if (_internal_has_propulsion()) {
-    return static_cast< ::astar::PROPULSION_TYPE >(n_.propulsion_);
-  }
-  return static_cast< ::astar::PROPULSION_TYPE >(0);
+  return static_cast< ::astar::PROPULSION_TYPE >(propulsion_);
 }
 inline ::astar::PROPULSION_TYPE PATHJOB::propulsion() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.propulsion)
   return _internal_propulsion();
 }
 inline void PATHJOB::_internal_set_propulsion(::astar::PROPULSION_TYPE value) {
-  if (!_internal_has_propulsion()) {
-    clear_n();
-    set_has_propulsion();
-  }
-  n_.propulsion_ = value;
+  
+  propulsion_ = value;
 }
 inline void PATHJOB::set_propulsion(::astar::PROPULSION_TYPE value) {
-  // @@protoc_insertion_point(field_set:astar.PATHJOB.propulsion)
   _internal_set_propulsion(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.propulsion)
 }
 
 // .astar.DROID_TYPE droidtype = 2;
-inline bool PATHJOB::_internal_has_droidtype() const {
-  return n_case() == kDroidtype;
-}
-inline void PATHJOB::set_has_droidtype() {
-  _oneof_case_[0] = kDroidtype;
-}
 inline void PATHJOB::clear_droidtype() {
-  if (_internal_has_droidtype()) {
-    n_.droidtype_ = 0;
-    clear_has_n();
-  }
+  droidtype_ = 0;
 }
 inline ::astar::DROID_TYPE PATHJOB::_internal_droidtype() const {
-  if (_internal_has_droidtype()) {
-    return static_cast< ::astar::DROID_TYPE >(n_.droidtype_);
-  }
-  return static_cast< ::astar::DROID_TYPE >(0);
+  return static_cast< ::astar::DROID_TYPE >(droidtype_);
 }
 inline ::astar::DROID_TYPE PATHJOB::droidtype() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.droidtype)
   return _internal_droidtype();
 }
 inline void PATHJOB::_internal_set_droidtype(::astar::DROID_TYPE value) {
-  if (!_internal_has_droidtype()) {
-    clear_n();
-    set_has_droidtype();
-  }
-  n_.droidtype_ = value;
+  
+  droidtype_ = value;
 }
 inline void PATHJOB::set_droidtype(::astar::DROID_TYPE value) {
-  // @@protoc_insertion_point(field_set:astar.PATHJOB.droidtype)
   _internal_set_droidtype(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.droidtype)
 }
 
 // int32 destx = 3;
-inline bool PATHJOB::_internal_has_destx() const {
-  return n_case() == kDestx;
-}
-inline void PATHJOB::set_has_destx() {
-  _oneof_case_[0] = kDestx;
-}
 inline void PATHJOB::clear_destx() {
-  if (_internal_has_destx()) {
-    n_.destx_ = 0;
-    clear_has_n();
-  }
+  destx_ = 0;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_destx() const {
-  if (_internal_has_destx()) {
-    return n_.destx_;
-  }
-  return 0;
-}
-inline void PATHJOB::_internal_set_destx(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  if (!_internal_has_destx()) {
-    clear_n();
-    set_has_destx();
-  }
-  n_.destx_ = value;
+  return destx_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::destx() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.destx)
   return _internal_destx();
+}
+inline void PATHJOB::_internal_set_destx(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  destx_ = value;
 }
 inline void PATHJOB::set_destx(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_destx(value);
@@ -3006,34 +2888,19 @@ inline void PATHJOB::set_destx(::PROTOBUF_NAMESPACE_ID::int32 value) {
 }
 
 // int32 desty = 4;
-inline bool PATHJOB::_internal_has_desty() const {
-  return n_case() == kDesty;
-}
-inline void PATHJOB::set_has_desty() {
-  _oneof_case_[0] = kDesty;
-}
 inline void PATHJOB::clear_desty() {
-  if (_internal_has_desty()) {
-    n_.desty_ = 0;
-    clear_has_n();
-  }
+  desty_ = 0;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_desty() const {
-  if (_internal_has_desty()) {
-    return n_.desty_;
-  }
-  return 0;
-}
-inline void PATHJOB::_internal_set_desty(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  if (!_internal_has_desty()) {
-    clear_n();
-    set_has_desty();
-  }
-  n_.desty_ = value;
+  return desty_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::desty() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.desty)
   return _internal_desty();
+}
+inline void PATHJOB::_internal_set_desty(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  desty_ = value;
 }
 inline void PATHJOB::set_desty(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_desty(value);
@@ -3041,34 +2908,19 @@ inline void PATHJOB::set_desty(::PROTOBUF_NAMESPACE_ID::int32 value) {
 }
 
 // int32 origx = 5;
-inline bool PATHJOB::_internal_has_origx() const {
-  return n_case() == kOrigx;
-}
-inline void PATHJOB::set_has_origx() {
-  _oneof_case_[0] = kOrigx;
-}
 inline void PATHJOB::clear_origx() {
-  if (_internal_has_origx()) {
-    n_.origx_ = 0;
-    clear_has_n();
-  }
+  origx_ = 0;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_origx() const {
-  if (_internal_has_origx()) {
-    return n_.origx_;
-  }
-  return 0;
-}
-inline void PATHJOB::_internal_set_origx(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  if (!_internal_has_origx()) {
-    clear_n();
-    set_has_origx();
-  }
-  n_.origx_ = value;
+  return origx_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::origx() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.origx)
   return _internal_origx();
+}
+inline void PATHJOB::_internal_set_origx(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  origx_ = value;
 }
 inline void PATHJOB::set_origx(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_origx(value);
@@ -3076,34 +2928,19 @@ inline void PATHJOB::set_origx(::PROTOBUF_NAMESPACE_ID::int32 value) {
 }
 
 // int32 origy = 6;
-inline bool PATHJOB::_internal_has_origy() const {
-  return n_case() == kOrigy;
-}
-inline void PATHJOB::set_has_origy() {
-  _oneof_case_[0] = kOrigy;
-}
 inline void PATHJOB::clear_origy() {
-  if (_internal_has_origy()) {
-    n_.origy_ = 0;
-    clear_has_n();
-  }
+  origy_ = 0;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_origy() const {
-  if (_internal_has_origy()) {
-    return n_.origy_;
-  }
-  return 0;
-}
-inline void PATHJOB::_internal_set_origy(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  if (!_internal_has_origy()) {
-    clear_n();
-    set_has_origy();
-  }
-  n_.origy_ = value;
+  return origy_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::origy() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.origy)
   return _internal_origy();
+}
+inline void PATHJOB::_internal_set_origy(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  origy_ = value;
 }
 inline void PATHJOB::set_origy(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_origy(value);
@@ -3112,106 +2949,101 @@ inline void PATHJOB::set_origy(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // .astar.StructureBounds dststructure = 7;
 inline bool PATHJOB::_internal_has_dststructure() const {
-  return n_case() == kDststructure;
+  return this != internal_default_instance() && dststructure_ != nullptr;
 }
 inline bool PATHJOB::has_dststructure() const {
   return _internal_has_dststructure();
 }
-inline void PATHJOB::set_has_dststructure() {
-  _oneof_case_[0] = kDststructure;
-}
 inline void PATHJOB::clear_dststructure() {
-  if (_internal_has_dststructure()) {
-    if (GetArena() == nullptr) {
-      delete n_.dststructure_;
-    }
-    clear_has_n();
+  if (GetArena() == nullptr && dststructure_ != nullptr) {
+    delete dststructure_;
   }
-}
-inline ::astar::StructureBounds* PATHJOB::release_dststructure() {
-  // @@protoc_insertion_point(field_release:astar.PATHJOB.dststructure)
-  if (_internal_has_dststructure()) {
-    clear_has_n();
-      ::astar::StructureBounds* temp = n_.dststructure_;
-    if (GetArena() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    n_.dststructure_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
+  dststructure_ = nullptr;
 }
 inline const ::astar::StructureBounds& PATHJOB::_internal_dststructure() const {
-  return _internal_has_dststructure()
-      ? *n_.dststructure_
-      : *reinterpret_cast< ::astar::StructureBounds*>(&::astar::_StructureBounds_default_instance_);
+  const ::astar::StructureBounds* p = dststructure_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::StructureBounds*>(
+      &::astar::_StructureBounds_default_instance_);
 }
 inline const ::astar::StructureBounds& PATHJOB::dststructure() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.dststructure)
   return _internal_dststructure();
 }
-inline ::astar::StructureBounds* PATHJOB::unsafe_arena_release_dststructure() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:astar.PATHJOB.dststructure)
-  if (_internal_has_dststructure()) {
-    clear_has_n();
-    ::astar::StructureBounds* temp = n_.dststructure_;
-    n_.dststructure_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
+inline void PATHJOB::unsafe_arena_set_allocated_dststructure(
+    ::astar::StructureBounds* dststructure) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(dststructure_);
   }
-}
-inline void PATHJOB::unsafe_arena_set_allocated_dststructure(::astar::StructureBounds* dststructure) {
-  clear_n();
+  dststructure_ = dststructure;
   if (dststructure) {
-    set_has_dststructure();
-    n_.dststructure_ = dststructure;
+    
+  } else {
+    
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.PATHJOB.dststructure)
 }
-inline ::astar::StructureBounds* PATHJOB::_internal_mutable_dststructure() {
-  if (!_internal_has_dststructure()) {
-    clear_n();
-    set_has_dststructure();
-    n_.dststructure_ = CreateMaybeMessage< ::astar::StructureBounds >(GetArena());
+inline ::astar::StructureBounds* PATHJOB::release_dststructure() {
+  
+  ::astar::StructureBounds* temp = dststructure_;
+  dststructure_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
-  return n_.dststructure_;
+  return temp;
+}
+inline ::astar::StructureBounds* PATHJOB::unsafe_arena_release_dststructure() {
+  // @@protoc_insertion_point(field_release:astar.PATHJOB.dststructure)
+  
+  ::astar::StructureBounds* temp = dststructure_;
+  dststructure_ = nullptr;
+  return temp;
+}
+inline ::astar::StructureBounds* PATHJOB::_internal_mutable_dststructure() {
+  
+  if (dststructure_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::StructureBounds>(GetArena());
+    dststructure_ = p;
+  }
+  return dststructure_;
 }
 inline ::astar::StructureBounds* PATHJOB::mutable_dststructure() {
   // @@protoc_insertion_point(field_mutable:astar.PATHJOB.dststructure)
   return _internal_mutable_dststructure();
 }
+inline void PATHJOB::set_allocated_dststructure(::astar::StructureBounds* dststructure) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete dststructure_;
+  }
+  if (dststructure) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(dststructure);
+    if (message_arena != submessage_arena) {
+      dststructure = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, dststructure, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  dststructure_ = dststructure;
+  // @@protoc_insertion_point(field_set_allocated:astar.PATHJOB.dststructure)
+}
 
 // int32 droidid = 8;
-inline bool PATHJOB::_internal_has_droidid() const {
-  return n_case() == kDroidid;
-}
-inline void PATHJOB::set_has_droidid() {
-  _oneof_case_[0] = kDroidid;
-}
 inline void PATHJOB::clear_droidid() {
-  if (_internal_has_droidid()) {
-    n_.droidid_ = 0;
-    clear_has_n();
-  }
+  droidid_ = 0;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_droidid() const {
-  if (_internal_has_droidid()) {
-    return n_.droidid_;
-  }
-  return 0;
-}
-inline void PATHJOB::_internal_set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  if (!_internal_has_droidid()) {
-    clear_n();
-    set_has_droidid();
-  }
-  n_.droidid_ = value;
+  return droidid_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::droidid() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.droidid)
   return _internal_droidid();
+}
+inline void PATHJOB::_internal_set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  droidid_ = value;
 }
 inline void PATHJOB::set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_droidid(value);
@@ -3219,69 +3051,39 @@ inline void PATHJOB::set_droidid(::PROTOBUF_NAMESPACE_ID::int32 value) {
 }
 
 // .astar.FPATH_MOVETYPE movetype = 9;
-inline bool PATHJOB::_internal_has_movetype() const {
-  return n_case() == kMovetype;
-}
-inline void PATHJOB::set_has_movetype() {
-  _oneof_case_[0] = kMovetype;
-}
 inline void PATHJOB::clear_movetype() {
-  if (_internal_has_movetype()) {
-    n_.movetype_ = 0;
-    clear_has_n();
-  }
+  movetype_ = 0;
 }
 inline ::astar::FPATH_MOVETYPE PATHJOB::_internal_movetype() const {
-  if (_internal_has_movetype()) {
-    return static_cast< ::astar::FPATH_MOVETYPE >(n_.movetype_);
-  }
-  return static_cast< ::astar::FPATH_MOVETYPE >(0);
+  return static_cast< ::astar::FPATH_MOVETYPE >(movetype_);
 }
 inline ::astar::FPATH_MOVETYPE PATHJOB::movetype() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.movetype)
   return _internal_movetype();
 }
 inline void PATHJOB::_internal_set_movetype(::astar::FPATH_MOVETYPE value) {
-  if (!_internal_has_movetype()) {
-    clear_n();
-    set_has_movetype();
-  }
-  n_.movetype_ = value;
+  
+  movetype_ = value;
 }
 inline void PATHJOB::set_movetype(::astar::FPATH_MOVETYPE value) {
-  // @@protoc_insertion_point(field_set:astar.PATHJOB.movetype)
   _internal_set_movetype(value);
+  // @@protoc_insertion_point(field_set:astar.PATHJOB.movetype)
 }
 
 // int32 owner = 10;
-inline bool PATHJOB::_internal_has_owner() const {
-  return n_case() == kOwner;
-}
-inline void PATHJOB::set_has_owner() {
-  _oneof_case_[0] = kOwner;
-}
 inline void PATHJOB::clear_owner() {
-  if (_internal_has_owner()) {
-    n_.owner_ = 0;
-    clear_has_n();
-  }
+  owner_ = 0;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::_internal_owner() const {
-  if (_internal_has_owner()) {
-    return n_.owner_;
-  }
-  return 0;
-}
-inline void PATHJOB::_internal_set_owner(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  if (!_internal_has_owner()) {
-    clear_n();
-    set_has_owner();
-  }
-  n_.owner_ = value;
+  return owner_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 PATHJOB::owner() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.owner)
   return _internal_owner();
+}
+inline void PATHJOB::_internal_set_owner(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  owner_ = value;
 }
 inline void PATHJOB::set_owner(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_owner(value);
@@ -3290,106 +3092,101 @@ inline void PATHJOB::set_owner(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // .astar.PathBlockingMap blockingmap = 11;
 inline bool PATHJOB::_internal_has_blockingmap() const {
-  return n_case() == kBlockingmap;
+  return this != internal_default_instance() && blockingmap_ != nullptr;
 }
 inline bool PATHJOB::has_blockingmap() const {
   return _internal_has_blockingmap();
 }
-inline void PATHJOB::set_has_blockingmap() {
-  _oneof_case_[0] = kBlockingmap;
-}
 inline void PATHJOB::clear_blockingmap() {
-  if (_internal_has_blockingmap()) {
-    if (GetArena() == nullptr) {
-      delete n_.blockingmap_;
-    }
-    clear_has_n();
+  if (GetArena() == nullptr && blockingmap_ != nullptr) {
+    delete blockingmap_;
   }
-}
-inline ::astar::PathBlockingMap* PATHJOB::release_blockingmap() {
-  // @@protoc_insertion_point(field_release:astar.PATHJOB.blockingmap)
-  if (_internal_has_blockingmap()) {
-    clear_has_n();
-      ::astar::PathBlockingMap* temp = n_.blockingmap_;
-    if (GetArena() != nullptr) {
-      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-    }
-    n_.blockingmap_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
+  blockingmap_ = nullptr;
 }
 inline const ::astar::PathBlockingMap& PATHJOB::_internal_blockingmap() const {
-  return _internal_has_blockingmap()
-      ? *n_.blockingmap_
-      : *reinterpret_cast< ::astar::PathBlockingMap*>(&::astar::_PathBlockingMap_default_instance_);
+  const ::astar::PathBlockingMap* p = blockingmap_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::PathBlockingMap*>(
+      &::astar::_PathBlockingMap_default_instance_);
 }
 inline const ::astar::PathBlockingMap& PATHJOB::blockingmap() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.blockingmap)
   return _internal_blockingmap();
 }
-inline ::astar::PathBlockingMap* PATHJOB::unsafe_arena_release_blockingmap() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:astar.PATHJOB.blockingmap)
-  if (_internal_has_blockingmap()) {
-    clear_has_n();
-    ::astar::PathBlockingMap* temp = n_.blockingmap_;
-    n_.blockingmap_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
+inline void PATHJOB::unsafe_arena_set_allocated_blockingmap(
+    ::astar::PathBlockingMap* blockingmap) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(blockingmap_);
   }
-}
-inline void PATHJOB::unsafe_arena_set_allocated_blockingmap(::astar::PathBlockingMap* blockingmap) {
-  clear_n();
+  blockingmap_ = blockingmap;
   if (blockingmap) {
-    set_has_blockingmap();
-    n_.blockingmap_ = blockingmap;
+    
+  } else {
+    
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.PATHJOB.blockingmap)
 }
-inline ::astar::PathBlockingMap* PATHJOB::_internal_mutable_blockingmap() {
-  if (!_internal_has_blockingmap()) {
-    clear_n();
-    set_has_blockingmap();
-    n_.blockingmap_ = CreateMaybeMessage< ::astar::PathBlockingMap >(GetArena());
+inline ::astar::PathBlockingMap* PATHJOB::release_blockingmap() {
+  
+  ::astar::PathBlockingMap* temp = blockingmap_;
+  blockingmap_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
-  return n_.blockingmap_;
+  return temp;
+}
+inline ::astar::PathBlockingMap* PATHJOB::unsafe_arena_release_blockingmap() {
+  // @@protoc_insertion_point(field_release:astar.PATHJOB.blockingmap)
+  
+  ::astar::PathBlockingMap* temp = blockingmap_;
+  blockingmap_ = nullptr;
+  return temp;
+}
+inline ::astar::PathBlockingMap* PATHJOB::_internal_mutable_blockingmap() {
+  
+  if (blockingmap_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::PathBlockingMap>(GetArena());
+    blockingmap_ = p;
+  }
+  return blockingmap_;
 }
 inline ::astar::PathBlockingMap* PATHJOB::mutable_blockingmap() {
   // @@protoc_insertion_point(field_mutable:astar.PATHJOB.blockingmap)
   return _internal_mutable_blockingmap();
 }
+inline void PATHJOB::set_allocated_blockingmap(::astar::PathBlockingMap* blockingmap) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete blockingmap_;
+  }
+  if (blockingmap) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(blockingmap);
+    if (message_arena != submessage_arena) {
+      blockingmap = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, blockingmap, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  blockingmap_ = blockingmap;
+  // @@protoc_insertion_point(field_set_allocated:astar.PATHJOB.blockingmap)
+}
 
 // bool acceptnearest = 12;
-inline bool PATHJOB::_internal_has_acceptnearest() const {
-  return n_case() == kAcceptnearest;
-}
-inline void PATHJOB::set_has_acceptnearest() {
-  _oneof_case_[0] = kAcceptnearest;
-}
 inline void PATHJOB::clear_acceptnearest() {
-  if (_internal_has_acceptnearest()) {
-    n_.acceptnearest_ = false;
-    clear_has_n();
-  }
+  acceptnearest_ = false;
 }
 inline bool PATHJOB::_internal_acceptnearest() const {
-  if (_internal_has_acceptnearest()) {
-    return n_.acceptnearest_;
-  }
-  return false;
-}
-inline void PATHJOB::_internal_set_acceptnearest(bool value) {
-  if (!_internal_has_acceptnearest()) {
-    clear_n();
-    set_has_acceptnearest();
-  }
-  n_.acceptnearest_ = value;
+  return acceptnearest_;
 }
 inline bool PATHJOB::acceptnearest() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.acceptnearest)
   return _internal_acceptnearest();
+}
+inline void PATHJOB::_internal_set_acceptnearest(bool value) {
+  
+  acceptnearest_ = value;
 }
 inline void PATHJOB::set_acceptnearest(bool value) {
   _internal_set_acceptnearest(value);
@@ -3397,49 +3194,25 @@ inline void PATHJOB::set_acceptnearest(bool value) {
 }
 
 // bool deleted = 13;
-inline bool PATHJOB::_internal_has_deleted() const {
-  return n_case() == kDeleted;
-}
-inline void PATHJOB::set_has_deleted() {
-  _oneof_case_[0] = kDeleted;
-}
 inline void PATHJOB::clear_deleted() {
-  if (_internal_has_deleted()) {
-    n_.deleted_ = false;
-    clear_has_n();
-  }
+  deleted_ = false;
 }
 inline bool PATHJOB::_internal_deleted() const {
-  if (_internal_has_deleted()) {
-    return n_.deleted_;
-  }
-  return false;
-}
-inline void PATHJOB::_internal_set_deleted(bool value) {
-  if (!_internal_has_deleted()) {
-    clear_n();
-    set_has_deleted();
-  }
-  n_.deleted_ = value;
+  return deleted_;
 }
 inline bool PATHJOB::deleted() const {
   // @@protoc_insertion_point(field_get:astar.PATHJOB.deleted)
   return _internal_deleted();
+}
+inline void PATHJOB::_internal_set_deleted(bool value) {
+  
+  deleted_ = value;
 }
 inline void PATHJOB::set_deleted(bool value) {
   _internal_set_deleted(value);
   // @@protoc_insertion_point(field_set:astar.PATHJOB.deleted)
 }
 
-inline bool PATHJOB::has_n() const {
-  return n_case() != N_NOT_SET;
-}
-inline void PATHJOB::clear_has_n() {
-  _oneof_case_[0] = N_NOT_SET;
-}
-inline PATHJOB::NCase PATHJOB::n_case() const {
-  return PATHJOB::NCase(_oneof_case_[0]);
-}
 // -------------------------------------------------------------------
 
 // Vector2i

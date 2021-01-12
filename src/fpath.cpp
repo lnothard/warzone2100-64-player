@@ -88,77 +88,76 @@ public:
 	ASR_RETVAL doAStar(MOVE_CONTROL* m, PATHJOB* j) {
 		Request request;
 
-		astar::MOVE_CONTROL psMove;
-		
-		psMove.set_status((astar::MOVE_STATUS)m->Status);
-		psMove.set_pathindex(m->pathIndex);
-		psMove.set_speed(m->speed);
-		psMove.set_movedir(m->moveDir);
-		psMove.set_bumpdir(m->bumpDir);
-		psMove.set_bumptime(m->bumpTime);
-		psMove.set_lastbump(m->lastBump);
-		psMove.set_pausetime(m->pauseTime);
-		psMove.set_shufflestart(m->shuffleStart);
-		psMove.set_ivertspeed(m->iVertSpeed);
-
-		astar::Vector2i destination, src, target;
-		destination.set_x(m->destination.x);
-		destination.set_y(m->destination.y);
-		src.set_x(m->src.x);
-		src.set_y(m->src.y);
-		target.set_x(m->target.x);
-		target.set_y(m->target.y);
-		psMove.set_allocated_destination(&destination);
-		psMove.set_allocated_src(&src);
-		psMove.set_allocated_target(&target);
+		astar::MOVE_CONTROL* psMove = request.mutable_psmove();
 
 		for(Vector2i vec : m->asPath) {
-			astar::Vector2i* el = psMove.add_aspath();
+			astar::Vector2i* el = psMove->add_aspath();
 			el->set_x(vec.x);
 			el->set_y(vec.y);
 		}
 
-		astar::Vector3i bumpPos;
-		bumpPos.set_x(m->bumpPos.x);
-		bumpPos.set_y(m->bumpPos.y);
-		bumpPos.set_z(m->bumpPos.z);
-		psMove.set_allocated_bumppos(&bumpPos);
+		psMove->set_status((astar::MOVE_STATUS)m->Status);
+		psMove->set_pathindex(m->pathIndex);
+		psMove->set_speed(m->speed);
+		psMove->set_movedir(m->moveDir);
+		psMove->set_bumpdir(m->bumpDir);
+		psMove->set_bumptime(m->bumpTime);
+		psMove->set_lastbump(m->lastBump);
+		psMove->set_pausetime(m->pauseTime);
+		psMove->set_shufflestart(m->shuffleStart);
+		psMove->set_ivertspeed(m->iVertSpeed);
 
-		request.set_allocated_psmove(&psMove);
+		astar::Vector2i* destination = psMove->mutable_destination();
+		destination->set_x(m->destination.x);
+		destination->set_y(m->destination.y);
+		astar::Vector2i* src = psMove->mutable_src();
+		src->set_x(m->src.x);
+		src->set_y(m->src.y);
+		astar::Vector2i* target = psMove->mutable_target();
+		target->set_x(m->target.x);
+		target->set_y(m->target.y);
 
-		astar::PATHJOB psJob;
+		astar::Vector3i* bumpPos = psMove->mutable_bumppos();
+		bumpPos->set_x(m->bumpPos.x);
+		bumpPos->set_y(m->bumpPos.y);
+		bumpPos->set_z(m->bumpPos.z);
 
-		psJob.set_propulsion((astar::PROPULSION_TYPE)j->propulsion);
-		psJob.set_droidtype((astar::DROID_TYPE)j->droidType);
-		psJob.set_movetype((astar::FPATH_MOVETYPE)j->moveType);
-		psJob.set_destx(j->destX);
-		psJob.set_desty(j->destY);
-		psJob.set_origx(j->origX);
-		psJob.set_origy(j->origY);
-		psJob.set_droidid(j->droidID);
-		psJob.set_owner(j->owner);
-		psJob.set_acceptnearest(j->acceptNearest);
-		psJob.set_deleted(j->deleted);
+		astar::PATHJOB* psJob = request.mutable_psjob();
 
-		astar::StructureBounds dstStructure;
-		astar::Vector2i map, size;
-		map.set_x(j->dstStructure.map.x);
-		map.set_y(j->dstStructure.map.y);
-		size.set_x(j->dstStructure.size.x);
-		size.set_y(j->dstStructure.size.y);
-		dstStructure.set_allocated_map(&map);
-		dstStructure.set_allocated_size(&size);
+		psJob->set_propulsion((astar::PROPULSION_TYPE)j->propulsion);
+		psJob->set_droidtype((astar::DROID_TYPE)j->droidType);
+		psJob->set_movetype((astar::FPATH_MOVETYPE)j->moveType);
+		psJob->set_destx(j->destX);
+		psJob->set_desty(j->destY);
+		psJob->set_origx(j->origX);
+		psJob->set_origy(j->origY);
+		psJob->set_droidid(j->droidID);
+		psJob->set_owner(j->owner);
+		psJob->set_acceptnearest(j->acceptNearest);
+		psJob->set_deleted(j->deleted);
 
-		astar::PathBlockingMap blockingMap;
-		astar::PathBlockingType type;
+		astar::StructureBounds* dstStructure = psJob->mutable_dststructure();
+		astar::Vector2i* map = dstStructure->mutable_map();
+		astar::Vector2i* size = dstStructure->mutable_size();
+		map->set_x(j->dstStructure.map.x);
+		map->set_y(j->dstStructure.map.y);
+		size->set_x(j->dstStructure.size.x);
+		size->set_y(j->dstStructure.size.y);
 
-		type.set_gametime((*j->blockingMap).type.gameTime);
-		type.set_owner((*j->blockingMap).type.owner);
-		type.set_propulsion((astar::PROPULSION_TYPE)(*j->blockingMap).type.propulsion);
-		type.set_movetype((astar::FPATH_MOVETYPE)(*j->blockingMap).type.moveType);
-		blockingMap.set_allocated_type(&type);
+		astar::PathBlockingMap* blockingMap = psJob->mutable_blockingmap();
+		astar::PathBlockingType* type = blockingMap->mutable_type();
 
-		request.set_allocated_psjob(&psJob);
+		type->set_gametime((*j->blockingMap).type.gameTime);
+		type->set_owner((*j->blockingMap).type.owner);
+		type->set_propulsion((astar::PROPULSION_TYPE)(*j->blockingMap).type.propulsion);
+		type->set_movetype((astar::FPATH_MOVETYPE)(*j->blockingMap).type.moveType);
+
+		for (bool el : (*j->blockingMap).map) {
+			blockingMap->add_map(el);
+		}
+		for (bool el : (*j->blockingMap).dangerMap) {
+			blockingMap->add_dangermap(el);
+		}
 		
 		Reply reply;
 		ClientContext context;

@@ -740,6 +740,7 @@ class AStarImpl final : public AStar::Service {
 
     astar::Reply_ASR_RETVAL retVal = (astar::Reply_ASR_RETVAL)fpathAStarRoute(&m, &j);
     response->set_retval(retVal);
+    std::cout << response->retval() << std::endl;
 
     return Status::OK;
   }
