@@ -22,6 +22,10 @@ extern PROTOBUF_INTERNAL_EXPORT_astar_2eproto ::PROTOBUF_NAMESPACE_ID::internal:
 extern PROTOBUF_INTERNAL_EXPORT_astar_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector2i_astar_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_astar_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector3i_astar_2eproto;
 namespace astar {
+class EmptyDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Empty> _instance;
+} _Empty_default_instance_;
 class RequestDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Request> _instance;
@@ -59,6 +63,20 @@ class PathBlockingMapDefaultTypeInternal {
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<PathBlockingMap> _instance;
 } _PathBlockingMap_default_instance_;
 }  // namespace astar
+static void InitDefaultsscc_info_Empty_astar_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::astar::_Empty_default_instance_;
+    new (ptr) ::astar::Empty();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::astar::Empty::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Empty_astar_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Empty_astar_2eproto}, {}};
+
 static void InitDefaultsscc_info_MOVE_CONTROL_astar_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -131,8 +149,9 @@ static void InitDefaultsscc_info_Reply_astar_2eproto() {
   ::astar::Reply::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Reply_astar_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Reply_astar_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Reply_astar_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Reply_astar_2eproto}, {
+      &scc_info_MOVE_CONTROL_astar_2eproto.base,}};
 
 static void InitDefaultsscc_info_Request_astar_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -193,11 +212,16 @@ static void InitDefaultsscc_info_Vector3i_astar_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector3i_astar_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Vector3i_astar_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_astar_2eproto[9];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_astar_2eproto[10];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_astar_2eproto[5];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_astar_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_astar_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::astar::Empty, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::astar::Request, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -211,6 +235,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_astar_2eproto::offsets[] PROTO
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::astar::Reply, retval_),
+  PROTOBUF_FIELD_OFFSET(::astar::Reply, psmove_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::astar::MOVE_CONTROL, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -290,18 +315,20 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_astar_2eproto::offsets[] PROTO
   PROTOBUF_FIELD_OFFSET(::astar::PathBlockingMap, dangermap_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::astar::Request)},
-  { 7, -1, sizeof(::astar::Reply)},
-  { 13, -1, sizeof(::astar::MOVE_CONTROL)},
-  { 33, -1, sizeof(::astar::PATHJOB)},
-  { 51, -1, sizeof(::astar::Vector2i)},
-  { 58, -1, sizeof(::astar::Vector3i)},
-  { 66, -1, sizeof(::astar::StructureBounds)},
-  { 73, -1, sizeof(::astar::PathBlockingType)},
-  { 82, -1, sizeof(::astar::PathBlockingMap)},
+  { 0, -1, sizeof(::astar::Empty)},
+  { 5, -1, sizeof(::astar::Request)},
+  { 12, -1, sizeof(::astar::Reply)},
+  { 19, -1, sizeof(::astar::MOVE_CONTROL)},
+  { 39, -1, sizeof(::astar::PATHJOB)},
+  { 57, -1, sizeof(::astar::Vector2i)},
+  { 64, -1, sizeof(::astar::Vector3i)},
+  { 72, -1, sizeof(::astar::StructureBounds)},
+  { 79, -1, sizeof(::astar::PathBlockingType)},
+  { 88, -1, sizeof(::astar::PathBlockingMap)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::astar::_Empty_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::astar::_Request_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::astar::_Reply_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::astar::_MOVE_CONTROL_default_instance_),
@@ -314,66 +341,71 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_astar_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\013astar.proto\022\005astar\"M\n\007Request\022#\n\006psmov"
-  "e\030\001 \001(\0132\023.astar.MOVE_CONTROL\022\035\n\005psjob\030\002 "
-  "\001(\0132\016.astar.PATHJOB\"k\n\005Reply\022\'\n\006retVal\030\001"
-  " \001(\0162\027.astar.Reply.ASR_RETVAL\"9\n\nASR_RET"
-  "VAL\022\n\n\006ASR_OK\020\000\022\016\n\nASR_FAILED\020\001\022\017\n\013ASR_N"
-  "EAREST\020\002\"\377\002\n\014MOVE_CONTROL\022\"\n\006status\030\001 \001("
-  "\0162\022.astar.MOVE_STATUS\022\021\n\tpathindex\030\002 \001(\005"
-  "\022\037\n\006aspath\030\003 \003(\0132\017.astar.Vector2i\022$\n\013des"
-  "tination\030\004 \001(\0132\017.astar.Vector2i\022\034\n\003src\030\005"
-  " \001(\0132\017.astar.Vector2i\022\037\n\006target\030\006 \001(\0132\017."
-  "astar.Vector2i\022\r\n\005speed\030\007 \001(\005\022\017\n\007movedir"
-  "\030\010 \001(\005\022\017\n\007bumpdir\030\t \001(\005\022\020\n\010bumptime\030\n \001("
-  "\005\022\020\n\010lastbump\030\013 \001(\005\022\021\n\tpausetime\030\014 \001(\005\022 "
-  "\n\007bumppos\030\r \001(\0132\017.astar.Vector3i\022\024\n\014shuf"
-  "flestart\030\016 \001(\005\022\022\n\nivertspeed\030\017 \001(\005\"\343\002\n\007P"
-  "ATHJOB\022*\n\npropulsion\030\001 \001(\0162\026.astar.PROPU"
-  "LSION_TYPE\022$\n\tdroidtype\030\002 \001(\0162\021.astar.DR"
-  "OID_TYPE\022\r\n\005destx\030\003 \001(\005\022\r\n\005desty\030\004 \001(\005\022\r"
-  "\n\005origx\030\005 \001(\005\022\r\n\005origy\030\006 \001(\005\022,\n\014dststruc"
-  "ture\030\007 \001(\0132\026.astar.StructureBounds\022\017\n\007dr"
-  "oidid\030\010 \001(\005\022\'\n\010movetype\030\t \001(\0162\025.astar.FP"
-  "ATH_MOVETYPE\022\r\n\005owner\030\n \001(\005\022+\n\013blockingm"
-  "ap\030\013 \001(\0132\026.astar.PathBlockingMap\022\025\n\racce"
-  "ptnearest\030\014 \001(\010\022\017\n\007deleted\030\r \001(\010\" \n\010Vect"
-  "or2i\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"+\n\010Vector3i\022\t"
-  "\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\t\n\001z\030\003 \001(\005\"N\n\017Struc"
-  "tureBounds\022\034\n\003map\030\001 \001(\0132\017.astar.Vector2i"
-  "\022\035\n\004size\030\002 \001(\0132\017.astar.Vector2i\"\210\001\n\020Path"
-  "BlockingType\022\020\n\010gametime\030\001 \001(\005\022*\n\npropul"
-  "sion\030\002 \001(\0162\026.astar.PROPULSION_TYPE\022\r\n\005ow"
-  "ner\030\003 \001(\005\022\'\n\010movetype\030\004 \001(\0162\025.astar.FPAT"
-  "H_MOVETYPE\"X\n\017PathBlockingMap\022%\n\004type\030\001 "
-  "\001(\0132\027.astar.PathBlockingType\022\013\n\003map\030\002 \003("
-  "\010\022\021\n\tdangermap\030\003 \003(\010*\255\001\n\013MOVE_STATUS\022\020\n\014"
-  "MOVEINACTIVE\020\000\022\020\n\014MOVENAVIGATE\020\001\022\014\n\010MOVE"
-  "TURN\020\002\022\r\n\tMOVEPAUSE\020\003\022\024\n\020MOVEPOINTTOPOIN"
-  "T\020\004\022\024\n\020MOVETURNTOTARGET\020\005\022\r\n\tMOVEHOVER\020\006"
-  "\022\021\n\rMOVEWAITROUTE\020\007\022\017\n\013MOVESHUFFLE\020\010*\366\001\n"
-  "\017PROPULSION_TYPE\022\033\n\027PROPULSION_TYPE_WHEE"
-  "LED\020\000\022\033\n\027PROPULSION_TYPE_TRACKED\020\001\022\032\n\026PR"
-  "OPULSION_TYPE_LEGGED\020\002\022\031\n\025PROPULSION_TYP"
-  "E_HOVER\020\003\022\030\n\024PROPULSION_TYPE_LIFT\020\004\022\035\n\031P"
-  "ROPULSION_TYPE_PROPELLOR\020\005\022 \n\034PROPULSION"
-  "_TYPE_HALF_TRACKED\020\006\022\027\n\023PROPULSION_TYPE_"
-  "NUM\020\007*\277\002\n\nDROID_TYPE\022\020\n\014DROID_WEAPON\020\000\022\020"
-  "\n\014DROID_SENSOR\020\001\022\r\n\tDROID_ECM\020\002\022\023\n\017DROID"
-  "_CONSTRUCT\020\003\022\020\n\014DROID_PERSON\020\004\022\020\n\014DROID_"
-  "CYBORG\020\005\022\025\n\021DROID_TRANSPORTER\020\006\022\021\n\rDROID"
-  "_COMMAND\020\007\022\020\n\014DROID_REPAIR\020\010\022\021\n\rDROID_DE"
-  "FAULT\020\t\022\032\n\026DROID_CYBORG_CONSTRUCT\020\n\022\027\n\023D"
-  "ROID_CYBORG_REPAIR\020\013\022\026\n\022DROID_CYBORG_SUP"
-  "ER\020\014\022\032\n\026DROID_SUPERTRANSPORTER\020\r\022\r\n\tDROI"
-  "D_ANY\020\016*=\n\016FPATH_MOVETYPE\022\014\n\010FMT_MOVE\020\000\022"
-  "\016\n\nFMT_ATTACK\020\001\022\r\n\tFMT_BLOCK\020\00222\n\005AStar\022"
-  ")\n\007doAStar\022\016.astar.Request\032\014.astar.Reply"
-  "\"\000b\006proto3"
+  "\n\013astar.proto\022\005astar\"\007\n\005Empty\"M\n\007Request"
+  "\022#\n\006psmove\030\001 \001(\0132\023.astar.MOVE_CONTROL\022\035\n"
+  "\005psjob\030\002 \001(\0132\016.astar.PATHJOB\"\220\001\n\005Reply\022\'"
+  "\n\006retVal\030\001 \001(\0162\027.astar.Reply.ASR_RETVAL\022"
+  "#\n\006psmove\030\002 \001(\0132\023.astar.MOVE_CONTROL\"9\n\n"
+  "ASR_RETVAL\022\n\n\006ASR_OK\020\000\022\016\n\nASR_FAILED\020\001\022\017"
+  "\n\013ASR_NEAREST\020\002\"\377\002\n\014MOVE_CONTROL\022\"\n\006stat"
+  "us\030\001 \001(\0162\022.astar.MOVE_STATUS\022\021\n\tpathinde"
+  "x\030\002 \001(\005\022\037\n\006aspath\030\003 \003(\0132\017.astar.Vector2i"
+  "\022$\n\013destination\030\004 \001(\0132\017.astar.Vector2i\022\034"
+  "\n\003src\030\005 \001(\0132\017.astar.Vector2i\022\037\n\006target\030\006"
+  " \001(\0132\017.astar.Vector2i\022\r\n\005speed\030\007 \001(\005\022\017\n\007"
+  "movedir\030\010 \001(\005\022\017\n\007bumpdir\030\t \001(\005\022\020\n\010bumpti"
+  "me\030\n \001(\005\022\020\n\010lastbump\030\013 \001(\005\022\021\n\tpausetime\030"
+  "\014 \001(\005\022 \n\007bumppos\030\r \001(\0132\017.astar.Vector3i\022"
+  "\024\n\014shufflestart\030\016 \001(\005\022\022\n\nivertspeed\030\017 \001("
+  "\005\"\343\002\n\007PATHJOB\022*\n\npropulsion\030\001 \001(\0162\026.asta"
+  "r.PROPULSION_TYPE\022$\n\tdroidtype\030\002 \001(\0162\021.a"
+  "star.DROID_TYPE\022\r\n\005destx\030\003 \001(\005\022\r\n\005desty\030"
+  "\004 \001(\005\022\r\n\005origx\030\005 \001(\005\022\r\n\005origy\030\006 \001(\005\022,\n\014d"
+  "ststructure\030\007 \001(\0132\026.astar.StructureBound"
+  "s\022\017\n\007droidid\030\010 \001(\005\022\'\n\010movetype\030\t \001(\0162\025.a"
+  "star.FPATH_MOVETYPE\022\r\n\005owner\030\n \001(\005\022+\n\013bl"
+  "ockingmap\030\013 \001(\0132\026.astar.PathBlockingMap\022"
+  "\025\n\racceptnearest\030\014 \001(\010\022\017\n\007deleted\030\r \001(\010\""
+  " \n\010Vector2i\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"+\n\010Vec"
+  "tor3i\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\022\t\n\001z\030\003 \001(\005\"N"
+  "\n\017StructureBounds\022\034\n\003map\030\001 \001(\0132\017.astar.V"
+  "ector2i\022\035\n\004size\030\002 \001(\0132\017.astar.Vector2i\"\210"
+  "\001\n\020PathBlockingType\022\020\n\010gametime\030\001 \001(\005\022*\n"
+  "\npropulsion\030\002 \001(\0162\026.astar.PROPULSION_TYP"
+  "E\022\r\n\005owner\030\003 \001(\005\022\'\n\010movetype\030\004 \001(\0162\025.ast"
+  "ar.FPATH_MOVETYPE\"X\n\017PathBlockingMap\022%\n\004"
+  "type\030\001 \001(\0132\027.astar.PathBlockingType\022\013\n\003m"
+  "ap\030\002 \003(\010\022\021\n\tdangermap\030\003 \003(\010*\255\001\n\013MOVE_STA"
+  "TUS\022\020\n\014MOVEINACTIVE\020\000\022\020\n\014MOVENAVIGATE\020\001\022"
+  "\014\n\010MOVETURN\020\002\022\r\n\tMOVEPAUSE\020\003\022\024\n\020MOVEPOIN"
+  "TTOPOINT\020\004\022\024\n\020MOVETURNTOTARGET\020\005\022\r\n\tMOVE"
+  "HOVER\020\006\022\021\n\rMOVEWAITROUTE\020\007\022\017\n\013MOVESHUFFL"
+  "E\020\010*\366\001\n\017PROPULSION_TYPE\022\033\n\027PROPULSION_TY"
+  "PE_WHEELED\020\000\022\033\n\027PROPULSION_TYPE_TRACKED\020"
+  "\001\022\032\n\026PROPULSION_TYPE_LEGGED\020\002\022\031\n\025PROPULS"
+  "ION_TYPE_HOVER\020\003\022\030\n\024PROPULSION_TYPE_LIFT"
+  "\020\004\022\035\n\031PROPULSION_TYPE_PROPELLOR\020\005\022 \n\034PRO"
+  "PULSION_TYPE_HALF_TRACKED\020\006\022\027\n\023PROPULSIO"
+  "N_TYPE_NUM\020\007*\277\002\n\nDROID_TYPE\022\020\n\014DROID_WEA"
+  "PON\020\000\022\020\n\014DROID_SENSOR\020\001\022\r\n\tDROID_ECM\020\002\022\023"
+  "\n\017DROID_CONSTRUCT\020\003\022\020\n\014DROID_PERSON\020\004\022\020\n"
+  "\014DROID_CYBORG\020\005\022\025\n\021DROID_TRANSPORTER\020\006\022\021"
+  "\n\rDROID_COMMAND\020\007\022\020\n\014DROID_REPAIR\020\010\022\021\n\rD"
+  "ROID_DEFAULT\020\t\022\032\n\026DROID_CYBORG_CONSTRUCT"
+  "\020\n\022\027\n\023DROID_CYBORG_REPAIR\020\013\022\026\n\022DROID_CYB"
+  "ORG_SUPER\020\014\022\032\n\026DROID_SUPERTRANSPORTER\020\r\022"
+  "\r\n\tDROID_ANY\020\016*=\n\016FPATH_MOVETYPE\022\014\n\010FMT_"
+  "MOVE\020\000\022\016\n\nFMT_ATTACK\020\001\022\r\n\tFMT_BLOCK\020\0022\232\001"
+  "\n\005AStar\022)\n\007doAStar\022\016.astar.Request\032\014.ast"
+  "ar.Reply\"\000\022*\n\ntableReset\022\014.astar.Empty\032\014"
+  ".astar.Empty\"\000\022:\n\016setBlockingMap\022\016.astar"
+  ".PATHJOB\032\026.astar.PathBlockingMap\"\000b\006prot"
+  "o3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_astar_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_astar_2eproto_sccs[9] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_astar_2eproto_sccs[10] = {
+  &scc_info_Empty_astar_2eproto.base,
   &scc_info_MOVE_CONTROL_astar_2eproto.base,
   &scc_info_PATHJOB_astar_2eproto.base,
   &scc_info_PathBlockingMap_astar_2eproto.base,
@@ -386,10 +418,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_ast
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_astar_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_astar_2eproto = {
-  false, false, descriptor_table_protodef_astar_2eproto, "astar.proto", 2210,
-  &descriptor_table_astar_2eproto_once, descriptor_table_astar_2eproto_sccs, descriptor_table_astar_2eproto_deps, 9, 0,
+  false, false, descriptor_table_protodef_astar_2eproto, "astar.proto", 2362,
+  &descriptor_table_astar_2eproto_once, descriptor_table_astar_2eproto_sccs, descriptor_table_astar_2eproto_deps, 10, 0,
   schemas, file_default_instances, TableStruct_astar_2eproto::offsets,
-  file_level_metadata_astar_2eproto, 9, file_level_enum_descriptors_astar_2eproto, file_level_service_descriptors_astar_2eproto,
+  file_level_metadata_astar_2eproto, 10, file_level_enum_descriptors_astar_2eproto, file_level_service_descriptors_astar_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -499,6 +531,171 @@ bool FPATH_MOVETYPE_IsValid(int value) {
     default:
       return false;
   }
+}
+
+
+// ===================================================================
+
+void Empty::InitAsDefaultInstance() {
+}
+class Empty::_Internal {
+ public:
+};
+
+Empty::Empty(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:astar.Empty)
+}
+Empty::Empty(const Empty& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:astar.Empty)
+}
+
+void Empty::SharedCtor() {
+}
+
+Empty::~Empty() {
+  // @@protoc_insertion_point(destructor:astar.Empty)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void Empty::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void Empty::ArenaDtor(void* object) {
+  Empty* _this = reinterpret_cast< Empty* >(object);
+  (void)_this;
+}
+void Empty::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void Empty::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Empty& Empty::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Empty_astar_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Empty::Clear() {
+// @@protoc_insertion_point(message_clear_start:astar.Empty)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Empty::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Empty::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:astar.Empty)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:astar.Empty)
+  return target;
+}
+
+size_t Empty::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:astar.Empty)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Empty::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:astar.Empty)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Empty* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Empty>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:astar.Empty)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:astar.Empty)
+    MergeFrom(*source);
+  }
+}
+
+void Empty::MergeFrom(const Empty& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:astar.Empty)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void Empty::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:astar.Empty)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Empty::CopyFrom(const Empty& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:astar.Empty)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Empty::IsInitialized() const {
+  return true;
+}
+
+void Empty::InternalSwap(Empty* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Empty::GetMetadata() const {
+  return GetMetadataStatic();
 }
 
 
@@ -769,11 +966,18 @@ void Request::InternalSwap(Request* other) {
 // ===================================================================
 
 void Reply::InitAsDefaultInstance() {
+  ::astar::_Reply_default_instance_._instance.get_mutable()->psmove_ = const_cast< ::astar::MOVE_CONTROL*>(
+      ::astar::MOVE_CONTROL::internal_default_instance());
 }
 class Reply::_Internal {
  public:
+  static const ::astar::MOVE_CONTROL& psmove(const Reply* msg);
 };
 
+const ::astar::MOVE_CONTROL&
+Reply::_Internal::psmove(const Reply* msg) {
+  return *msg->psmove_;
+}
 Reply::Reply(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
@@ -783,12 +987,20 @@ Reply::Reply(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 Reply::Reply(const Reply& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_psmove()) {
+    psmove_ = new ::astar::MOVE_CONTROL(*from.psmove_);
+  } else {
+    psmove_ = nullptr;
+  }
   retval_ = from.retval_;
   // @@protoc_insertion_point(copy_constructor:astar.Reply)
 }
 
 void Reply::SharedCtor() {
-  retval_ = 0;
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Reply_astar_2eproto.base);
+  ::memset(&psmove_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&retval_) -
+      reinterpret_cast<char*>(&psmove_)) + sizeof(retval_));
 }
 
 Reply::~Reply() {
@@ -799,6 +1011,7 @@ Reply::~Reply() {
 
 void Reply::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
+  if (this != internal_default_instance()) delete psmove_;
 }
 
 void Reply::ArenaDtor(void* object) {
@@ -822,6 +1035,10 @@ void Reply::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  if (GetArena() == nullptr && psmove_ != nullptr) {
+    delete psmove_;
+  }
+  psmove_ = nullptr;
   retval_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -840,6 +1057,13 @@ const char* Reply::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
           ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
           _internal_set_retval(static_cast<::astar::Reply_ASR_RETVAL>(val));
+        } else goto handle_unusual;
+        continue;
+      // .astar.MOVE_CONTROL psmove = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_psmove(), ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -877,6 +1101,14 @@ failure:
       1, this->_internal_retval(), target);
   }
 
+  // .astar.MOVE_CONTROL psmove = 2;
+  if (this->has_psmove()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::psmove(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -892,6 +1124,13 @@ size_t Reply::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // .astar.MOVE_CONTROL psmove = 2;
+  if (this->has_psmove()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *psmove_);
+  }
 
   // .astar.Reply.ASR_RETVAL retVal = 1;
   if (this->retval() != 0) {
@@ -930,6 +1169,9 @@ void Reply::MergeFrom(const Reply& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.has_psmove()) {
+    _internal_mutable_psmove()->::astar::MOVE_CONTROL::MergeFrom(from._internal_psmove());
+  }
   if (from.retval() != 0) {
     _internal_set_retval(from._internal_retval());
   }
@@ -956,7 +1198,12 @@ bool Reply::IsInitialized() const {
 void Reply::InternalSwap(Reply* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(retval_, other->retval_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Reply, retval_)
+      + sizeof(Reply::retval_)
+      - PROTOBUF_FIELD_OFFSET(Reply, psmove_)>(
+          reinterpret_cast<char*>(&psmove_),
+          reinterpret_cast<char*>(&other->psmove_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Reply::GetMetadata() const {
@@ -3419,6 +3666,9 @@ void PathBlockingMap::InternalSwap(PathBlockingMap* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace astar
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::astar::Empty* Arena::CreateMaybeMessage< ::astar::Empty >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::astar::Empty >(arena);
+}
 template<> PROTOBUF_NOINLINE ::astar::Request* Arena::CreateMaybeMessage< ::astar::Request >(Arena* arena) {
   return Arena::CreateMessageInternal< ::astar::Request >(arena);
 }

@@ -44,7 +44,7 @@ ASR_RETVAL fpathAStarRoute(MOVE_CONTROL *psMove, PATHJOB *psJob);
 
 /// Call from main thread.
 /// Sets psJob->blockingMap for later use by pathfinding thread, generating the required map if not already generated.
-void fpathSetBlockingMap(PATHJOB *psJob);
+PathBlockingMap fpathSetBlockingMap(PATHJOB *psJob);
 
 /** Clean up the path finding node table.
  *

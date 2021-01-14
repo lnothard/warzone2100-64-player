@@ -165,12 +165,111 @@ public:
 		Status status = stub_->doAStar(&context, request, &reply);
 
 		if (status.ok()) {
+			astar::MOVE_CONTROL move = reply.psmove();
+			m->Status = (MOVE_STATUS)move.status();
+			m->pathIndex = move.pathindex();
+			m->speed = move.speed();
+			m->moveDir = move.movedir();
+			m->bumpDir = move.bumpdir();
+			m->bumpTime = move.bumptime();
+			m->lastBump = move.lastbump();
+			m->pauseTime = move.pausetime();
+			m->shuffleStart = move.shufflestart();
+			m->iVertSpeed = move.ivertspeed();
+			m->destination.x = move.destination().x();
+			m->destination.y = move.destination().y();
+			m->src.x = move.src().x();
+			m->src.y = move.src().y();
+			m->target.x = move.target().x();
+			m->target.y = move.target().y();
+			m->bumpPos.x = move.bumppos().x();
+			m->bumpPos.y = move.bumppos().y();
+			m->bumpPos.z = move.bumppos().z();
+			std::vector<Vector2i> converted;
+			for (astar::Vector2i el : move.aspath()) {
+				Vector2i temp;
+				temp.x = el.x();
+				temp.y = el.y();
+				converted.push_back(temp);
+			}
+			m->asPath = converted;
+
 			return (ASR_RETVAL)reply.retval();
 		} else {
 			std::cout << status.error_code() << ": " << status.error_message() << std::endl;
 			throw new std::system_error();
 		}
 	}
+
+	void tableReset() {
+		astar::Empty request;
+		astar::Empty reply;
+		ClientContext context;
+
+		Status status = stub_->tableReset(&context, request, &reply);
+
+		if (status.ok()) {
+			return;
+		} else {
+			std::cout << status.error_code() << ": " << status.error_message() << std::endl;
+			throw new std::system_error();
+		}
+	}
+
+	PathBlockingMap setBlockingMap(PATHJOB* j) {
+		astar::PATHJOB psJob;
+
+		psJob.set_propulsion((astar::PROPULSION_TYPE)j->propulsion);
+		psJob.set_droidtype((astar::DROID_TYPE)j->droidType);
+		psJob.set_movetype((astar::FPATH_MOVETYPE)j->moveType);
+		psJob.set_destx(j->destX);
+		psJob.set_desty(j->destY);
+		psJob.set_origx(j->origX);
+		psJob.set_origy(j->origY);
+		psJob.set_droidid(j->droidID);
+		psJob.set_owner(j->owner);
+		psJob.set_acceptnearest(j->acceptNearest);
+		psJob.set_deleted(j->deleted);
+
+		astar::StructureBounds* dstStructure = psJob.mutable_dststructure();
+		astar::Vector2i* map = dstStructure->mutable_map();
+		astar::Vector2i* size = dstStructure->mutable_size();
+		map->set_x(j->dstStructure.map.x);
+		map->set_y(j->dstStructure.map.y);
+		size->set_x(j->dstStructure.size.x);
+		size->set_y(j->dstStructure.size.y);
+
+       		astar::PathBlockingMap reply;
+		ClientContext context;
+		Status status = stub_->setBlockingMap(&context, psJob, &reply);
+
+		if (status.ok()) {
+			PathBlockingMap ret;
+			PathBlockingType type;
+			type.gameTime = reply.type().gametime();
+			type.owner = reply.type().owner();
+			type.propulsion = (PROPULSION_TYPE)reply.type().propulsion();
+			type.moveType = (FPATH_MOVETYPE)reply.type().movetype();
+			ret.type = type;
+
+			std::vector<bool> map;
+			for (bool el : reply.map()) {
+				map.push_back(el);
+			}
+			std::vector<bool> dangerMap;
+			for (bool el : reply.dangermap()) {
+				dangerMap.push_back(el);
+			}
+			ret.map = map;
+			ret.dangerMap = dangerMap;
+
+			return ret;
+		} else {
+			std::cout << status.error_code() << ": " << status.error_message() << std::endl;
+			throw new std::system_error();
+		}
+	}
+
 private:
 	std::unique_ptr<AStar::Stub> stub_;
 };
@@ -244,7 +343,9 @@ void fpathShutdown()
 		wzSemaphoreDestroy(waitingForResultSemaphore);
 		waitingForResultSemaphore = nullptr;
 	}
-	fpathHardTableReset();
+	std::string address("0.0.0.0:8080");
+	AStarClient client(grpc::CreateChannel(address, grpc::InsecureChannelCredentials()));
+	client.tableReset();
 }
 
 
@@ -486,7 +587,10 @@ queuePathfinding:
 	job.owner = owner;
 	job.acceptNearest = acceptNearest;
 	job.deleted = false;
-	fpathSetBlockingMap(&job);
+	
+	std::string address("0.0.0.0:8080");
+	AStarClient client(grpc::CreateChannel(address, grpc::InsecureChannelCredentials()));
+	job.blockingMap = std::make_shared<PathBlockingMap>(client.setBlockingMap(&job));
 
 	debug(LOG_NEVER, "starting new job for droid %d 0x%x", id, id);
 	// Clear any results or jobs waiting already. It is a vital assumption that there is only one

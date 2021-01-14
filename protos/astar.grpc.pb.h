@@ -43,6 +43,20 @@ class AStar final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::Reply>> PrepareAsyncdoAStar(::grpc::ClientContext* context, const ::astar::Request& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::Reply>>(PrepareAsyncdoAStarRaw(context, request, cq));
     }
+    virtual ::grpc::Status tableReset(::grpc::ClientContext* context, const ::astar::Empty& request, ::astar::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::Empty>> AsynctableReset(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::Empty>>(AsynctableResetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::Empty>> PrepareAsynctableReset(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::Empty>>(PrepareAsynctableResetRaw(context, request, cq));
+    }
+    virtual ::grpc::Status setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::astar::PathBlockingMap* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::PathBlockingMap>> AsyncsetBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::PathBlockingMap>>(AsyncsetBlockingMapRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::PathBlockingMap>> PrepareAsyncsetBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::astar::PathBlockingMap>>(PrepareAsyncsetBlockingMapRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -51,6 +65,18 @@ class AStar final {
       virtual void doAStar(::grpc::ClientContext* context, const ::astar::Request* request, ::astar::Reply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
       virtual void doAStar(::grpc::ClientContext* context, const ::astar::Request* request, ::astar::Reply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void tableReset(::grpc::ClientContext* context, const ::astar::Empty* request, ::astar::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void tableReset(::grpc::ClientContext* context, const ::astar::Empty* request, ::astar::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void tableReset(::grpc::ClientContext* context, const ::astar::Empty* request, ::astar::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -63,6 +89,10 @@ class AStar final {
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::astar::Reply>* AsyncdoAStarRaw(::grpc::ClientContext* context, const ::astar::Request& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::astar::Reply>* PrepareAsyncdoAStarRaw(::grpc::ClientContext* context, const ::astar::Request& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::astar::Empty>* AsynctableResetRaw(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::astar::Empty>* PrepareAsynctableResetRaw(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::astar::PathBlockingMap>* AsyncsetBlockingMapRaw(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::astar::PathBlockingMap>* PrepareAsyncsetBlockingMapRaw(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -74,6 +104,20 @@ class AStar final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::Reply>> PrepareAsyncdoAStar(::grpc::ClientContext* context, const ::astar::Request& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::Reply>>(PrepareAsyncdoAStarRaw(context, request, cq));
     }
+    ::grpc::Status tableReset(::grpc::ClientContext* context, const ::astar::Empty& request, ::astar::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::Empty>> AsynctableReset(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::Empty>>(AsynctableResetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::Empty>> PrepareAsynctableReset(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::Empty>>(PrepareAsynctableResetRaw(context, request, cq));
+    }
+    ::grpc::Status setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::astar::PathBlockingMap* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::PathBlockingMap>> AsyncsetBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::PathBlockingMap>>(AsyncsetBlockingMapRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::PathBlockingMap>> PrepareAsyncsetBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::astar::PathBlockingMap>>(PrepareAsyncsetBlockingMapRaw(context, request, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
@@ -82,6 +126,18 @@ class AStar final {
       void doAStar(::grpc::ClientContext* context, const ::astar::Request* request, ::astar::Reply* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
       void doAStar(::grpc::ClientContext* context, const ::astar::Request* request, ::astar::Reply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void tableReset(::grpc::ClientContext* context, const ::astar::Empty* request, ::astar::Empty* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void tableReset(::grpc::ClientContext* context, const ::astar::Empty* request, ::astar::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void tableReset(::grpc::ClientContext* context, const ::astar::Empty* request, ::astar::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -96,7 +152,13 @@ class AStar final {
     class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::astar::Reply>* AsyncdoAStarRaw(::grpc::ClientContext* context, const ::astar::Request& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::astar::Reply>* PrepareAsyncdoAStarRaw(::grpc::ClientContext* context, const ::astar::Request& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::astar::Empty>* AsynctableResetRaw(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::astar::Empty>* PrepareAsynctableResetRaw(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::astar::PathBlockingMap>* AsyncsetBlockingMapRaw(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::astar::PathBlockingMap>* PrepareAsyncsetBlockingMapRaw(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_doAStar_;
+    const ::grpc::internal::RpcMethod rpcmethod_tableReset_;
+    const ::grpc::internal::RpcMethod rpcmethod_setBlockingMap_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -105,6 +167,8 @@ class AStar final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status doAStar(::grpc::ServerContext* context, const ::astar::Request* request, ::astar::Reply* response);
+    virtual ::grpc::Status tableReset(::grpc::ServerContext* context, const ::astar::Empty* request, ::astar::Empty* response);
+    virtual ::grpc::Status setBlockingMap(::grpc::ServerContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_doAStar : public BaseClass {
@@ -126,7 +190,47 @@ class AStar final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_doAStar<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_tableReset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_tableReset() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_tableReset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status tableReset(::grpc::ServerContext* /*context*/, const ::astar::Empty* /*request*/, ::astar::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequesttableReset(::grpc::ServerContext* context, ::astar::Empty* request, ::grpc::ServerAsyncResponseWriter< ::astar::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_setBlockingMap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_setBlockingMap() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_setBlockingMap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status setBlockingMap(::grpc::ServerContext* /*context*/, const ::astar::PATHJOB* /*request*/, ::astar::PathBlockingMap* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestsetBlockingMap(::grpc::ServerContext* context, ::astar::PATHJOB* request, ::grpc::ServerAsyncResponseWriter< ::astar::PathBlockingMap>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_doAStar<WithAsyncMethod_tableReset<WithAsyncMethod_setBlockingMap<Service > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_doAStar : public BaseClass {
    private:
@@ -174,11 +278,105 @@ class AStar final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_tableReset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_tableReset() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::astar::Empty, ::astar::Empty>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::astar::Empty* request, ::astar::Empty* response) { return this->tableReset(context, request, response); }));}
+    void SetMessageAllocatorFor_tableReset(
+        ::grpc::experimental::MessageAllocator< ::astar::Empty, ::astar::Empty>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::astar::Empty, ::astar::Empty>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_tableReset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status tableReset(::grpc::ServerContext* /*context*/, const ::astar::Empty* /*request*/, ::astar::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* tableReset(
+      ::grpc::CallbackServerContext* /*context*/, const ::astar::Empty* /*request*/, ::astar::Empty* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* tableReset(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::astar::Empty* /*request*/, ::astar::Empty* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_setBlockingMap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_setBlockingMap() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::astar::PATHJOB, ::astar::PathBlockingMap>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response) { return this->setBlockingMap(context, request, response); }));}
+    void SetMessageAllocatorFor_setBlockingMap(
+        ::grpc::experimental::MessageAllocator< ::astar::PATHJOB, ::astar::PathBlockingMap>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::astar::PATHJOB, ::astar::PathBlockingMap>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_setBlockingMap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status setBlockingMap(::grpc::ServerContext* /*context*/, const ::astar::PATHJOB* /*request*/, ::astar::PathBlockingMap* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* setBlockingMap(
+      ::grpc::CallbackServerContext* /*context*/, const ::astar::PATHJOB* /*request*/, ::astar::PathBlockingMap* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* setBlockingMap(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::astar::PATHJOB* /*request*/, ::astar::PathBlockingMap* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_doAStar<Service > CallbackService;
+  typedef ExperimentalWithCallbackMethod_doAStar<ExperimentalWithCallbackMethod_tableReset<ExperimentalWithCallbackMethod_setBlockingMap<Service > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_doAStar<Service > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_doAStar<ExperimentalWithCallbackMethod_tableReset<ExperimentalWithCallbackMethod_setBlockingMap<Service > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_doAStar : public BaseClass {
    private:
@@ -192,6 +390,40 @@ class AStar final {
     }
     // disable synchronous version of this method
     ::grpc::Status doAStar(::grpc::ServerContext* /*context*/, const ::astar::Request* /*request*/, ::astar::Reply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_tableReset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_tableReset() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_tableReset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status tableReset(::grpc::ServerContext* /*context*/, const ::astar::Empty* /*request*/, ::astar::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_setBlockingMap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_setBlockingMap() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_setBlockingMap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status setBlockingMap(::grpc::ServerContext* /*context*/, const ::astar::PATHJOB* /*request*/, ::astar::PathBlockingMap* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -214,6 +446,46 @@ class AStar final {
     }
     void RequestdoAStar(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_tableReset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_tableReset() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_tableReset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status tableReset(::grpc::ServerContext* /*context*/, const ::astar::Empty* /*request*/, ::astar::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequesttableReset(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_setBlockingMap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_setBlockingMap() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_setBlockingMap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status setBlockingMap(::grpc::ServerContext* /*context*/, const ::astar::PATHJOB* /*request*/, ::astar::PathBlockingMap* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestsetBlockingMap(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -255,6 +527,82 @@ class AStar final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_tableReset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_tableReset() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->tableReset(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_tableReset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status tableReset(::grpc::ServerContext* /*context*/, const ::astar::Empty* /*request*/, ::astar::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* tableReset(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* tableReset(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_setBlockingMap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_setBlockingMap() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->setBlockingMap(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_setBlockingMap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status setBlockingMap(::grpc::ServerContext* /*context*/, const ::astar::PATHJOB* /*request*/, ::astar::PathBlockingMap* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* setBlockingMap(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* setBlockingMap(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_doAStar : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -281,9 +629,63 @@ class AStar final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreameddoAStar(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::astar::Request,::astar::Reply>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_doAStar<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_tableReset : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_tableReset() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::astar::Empty, ::astar::Empty>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::astar::Empty, ::astar::Empty>* streamer) {
+                       return this->StreamedtableReset(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_tableReset() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status tableReset(::grpc::ServerContext* /*context*/, const ::astar::Empty* /*request*/, ::astar::Empty* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedtableReset(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::astar::Empty,::astar::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_setBlockingMap : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_setBlockingMap() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::astar::PATHJOB, ::astar::PathBlockingMap>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::astar::PATHJOB, ::astar::PathBlockingMap>* streamer) {
+                       return this->StreamedsetBlockingMap(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_setBlockingMap() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status setBlockingMap(::grpc::ServerContext* /*context*/, const ::astar::PATHJOB* /*request*/, ::astar::PathBlockingMap* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedsetBlockingMap(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::astar::PATHJOB,::astar::PathBlockingMap>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_doAStar<WithStreamedUnaryMethod_tableReset<WithStreamedUnaryMethod_setBlockingMap<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_doAStar<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_doAStar<WithStreamedUnaryMethod_tableReset<WithStreamedUnaryMethod_setBlockingMap<Service > > > StreamedService;
 };
 
 }  // namespace astar

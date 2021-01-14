@@ -23,6 +23,8 @@ namespace astar {
 
 static const char* AStar_method_names[] = {
   "/astar.AStar/doAStar",
+  "/astar.AStar/tableReset",
+  "/astar.AStar/setBlockingMap",
 };
 
 std::unique_ptr< AStar::Stub> AStar::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -33,6 +35,8 @@ std::unique_ptr< AStar::Stub> AStar::NewStub(const std::shared_ptr< ::grpc::Chan
 
 AStar::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_doAStar_(AStar_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_tableReset_(AStar_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_setBlockingMap_(AStar_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status AStar::Stub::doAStar(::grpc::ClientContext* context, const ::astar::Request& request, ::astar::Reply* response) {
@@ -58,6 +62,52 @@ void AStar::Stub::experimental_async::doAStar(::grpc::ClientContext* context, co
   return result;
 }
 
+::grpc::Status AStar::Stub::tableReset(::grpc::ClientContext* context, const ::astar::Empty& request, ::astar::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::astar::Empty, ::astar::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_tableReset_, context, request, response);
+}
+
+void AStar::Stub::experimental_async::tableReset(::grpc::ClientContext* context, const ::astar::Empty* request, ::astar::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::astar::Empty, ::astar::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_tableReset_, context, request, response, std::move(f));
+}
+
+void AStar::Stub::experimental_async::tableReset(::grpc::ClientContext* context, const ::astar::Empty* request, ::astar::Empty* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_tableReset_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::astar::Empty>* AStar::Stub::PrepareAsynctableResetRaw(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::astar::Empty, ::astar::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_tableReset_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::astar::Empty>* AStar::Stub::AsynctableResetRaw(::grpc::ClientContext* context, const ::astar::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsynctableResetRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status AStar::Stub::setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::astar::PathBlockingMap* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::astar::PATHJOB, ::astar::PathBlockingMap, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_setBlockingMap_, context, request, response);
+}
+
+void AStar::Stub::experimental_async::setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::astar::PATHJOB, ::astar::PathBlockingMap, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_setBlockingMap_, context, request, response, std::move(f));
+}
+
+void AStar::Stub::experimental_async::setBlockingMap(::grpc::ClientContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_setBlockingMap_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::astar::PathBlockingMap>* AStar::Stub::PrepareAsyncsetBlockingMapRaw(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::astar::PathBlockingMap, ::astar::PATHJOB, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_setBlockingMap_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::astar::PathBlockingMap>* AStar::Stub::AsyncsetBlockingMapRaw(::grpc::ClientContext* context, const ::astar::PATHJOB& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncsetBlockingMapRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 AStar::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       AStar_method_names[0],
@@ -69,12 +119,46 @@ AStar::Service::Service() {
              ::astar::Reply* resp) {
                return service->doAStar(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AStar_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AStar::Service, ::astar::Empty, ::astar::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AStar::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::astar::Empty* req,
+             ::astar::Empty* resp) {
+               return service->tableReset(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      AStar_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< AStar::Service, ::astar::PATHJOB, ::astar::PathBlockingMap, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](AStar::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::astar::PATHJOB* req,
+             ::astar::PathBlockingMap* resp) {
+               return service->setBlockingMap(ctx, req, resp);
+             }, this)));
 }
 
 AStar::Service::~Service() {
 }
 
 ::grpc::Status AStar::Service::doAStar(::grpc::ServerContext* context, const ::astar::Request* request, ::astar::Reply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AStar::Service::tableReset(::grpc::ServerContext* context, const ::astar::Empty* request, ::astar::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status AStar::Service::setBlockingMap(::grpc::ServerContext* context, const ::astar::PATHJOB* request, ::astar::PathBlockingMap* response) {
   (void) context;
   (void) request;
   (void) response;

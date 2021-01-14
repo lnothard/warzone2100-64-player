@@ -65,6 +65,7 @@ using grpc::Status;
 using astar::AStar;
 using astar::Request;
 using astar::Reply;
+using astar::Empty;
 
 /// A coordinate.
 struct PathCoord
@@ -261,8 +262,9 @@ static inline unsigned WZ_DECL_PURE fpathGoodEstimate(PathCoord s, PathCoord f)
  */
 static inline void fpathNewNode(PathfindContext &context, PathCoord dest, PathCoord pos, unsigned prevDist, PathCoord prevPos)
 {
+	std::cout << (unsigned)mapWidth << " " << (unsigned)mapHeight << std::endl;
+	std::cout << (unsigned)pos.x << " " << (unsigned)pos.y << std::endl;
 	ASSERT_OR_RETURN(, (unsigned)pos.x < (unsigned)mapWidth && (unsigned)pos.y < (unsigned)mapHeight, "X (%d) or Y (%d) coordinate for path finding node is out of range!", pos.x, pos.y);
-
 	// Create the node.
 	PathNode node;
 	unsigned costFactor = context.isDangerous(pos.x, pos.y) ? 5 : 1;
@@ -587,7 +589,7 @@ ASR_RETVAL fpathAStarRoute(MOVE_CONTROL *psMove, PATHJOB *psJob)
 	return retval;
 }
 
-void fpathSetBlockingMap(PATHJOB *psJob)
+PathBlockingMap fpathSetBlockingMap(PATHJOB *psJob)
 {
 	if (fpathCurrentGameTime != gameTime)
 	{
@@ -637,118 +639,197 @@ void fpathSetBlockingMap(PATHJOB *psJob)
 		}
 		syncDebug("blockingMap(%d,%d,%d,%d) = %08X %08X", gameTime, psJob->propulsion, psJob->owner, psJob->moveType, checksumMap, checksumDangerMap);
 
-		psJob->blockingMap = fpathBlockingMaps.back();
+		return *fpathBlockingMaps.back();
 	}
 	else
 	{
 		syncDebug("blockingMap(%d,%d,%d,%d) = cached", gameTime, psJob->propulsion, psJob->owner, psJob->moveType);
 
-		psJob->blockingMap = *i;
+		return **i;
 	}
 }
 
 class AStarImpl final : public AStar::Service {
-    Status doAStar(ServerContext* context, const Request* request, Reply* response) override {
-    PATHJOB j;
-    MOVE_CONTROL m;
+	Status doAStar(ServerContext* context, const Request* request, Reply* response) override {
+		PATHJOB j;
+		MOVE_CONTROL m;
 
-    // Convert request->psmove() to MOVE_CONTROL struct
-    astar::MOVE_CONTROL move = request->psmove();
+		// Convert request->psmove() to MOVE_CONTROL struct
+		astar::MOVE_CONTROL move = request->psmove();
 
-    m.Status = (MOVE_STATUS)move.status();
-    m.pathIndex = move.pathindex();
-    m.speed = move.speed();
-    m.moveDir = move.movedir();
-    m.bumpDir = move.bumpdir();
-    m.bumpTime = move.bumptime();
-    m.lastBump = move.lastbump();
-    m.pauseTime = move.pausetime();
-    m.shuffleStart = move.shufflestart();
-    m.iVertSpeed = move.ivertspeed();
+		m.Status = (MOVE_STATUS)move.status();
+		m.pathIndex = move.pathindex();
+		m.speed = move.speed();
+		m.moveDir = move.movedir();
+		m.bumpDir = move.bumpdir();
+		m.bumpTime = move.bumptime();
+		m.lastBump = move.lastbump();
+		m.pauseTime = move.pausetime();
+		m.shuffleStart = move.shufflestart();
+		m.iVertSpeed = move.ivertspeed();
 
-    std::vector<Vector2i> converted;
-    for (astar::Vector2i el : move.aspath()) {
-	    Vector2i vec;
-	    vec.x = el.x();
-	    vec.y = el.y();
-	    converted.push_back(vec);
-    }
-    m.asPath = converted;
+		std::vector<Vector2i> converted;
+		for (astar::Vector2i el : move.aspath()) {
+			Vector2i vec;
+			vec.x = el.x();
+			vec.y = el.y();
+			converted.push_back(vec);
+		}
+		m.asPath = converted;
 
-    Vector2i destination, src, target;
-    Vector3i bump_pos;
-    destination.x = move.destination().x();
-    destination.y = move.destination().y();
-    src.x = move.src().x();
-    src.y = move.src().y();
-    target.x = move.target().x();
-    target.y = move.target().y();
-    bump_pos.x = move.bumppos().x();
-    bump_pos.y = move.bumppos().y();
-    bump_pos.z = move.bumppos().z();
-    m.destination = destination;
-    m.src = src;
-    m.target = target;
-    m.bumpPos = bump_pos;
+		Vector2i destination, src, target;
+		Vector3i bump_pos;
+		destination.x = move.destination().x();
+		destination.y = move.destination().y();
+		src.x = move.src().x();
+		src.y = move.src().y();
+		target.x = move.target().x();
+		target.y = move.target().y();
+		bump_pos.x = move.bumppos().x();
+		bump_pos.y = move.bumppos().y();
+		bump_pos.z = move.bumppos().z();
+		m.destination = destination;
+		m.src = src;
+		m.target = target;
+		m.bumpPos = bump_pos;
 
-    // Convert request->psjob() to PATHJOB struct
-    astar::PATHJOB job = request->psjob();
+		// Convert request->psjob() to PATHJOB struct
+		astar::PATHJOB job = request->psjob();
 
-    j.propulsion = (PROPULSION_TYPE)job.propulsion();
-    j.droidType = (DROID_TYPE)job.droidtype();
-    j.moveType = (FPATH_MOVETYPE)job.movetype();
-    j.destX = job.destx();
-    j.destY = job.desty();
-    j.origX = job.origx();
-    j.origY = job.origy();
-    j.droidID = job.droidid();
-    j.owner = job.owner();
-    j.acceptNearest = job.acceptnearest();
-    j.deleted = job.deleted();
+		j.propulsion = (PROPULSION_TYPE)job.propulsion();
+		j.droidType = (DROID_TYPE)job.droidtype();
+		j.moveType = (FPATH_MOVETYPE)job.movetype();
+		j.destX = job.destx();
+		j.destY = job.desty();
+		j.origX = job.origx();
+		j.origY = job.origy();
+		j.droidID = job.droidid();
+		j.owner = job.owner();
+		j.acceptNearest = job.acceptnearest();
+		j.deleted = job.deleted();
 
-    StructureBounds dstStructure;
-    Vector2i map;
-    Vector2i size;
-    map.x = job.dststructure().map().x();
-    map.y = job.dststructure().map().y();
-    size.x = job.dststructure().size().x();
-    size.y = job.dststructure().size().y();
-    dstStructure.map = map;
-    dstStructure.size = size;
-    j.dstStructure = dstStructure;
+		StructureBounds dstStructure;
+		Vector2i map;
+		Vector2i size;
+		map.x = job.dststructure().map().x();
+		map.y = job.dststructure().map().y();
+		size.x = job.dststructure().size().x();
+		size.y = job.dststructure().size().y();
+		dstStructure.map = map;
+		dstStructure.size = size;
+		j.dstStructure = dstStructure;
 
-    PathBlockingMap blockingMap;
-    PathBlockingType type;
-    type.gameTime = job.blockingmap().type().gametime();
-    type.propulsion = (PROPULSION_TYPE)job.blockingmap().type().propulsion();
-    type.owner = job.blockingmap().type().owner();
-    type.moveType = (FPATH_MOVETYPE)job.blockingmap().type().owner();
-    blockingMap.type = type;
+		PathBlockingMap blockingMap;
+		PathBlockingType type;
+		type.gameTime = job.blockingmap().type().gametime();
+		type.propulsion = (PROPULSION_TYPE)job.blockingmap().type().propulsion();
+		type.owner = job.blockingmap().type().owner();
+		type.moveType = (FPATH_MOVETYPE)job.blockingmap().type().owner();
+		blockingMap.type = type;
 
-    std::vector<bool> map_;
-    for (bool el : job.blockingmap().map()) {
-	    map_.push_back(el);
-    }
-    blockingMap.map = map_;
+		std::vector<bool> map_;
+		for (bool el : job.blockingmap().map()) {
+			map_.push_back(el);
+		}
+		blockingMap.map = map_;
 
-    std::vector<bool> dangerMap;
-    for (bool el : job.blockingmap().dangermap()) {
-	    dangerMap.push_back(el);
-    }
-    blockingMap.dangerMap = dangerMap;
-    j.blockingMap = std::make_shared<PathBlockingMap>(blockingMap);
+		std::vector<bool> dangerMap;
+		for (bool el : job.blockingmap().dangermap()) {
+			dangerMap.push_back(el);
+		}
+		blockingMap.dangerMap = dangerMap;
+		j.blockingMap = std::make_shared<PathBlockingMap>(blockingMap);
 
-    astar::Reply_ASR_RETVAL retVal = (astar::Reply_ASR_RETVAL)fpathAStarRoute(&m, &j);
-    response->set_retval(retVal);
-    std::cout << response->retval() << std::endl;
+		astar::Reply_ASR_RETVAL retVal = (astar::Reply_ASR_RETVAL)fpathAStarRoute(&m, &j);
+		response->set_retval(retVal);
 
-    return Status::OK;
-  }
+		astar::MOVE_CONTROL* psMove = response->mutable_psmove();
+		psMove->set_status((astar::MOVE_STATUS)m.Status);
+		psMove->set_pathindex(m.pathIndex);
+		psMove->set_speed(m.speed);
+		psMove->set_movedir(m.moveDir);
+		psMove->set_bumpdir(m.bumpDir);
+		psMove->set_bumptime(m.bumpTime);
+		psMove->set_lastbump(m.lastBump);
+		psMove->set_pausetime(m.pauseTime);
+		psMove->set_shufflestart(m.shuffleStart);
+		psMove->set_ivertspeed(m.iVertSpeed);
+		astar::Vector2i* destination_ = psMove->mutable_destination();
+		destination_->set_x(m.destination.x);
+		destination_->set_y(m.destination.y);
+		astar::Vector2i* src_ = psMove->mutable_src();
+		src_->set_x(m.src.x);
+		src_->set_y(m.src.y);
+		astar::Vector2i* target_ = psMove->mutable_target();
+		target_->set_x(m.target.x);
+		target_->set_y(m.target.y);
+		astar::Vector3i* bumpPos = psMove->mutable_bumppos();
+		bumpPos->set_x(m.bumpPos.x);
+		bumpPos->set_y(m.bumpPos.y);
+		bumpPos->set_z(m.bumpPos.z);
+		for (Vector2i el : m.asPath) {
+			astar::Vector2i* temp = psMove->add_aspath();
+			temp->set_x(el.x);
+			temp->set_y(el.y);
+		}
+
+		return Status::OK;
+	}
+
+       	Status setBlockingMap(ServerContext* context, const astar::PATHJOB* request, astar::PathBlockingMap* response) override {
+		PATHJOB j;
+		astar::PATHJOB job = *request;
+
+		j.propulsion = (PROPULSION_TYPE)job.propulsion();
+		j.droidType = (DROID_TYPE)job.droidtype();
+		j.moveType = (FPATH_MOVETYPE)job.movetype();
+		j.destX = job.destx();
+		j.destY = job.desty();
+		j.origX = job.origx();
+		j.origY = job.origy();
+		j.droidID = job.droidid();
+		j.owner = job.owner();
+		j.acceptNearest = job.acceptnearest();
+		j.deleted = job.deleted();
+
+		StructureBounds dstStructure;
+		Vector2i map;
+		Vector2i size;
+		map.x = job.dststructure().map().x();
+		map.y = job.dststructure().map().y();
+		size.x = job.dststructure().size().x();
+		size.y = job.dststructure().size().y();
+		dstStructure.map = map;
+		dstStructure.size = size;
+		j.dstStructure = dstStructure;
+
+		PathBlockingMap result = fpathSetBlockingMap(&j);
+		astar::PathBlockingType* type = response->mutable_type();
+		type->set_gametime(result.type.gameTime);
+		type->set_propulsion((astar::PROPULSION_TYPE)result.type.propulsion);
+		type->set_owner(result.type.owner);
+		type->set_movetype((astar::FPATH_MOVETYPE)result.type.moveType);
+
+		for (bool el : result.map) {
+			response->add_map(el);
+		}
+		for (bool el : result.dangerMap) {
+			response->add_dangermap(el);
+		}
+	   
+		return Status::OK;
+	}
+
+       	Status tableReset(ServerContext* context, const Empty* request, Empty* response) override {
+		fpathHardTableReset();
+		return Status::OK;
+	}
 };
 
 void run() {
 	std::string address("0.0.0.0:8080");
 	AStarImpl service;
+
 	ServerBuilder builder;
 
 	builder.AddListeningPort(address, grpc::InsecureServerCredentials());

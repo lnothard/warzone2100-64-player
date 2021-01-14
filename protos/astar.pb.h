@@ -48,7 +48,7 @@ struct TableStruct_astar_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[9]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -56,6 +56,9 @@ struct TableStruct_astar_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_astar_2eproto;
 namespace astar {
+class Empty;
+class EmptyDefaultTypeInternal;
+extern EmptyDefaultTypeInternal _Empty_default_instance_;
 class MOVE_CONTROL;
 class MOVE_CONTROLDefaultTypeInternal;
 extern MOVE_CONTROLDefaultTypeInternal _MOVE_CONTROL_default_instance_;
@@ -85,6 +88,7 @@ class Vector3iDefaultTypeInternal;
 extern Vector3iDefaultTypeInternal _Vector3i_default_instance_;
 }  // namespace astar
 PROTOBUF_NAMESPACE_OPEN
+template<> ::astar::Empty* Arena::CreateMaybeMessage<::astar::Empty>(Arena*);
 template<> ::astar::MOVE_CONTROL* Arena::CreateMaybeMessage<::astar::MOVE_CONTROL>(Arena*);
 template<> ::astar::PATHJOB* Arena::CreateMaybeMessage<::astar::PATHJOB>(Arena*);
 template<> ::astar::PathBlockingMap* Arena::CreateMaybeMessage<::astar::PathBlockingMap>(Arena*);
@@ -252,6 +256,130 @@ inline bool FPATH_MOVETYPE_Parse(
 }
 // ===================================================================
 
+class Empty PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:astar.Empty) */ {
+ public:
+  inline Empty() : Empty(nullptr) {}
+  virtual ~Empty();
+
+  Empty(const Empty& from);
+  Empty(Empty&& from) noexcept
+    : Empty() {
+    *this = ::std::move(from);
+  }
+
+  inline Empty& operator=(const Empty& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Empty& operator=(Empty&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const Empty& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Empty* internal_default_instance() {
+    return reinterpret_cast<const Empty*>(
+               &_Empty_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(Empty& a, Empty& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Empty* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Empty* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Empty* New() const final {
+    return CreateMaybeMessage<Empty>(nullptr);
+  }
+
+  Empty* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Empty>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Empty& from);
+  void MergeFrom(const Empty& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Empty* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "astar.Empty";
+  }
+  protected:
+  explicit Empty(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_astar_2eproto);
+    return ::descriptor_table_astar_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:astar.Empty)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_astar_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Request PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:astar.Request) */ {
  public:
@@ -294,7 +422,7 @@ class Request PROTOBUF_FINAL :
                &_Request_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(Request& a, Request& b) {
     a.Swap(&b);
@@ -460,7 +588,7 @@ class Reply PROTOBUF_FINAL :
                &_Reply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(Reply& a, Reply& b) {
     a.Swap(&b);
@@ -563,8 +691,27 @@ class Reply PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kPsmoveFieldNumber = 2,
     kRetValFieldNumber = 1,
   };
+  // .astar.MOVE_CONTROL psmove = 2;
+  bool has_psmove() const;
+  private:
+  bool _internal_has_psmove() const;
+  public:
+  void clear_psmove();
+  const ::astar::MOVE_CONTROL& psmove() const;
+  ::astar::MOVE_CONTROL* release_psmove();
+  ::astar::MOVE_CONTROL* mutable_psmove();
+  void set_allocated_psmove(::astar::MOVE_CONTROL* psmove);
+  private:
+  const ::astar::MOVE_CONTROL& _internal_psmove() const;
+  ::astar::MOVE_CONTROL* _internal_mutable_psmove();
+  public:
+  void unsafe_arena_set_allocated_psmove(
+      ::astar::MOVE_CONTROL* psmove);
+  ::astar::MOVE_CONTROL* unsafe_arena_release_psmove();
+
   // .astar.Reply.ASR_RETVAL retVal = 1;
   void clear_retval();
   ::astar::Reply_ASR_RETVAL retval() const;
@@ -581,6 +728,7 @@ class Reply PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::astar::MOVE_CONTROL* psmove_;
   int retval_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_astar_2eproto;
@@ -629,7 +777,7 @@ class MOVE_CONTROL PROTOBUF_FINAL :
                &_MOVE_CONTROL_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(MOVE_CONTROL& a, MOVE_CONTROL& b) {
     a.Swap(&b);
@@ -965,7 +1113,7 @@ class PATHJOB PROTOBUF_FINAL :
                &_PATHJOB_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(PATHJOB& a, PATHJOB& b) {
     a.Swap(&b);
@@ -1252,7 +1400,7 @@ class Vector2i PROTOBUF_FINAL :
                &_Vector2i_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(Vector2i& a, Vector2i& b) {
     a.Swap(&b);
@@ -1400,7 +1548,7 @@ class Vector3i PROTOBUF_FINAL :
                &_Vector3i_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(Vector3i& a, Vector3i& b) {
     a.Swap(&b);
@@ -1559,7 +1707,7 @@ class StructureBounds PROTOBUF_FINAL :
                &_StructureBounds_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(StructureBounds& a, StructureBounds& b) {
     a.Swap(&b);
@@ -1725,7 +1873,7 @@ class PathBlockingType PROTOBUF_FINAL :
                &_PathBlockingType_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(PathBlockingType& a, PathBlockingType& b) {
     a.Swap(&b);
@@ -1895,7 +2043,7 @@ class PathBlockingMap PROTOBUF_FINAL :
                &_PathBlockingMap_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(PathBlockingMap& a, PathBlockingMap& b) {
     a.Swap(&b);
@@ -2056,6 +2204,10 @@ class PathBlockingMap PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// Empty
+
+// -------------------------------------------------------------------
+
 // Request
 
 // .astar.MOVE_CONTROL psmove = 1;
@@ -2246,6 +2398,89 @@ inline void Reply::_internal_set_retval(::astar::Reply_ASR_RETVAL value) {
 inline void Reply::set_retval(::astar::Reply_ASR_RETVAL value) {
   _internal_set_retval(value);
   // @@protoc_insertion_point(field_set:astar.Reply.retVal)
+}
+
+// .astar.MOVE_CONTROL psmove = 2;
+inline bool Reply::_internal_has_psmove() const {
+  return this != internal_default_instance() && psmove_ != nullptr;
+}
+inline bool Reply::has_psmove() const {
+  return _internal_has_psmove();
+}
+inline void Reply::clear_psmove() {
+  if (GetArena() == nullptr && psmove_ != nullptr) {
+    delete psmove_;
+  }
+  psmove_ = nullptr;
+}
+inline const ::astar::MOVE_CONTROL& Reply::_internal_psmove() const {
+  const ::astar::MOVE_CONTROL* p = psmove_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::astar::MOVE_CONTROL*>(
+      &::astar::_MOVE_CONTROL_default_instance_);
+}
+inline const ::astar::MOVE_CONTROL& Reply::psmove() const {
+  // @@protoc_insertion_point(field_get:astar.Reply.psmove)
+  return _internal_psmove();
+}
+inline void Reply::unsafe_arena_set_allocated_psmove(
+    ::astar::MOVE_CONTROL* psmove) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(psmove_);
+  }
+  psmove_ = psmove;
+  if (psmove) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:astar.Reply.psmove)
+}
+inline ::astar::MOVE_CONTROL* Reply::release_psmove() {
+  
+  ::astar::MOVE_CONTROL* temp = psmove_;
+  psmove_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::astar::MOVE_CONTROL* Reply::unsafe_arena_release_psmove() {
+  // @@protoc_insertion_point(field_release:astar.Reply.psmove)
+  
+  ::astar::MOVE_CONTROL* temp = psmove_;
+  psmove_ = nullptr;
+  return temp;
+}
+inline ::astar::MOVE_CONTROL* Reply::_internal_mutable_psmove() {
+  
+  if (psmove_ == nullptr) {
+    auto* p = CreateMaybeMessage<::astar::MOVE_CONTROL>(GetArena());
+    psmove_ = p;
+  }
+  return psmove_;
+}
+inline ::astar::MOVE_CONTROL* Reply::mutable_psmove() {
+  // @@protoc_insertion_point(field_mutable:astar.Reply.psmove)
+  return _internal_mutable_psmove();
+}
+inline void Reply::set_allocated_psmove(::astar::MOVE_CONTROL* psmove) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete psmove_;
+  }
+  if (psmove) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(psmove);
+    if (message_arena != submessage_arena) {
+      psmove = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, psmove, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  psmove_ = psmove;
+  // @@protoc_insertion_point(field_set_allocated:astar.Reply.psmove)
 }
 
 // -------------------------------------------------------------------
@@ -3759,6 +3994,8 @@ PathBlockingMap::mutable_dangermap() {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

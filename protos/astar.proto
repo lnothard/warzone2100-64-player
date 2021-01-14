@@ -4,7 +4,11 @@ package astar;
 
 service AStar {
     rpc doAStar(Request) returns (Reply) {}
+    rpc tableReset(Empty) returns (Empty) {}
+    rpc setBlockingMap(PATHJOB) returns (PathBlockingMap) {}
 }
+
+message Empty {}
 
 message Request {
     MOVE_CONTROL psmove = 1;
@@ -18,6 +22,7 @@ message Reply {
         ASR_NEAREST = 2;
     }
     ASR_RETVAL retVal = 1;
+    MOVE_CONTROL psmove = 2;
 }
  
 message MOVE_CONTROL {
